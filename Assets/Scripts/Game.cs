@@ -14,6 +14,8 @@ public class Game : MonoBehaviour
     [Header("Prefabs")]
     public GameObject blockPrefab;
     public GameObject rectanglePrefab;
+    private List<GameObject> prefabList;
+    private List<Color> colorList;
 
     private struct BuildingPiece{
         public GameObject prefab; // Use Resources.Load() to find the prefab
@@ -23,41 +25,50 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<BuildingPiece> pieceList = new();
-        BuildingPiece piece1 = new()
-        {
-            prefab = blockPrefab,
-            color = Color.white
+        prefabList = new(){
+            blockPrefab,
+            rectanglePrefab
         };
-        BuildingPiece piece2 = new(){
-            prefab = rectanglePrefab,
-            color = Color.cyan
+
+        colorList = new(){
+            Color.red,
+            Color.black,
+            Color.blue,
+            Color.green,
+            Color.white
         };
-        BuildingPiece piece3 = new(){
-            prefab = rectanglePrefab,
-            color = Color.green
-        };
-        BuildingPiece piece4 = new(){
-            prefab = blockPrefab,
-            color = Color.red
-        };
-        pieceList.Add(piece1);
-        pieceList.Add(piece2);
-        pieceList.Add(piece3);
-        pieceList.Add(piece4);
-        CreatePieceQueue(pieceList);
+        CreatePieceQueue(Enumerable.Empty<BuildingPiece>());
+        AddRandomPieceToQueue();
+        AddRandomPieceToQueue();
+        AddRandomPieceToQueue();
     }
 
     void CreatePieceQueue(IEnumerable<BuildingPiece> pieces){
         nextBuildingPieces = new Queue<BuildingPiece>(pieces);
     }
 
-    void SpawnNextPiece(Vector2 position, Quaternion rotation){
+    void AddPieceToQueue(BuildingPiece piece){
+        nextBuildingPieces.Enqueue(piece);
+    }
+
+    void AddRandomPieceToQueue(){
+        nextBuildingPieces.Enqueue(new BuildingPiece(){
+            prefab = prefabList[Random.Range(0, prefabList.Count)],
+            color = colorList[Random.Range(0, colorList.Count)]
+        });
+    }
+
+    void EmptyPieceQueue(){
+        nextBuildingPieces.Clear();
+    }
+
+    void SpawnNextPieceEndless(Vector2 position, Quaternion rotation){
         if(nextBuildingPieces.Count > 0){
             BuildingPiece piece = nextBuildingPieces.Dequeue();
             GameObject object1 = Instantiate(piece.prefab, position, rotation);
             SpriteRenderer renderer = object1.GetComponentInChildren<SpriteRenderer>();
             renderer.color = piece.color;
+            AddRandomPieceToQueue();
         }
     }
 
@@ -66,8 +77,8 @@ public class Game : MonoBehaviour
     {
         frameCounter++;
         if(frameCounter == 600){
-            Vector2 newBlockStartPosition = new Vector2(Random.Range(-2, 2), newBlockStartY);
-            SpawnNextPiece(newBlockStartPosition, Quaternion.identity);           
+            Vector2 newBlockStartPosition = new(((float)Random.Range(-200, 200))/100.0f, newBlockStartY);
+            SpawnNextPieceEndless(newBlockStartPosition, Quaternion.identity);           
             frameCounter = 0;
         }
     }
