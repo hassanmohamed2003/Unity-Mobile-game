@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+    public static Game instance;
     private int frameCounter = 0;
+    private int moveCount = 0;
     private Queue<BuildingPiece> nextBuildingPieces;
     public float newBlockStartY;
     
@@ -17,9 +19,17 @@ public class Game : MonoBehaviour
     private List<GameObject> prefabList;
     private List<Color> colorList;
 
+    public CameraFollow cameraScript;
+
     private struct BuildingPiece{
         public GameObject prefab; // Use Resources.Load() to find the prefab
         public Color color; // Color of the block
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
     }
 
     // Start is called before the first frame update
@@ -62,6 +72,17 @@ public class Game : MonoBehaviour
         nextBuildingPieces.Clear();
     }
 
+    public void MoveCamera()
+    {
+        moveCount++;
+
+        if(moveCount == 3)
+        {
+            moveCount = 0;
+            cameraScript.targetPos.y += 0.2f;
+        }
+    }
+
     void SpawnNextPieceEndless(Vector2 position, Quaternion rotation){
         if(nextBuildingPieces.Count > 0){
             BuildingPiece piece = nextBuildingPieces.Dequeue();
@@ -71,6 +92,8 @@ public class Game : MonoBehaviour
             AddRandomPieceToQueue();
         }
     }
+
+
 
     // Update is called once per frame
     void Update()
