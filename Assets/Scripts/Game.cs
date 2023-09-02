@@ -24,6 +24,9 @@ public class Game : MonoBehaviour
     private GameObject newBlock;
     private Transform middleScreen;
 
+
+    float counter;
+
     private struct BuildingPiece{
         public GameObject prefab; // Use Resources.Load() to find the prefab
         public Color color; // Color of the block
@@ -79,7 +82,6 @@ public class Game : MonoBehaviour
             BuildingPiece piece = nextBuildingPieces.Dequeue();
             GameObject object1 = Instantiate(piece.prefab, position, rotation);
             newBlock = object1;
-            Debug.Log(newBlock);
             SpriteRenderer renderer = object1.GetComponentInChildren<SpriteRenderer>();
             renderer.color = piece.color;
             AddRandomPieceToQueue();
@@ -87,28 +89,28 @@ public class Game : MonoBehaviour
 
     }
 
-    public void CheckHighestBlockPosition(Collision2D collision)
+    public void HasDropped(Collision2D collision)
     {
-            if (highestBlock != null)
-            {
-                Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
+        if (collision.gameObject.CompareTag("Landed Block"))
 
-                if (collision.transform.position.y > highestBlock.position.y)
-                {
-
-                highestBlock = collision.gameObject.transform;
-            }
-
-                if (screenPos.y > 0.5f)
-                {
-                    cameraScript.targetPos.y += screenPos.y - 0.5f;
-                    highestBlock = null;
-                }
-            }
-
-            if(highestBlock == null)
         {
-            highestBlock = collision.gameObject.transform;
+                if (highestBlock != null)
+                {
+                    Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
+
+
+                    if (screenPos.y > 0.5f)
+                    {
+                        Vector3 sizeBlock = collision.gameObject.transform.localScale;
+                        cameraScript.targetPos.y += sizeBlock.y;
+                    }
+                }
+
+                if (highestBlock == null || collision.gameObject.transform.position.y > highestBlock.position.y)
+                {
+
+                    highestBlock = collision.gameObject.transform;
+                }
         }
     }
 
@@ -118,16 +120,10 @@ public class Game : MonoBehaviour
     void Update()
     {
         frameCounter++;
-        if(frameCounter == 600){
-            Vector2 newBlockStartPosition = new(((float)Random.Range(-200, 200))/100.0f, newBlockStartY);
+        if(frameCounter == 6000){
+            Vector2 newBlockStartPosition = new Vector2(0, newBlockStartY);
             SpawnNextPieceEndless(newBlockStartPosition, Quaternion.identity);           
             frameCounter = 0;
         }
-        /*
-        if(frameCounter % 60 == 0)
-        {
-            CheckHighestBlockPosition();
-        }
-        */
     }
 }
