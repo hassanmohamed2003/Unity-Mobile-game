@@ -96,21 +96,16 @@ public class Game : MonoBehaviour
             if (highestBlock != null)
             {
                 Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
-                Vector3 sizeBlock = collision.gameObject.transform.localScale;
+                Vector3 blockPos = highestBlock.position;
+                Vector3 cameraY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
 
 
-                if (screenPos.y > 0.5f && screenPos.y < 1)
+                if (blockPos.y > cameraY.y)
                     {
-                    cameraScript.smoothMove = 0.1f;
+                    cameraScript.smoothMove = 1;
                     counter++;
-   
-                    Vector3 viewportY = new Vector3(0, screenPos.y - 0.5f, 0);
-                    Vector3 worldY = Camera.main.ViewportToWorldPoint(viewportY);
 
-                    cameraScript.targetPos.y -= worldY.y;
-                }
-                if(screenPos.y > 1) {
-                    cameraScript.targetPos.y = highestBlock.position.y;
+                    cameraScript.targetPos.y += blockPos.y - cameraY.y;
                 }
 
                 if (screenPos.y < 0.5f)
@@ -138,7 +133,7 @@ public class Game : MonoBehaviour
         frameCounter++;
         if(frameCounter == 600){
             {
-                Vector2 newBlockStartPosition = new(((float)Random.Range(-200, 200))/100.0f, newBlockStartY);
+                Vector2 newBlockStartPosition = new(((float)Random.Range(-200, 200)) / 100.0f, newBlockStartY);
                 SpawnNextPieceEndless(newBlockStartPosition, Quaternion.identity);
                 frameCounter = 0;
             }

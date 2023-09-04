@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     [HideInInspector]
     public Vector3 targetPos;
 
-    public float smoothMove = 0.1f;
+    public float smoothMove = 1;
 
     // Start is called before the first frame update
     void Start()
