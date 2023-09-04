@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1116225067762112148}
   - component: {fileID: -5253507673722528028}
   - component: {fileID: 5086196447288131850}
-  - component: {fileID: 6225403683836446625}
+  - component: {fileID: -2695146741845783270}
   m_Layer: 0
   m_Name: BuildingBlock
   m_TagString: Block
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5086196447288131850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f3dfd0f583a034ea67148ad0cc9016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!233 &6225403683836446625
-HingeJoint2D:
+--- !u!231 &-2695146741845783270
+SpringJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -186,14 +186,10 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 5}
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+  m_AutoConfigureDistance: 1
+  m_Distance: 1
+  m_DampingRatio: 0
+  m_Frequency: 1

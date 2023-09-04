@@ -8,10 +8,9 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public static Game instance;
-    private int frameCounter = 0;
     private int moveCount = 0;
     private Queue<BuildingPiece> nextBuildingPieces;
-    public float newBlockStartY;
+    public float distanceCraneToPieceOnSpawn;
     
     [Header("Prefabs")]
     public GameObject blockPrefab;
@@ -21,6 +20,7 @@ public class Game : MonoBehaviour
     private List<Color> colorList;
 
     public CameraFollow cameraScript;
+    public Crane crane;
 
     private struct BuildingPiece{
         public GameObject prefab; // Use Resources.Load() to find the prefab
@@ -86,10 +86,18 @@ public class Game : MonoBehaviour
 
     void SpawnNextPieceEndless(Vector2 position, Quaternion rotation){
         if(nextBuildingPieces.Count > 0){
+            // Get the next building piece
             BuildingPiece piece = nextBuildingPieces.Dequeue();
-            GameObject object1 = Instantiate(piece.prefab, position, rotation, parent);
-            SpriteRenderer renderer = object1.GetComponentInChildren<SpriteRenderer>();
+
+            // Instantiate the object and connect to crane
+            GameObject gameObject = Instantiate(piece.prefab, position, rotation, parent);
+            crane.SetConnectedPiece(gameObject);
+
+            // Give sprite correct color
+            SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
             renderer.color = piece.color;
+
+            // Add a new random piece to the back of the queue
             AddRandomPieceToQueue();
         }
     }
@@ -99,11 +107,10 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        frameCounter++;
-        if(frameCounter == 600){
-            Vector2 newBlockStartPosition = new(((float)Random.Range(-200, 200))/100.0f, newBlockStartY);
-            SpawnNextPieceEndless(newBlockStartPosition, Quaternion.identity);           
-            frameCounter = 0;
+        if(crane.IsReadyForNextPiece){
+            Vector2 newBlockPos = crane.transform.position;
+            newBlockPos.y -= 2.0f;
+            SpawnNextPieceEndless(newBlockPos, Quaternion.identity);
         }
     }
 }
