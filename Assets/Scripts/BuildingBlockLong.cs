@@ -5,6 +5,10 @@ using UnityEngine;
 public class BuildingBlockLong : MonoBehaviour
 {
     private bool ignoreCollision;
+    float counter;
+    private Collision2D target;
+
+    private bool hasLanded = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,20 +21,32 @@ public class BuildingBlockLong : MonoBehaviour
 
         if (target.gameObject.tag == "Floor")
         {
-            Invoke("Landed", 2f);
+            transform.gameObject.tag = "Landed Block";
+            this.target = target;
+            Invoke("Landed",0f);
             ignoreCollision = true;
         }
-        if (target.gameObject.tag == "Block")
+        else if (target.gameObject.tag == "Landed Block")
         {
-            Invoke("Landed", 2f);
+            transform.gameObject.tag = "Landed Block";
+            this.target = target;
+            Invoke("Landed", 0f);
             ignoreCollision = true;
         }
     }
 
     void Landed()
     {
-        Game.instance.MoveCamera();
+        counter++;
+        Game.instance.HasDropped(this.target);
+        hasLanded = true;
     }
+
+    public bool HasLanded
+    {
+        get { return hasLanded; }
+    }
+
 
     // Update is called once per frame
     void Update()
