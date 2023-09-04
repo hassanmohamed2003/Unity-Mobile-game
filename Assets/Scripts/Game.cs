@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
     [Header("Prefabs")]
     public GameObject blockPrefab;
     public GameObject rectanglePrefab;
+    public Transform parent;
     private List<GameObject> prefabList;
     private List<Color> colorList;
 
@@ -65,7 +66,7 @@ public class Game : MonoBehaviour
     void SpawnNextPieceEndless(Vector2 position, Quaternion rotation){
         if(nextBuildingPieces.Count > 0){
             BuildingPiece piece = nextBuildingPieces.Dequeue();
-            GameObject object1 = Instantiate(piece.prefab, position, rotation);
+            GameObject object1 = Instantiate(piece.prefab, position, rotation, parent);
             SpriteRenderer renderer = object1.GetComponentInChildren<SpriteRenderer>();
             renderer.color = piece.color;
             AddRandomPieceToQueue();
