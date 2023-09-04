@@ -24,7 +24,6 @@ public class Game : MonoBehaviour
     private GameObject newBlock;
     private Transform middleScreen;
 
-
     float counter;
 
     private struct BuildingPiece{
@@ -94,23 +93,40 @@ public class Game : MonoBehaviour
         if (collision.gameObject.CompareTag("Landed Block"))
 
         {
-                if (highestBlock != null)
-                {
-                    Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
+            if (highestBlock != null)
+            {
+                Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
+                Vector3 sizeBlock = collision.gameObject.transform.localScale;
 
 
-                    if (screenPos.y > 0.5f)
+                if (screenPos.y > 0.5f && screenPos.y < 1)
                     {
-                        Vector3 sizeBlock = collision.gameObject.transform.localScale;
-                        cameraScript.targetPos.y += sizeBlock.y;
-                    }
+                    cameraScript.smoothMove = 0.1f;
+                    counter++;
+   
+                    Vector3 viewportY = new Vector3(0, screenPos.y - 0.5f, 0);
+                    Vector3 worldY = Camera.main.ViewportToWorldPoint(viewportY);
+
+                    cameraScript.targetPos.y -= worldY.y;
                 }
+                if(screenPos.y > 1) {
+                    cameraScript.targetPos.y = highestBlock.position.y;
+                }
+
+                if (screenPos.y < 0.5f)
+                {
+                    cameraScript.smoothMove = 0;
+                }
+
+            }
+
+
 
                 if (highestBlock == null || collision.gameObject.transform.position.y > highestBlock.position.y)
                 {
 
                     highestBlock = collision.gameObject.transform;
-                }
+            }
         }
     }
 
@@ -120,10 +136,12 @@ public class Game : MonoBehaviour
     void Update()
     {
         frameCounter++;
-        if(frameCounter == 6000){
-            Vector2 newBlockStartPosition = new Vector2(0, newBlockStartY);
-            SpawnNextPieceEndless(newBlockStartPosition, Quaternion.identity);           
-            frameCounter = 0;
+        if(frameCounter == 600){
+            {
+                Vector2 newBlockStartPosition = new(((float)Random.Range(-200, 200))/100.0f, newBlockStartY);
+                SpawnNextPieceEndless(newBlockStartPosition, Quaternion.identity);
+                frameCounter = 0;
+            }
         }
     }
 }
