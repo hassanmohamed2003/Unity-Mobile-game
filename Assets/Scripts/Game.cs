@@ -87,7 +87,7 @@ public class Game : MonoBehaviour
             // Instantiate the object and connect to crane
             GameObject gameObject = Instantiate(piece.prefab, position, rotation, parent);
             crane.SetConnectedPiece(gameObject);
-            newBlock = object1;
+            newBlock = gameObject;
 
             // Give sprite correct color
             SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
