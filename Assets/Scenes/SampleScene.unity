@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0, z: 0}
+  smoothMove: 1
 --- !u!1 &793686301
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceCraneToPieceOnSpawn: 0
-  newBlockStartY: 50
   blockPrefab: {fileID: 2865106778928569170, guid: 001af199ba65b624388bc7391424fe58, type: 3}
   rectanglePrefab: {fileID: 6829127910588165010, guid: b67353beacdd2e542be21d61d31554ee, type: 3}
   parent: {fileID: 793686302}
@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 1351376810}
   - component: {fileID: 1351376812}
   - component: {fileID: 1351376813}
+  - component: {fileID: 1351376814}
   m_Layer: 0
   m_Name: Crane
   m_TagString: Untagged
@@ -391,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 1351376809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 9.25, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -409,10 +410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3e4530568656948a505cd19a5eaaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftRightSpeed: 10
+  LeftRightSpeed: 1000
   PieceLoweringSpeed: 0.05
+  PieceTimeInterval: 0
   MaxAccelerationCutoff: 1
-  startPos: {x: 0, y: 0}
+  startPos: {x: 0, y: 1}
   IsReadyForNextPiece: 1
 --- !u!50 &1351376813
 Rigidbody2D:
@@ -441,6 +443,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1351376814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351376809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7d2b3082f0ba68645a54771e3a3e6c12, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &8125832483161823126
 PrefabInstance:
   m_ObjectHideFlags: 0
