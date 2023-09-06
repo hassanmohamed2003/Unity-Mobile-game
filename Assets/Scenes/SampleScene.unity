@@ -428,10 +428,7 @@ GameObject:
   - component: {fileID: 1351376810}
   - component: {fileID: 1351376812}
   - component: {fileID: 1351376813}
-  - component: {fileID: 1351376814}
-  - component: {fileID: 1351376815}
   - component: {fileID: 1351376816}
-  - component: {fileID: 1351376817}
   m_Layer: 0
   m_Name: Crane
   m_TagString: Untagged
@@ -528,6 +525,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   newRotation: 0
   sensitivity: 6
+  cameraY: 0
+  camera: {fileID: 519420031}
 --- !u!50 &1351376813
 Rigidbody2D:
   serializedVersion: 4
@@ -555,48 +554,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1351376814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351376809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9bfe7a0e8211bbf41a4ab5c00f1c970c, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Touch
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &1351376815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351376809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfbd18e1e2e5e0349a9573c2102079b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1351376816
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -642,18 +599,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1351376817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351376809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad12f985c2a60f6428946de9fc0a6b01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1571151397
 GameObject:
   m_ObjectHideFlags: 0

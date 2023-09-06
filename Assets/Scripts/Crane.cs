@@ -124,11 +124,6 @@ public class Crane : MonoBehaviour
         Debug.Log(cameraY + "camera y");
         Debug.Log(craneTranslation.y + "crane y");
 
-        if (cameraY > transform.position.y)
-        {
-            transform.position = new Vector3(transform.position.x, p.y, transform.position.z);
-        }
-
         if (p.y > transform.position.y)
         {
             transform.position = new Vector3(transform.position.x, p.y, transform.position.z);
