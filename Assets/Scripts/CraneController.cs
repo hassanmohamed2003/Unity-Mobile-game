@@ -1,40 +1,36 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class CraneController : MonoBehaviour
 {
+    private TouchControls touchControls;
 
-    public InputAction playerFire;
-
-    public GameObject projectilePrefab;
-
-    public Crane craneScript;
-    public Transform firePoint;
-
+    private Crane craneScript;
     private void Awake()
     {
-
-        playerFire.Enable();
-        playerFire.performed -= ctx => Fire();
+        touchControls = new TouchControls();
     }
-
     private void OnEnable()
     {
+        touchControls.Enable();
     }
-
     private void OnDisable()
     {
-        playerFire.Disable();
-        playerFire.performed -= ctx => Fire();
+        touchControls.Disable();
+    }
+    private void Start()
+    {
+        Debug.Log("start called");
+        touchControls.Touch.TouchInput.performed += ctx =>
+        {
+            PrimaryTouch();
+        };
     }
 
-    private void Update()
+    private void PrimaryTouch()
     {
-        
-    }
-    // Method to fire a projectile.
-    private void Fire()
-    {
-        craneScript.ReleaseConnectedPiece();
+        Debug.Log("touch called");
+
     }
 }

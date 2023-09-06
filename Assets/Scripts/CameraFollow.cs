@@ -20,4 +20,9 @@ public class CameraFollow : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothMove * Time.deltaTime);
     }
+
+    public Vector3 TargetPos
+    {
+        get { return targetPos; }
+    }
 }
