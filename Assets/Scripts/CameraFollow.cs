@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     [HideInInspector]
     public Vector3 targetPos;
 
-    private float smoothMove = 1f;
+    public float smoothMove = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +19,10 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothMove * Time.deltaTime);
+    }
+
+    public Vector3 TargetPos
+    {
+        get { return targetPos; }
     }
 }
