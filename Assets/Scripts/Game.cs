@@ -26,7 +26,6 @@ public class Game : MonoBehaviour
     private List<GameObject> blocks = new List<GameObject>();
     private GameObject firstBlock;
 
-    float counter;
     private int counter = 0;
 
     private struct BuildingPiece{
