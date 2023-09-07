@@ -1,17 +1,13 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
     public static Game instance;
-    private int moveCount = 0;
-    private int frameCounter = 0;
     private Queue<BuildingPiece> nextBuildingPieces;
-    public float distanceCraneToPieceOnSpawn;
     
     [Header("Prefabs")]
     public GameObject blockPrefab;
@@ -22,7 +18,6 @@ public class Game : MonoBehaviour
 
     public CameraFollow cameraScript;
     public Crane crane;
-
     private Transform highestBlock;
     private GameObject newBlock;
     private Transform middleScreen;
@@ -32,6 +27,7 @@ public class Game : MonoBehaviour
     private GameObject firstBlock;
 
     float counter;
+    private int counter = 0;
 
     private struct BuildingPiece{
         public GameObject prefab; // Use Resources.Load() to find the prefab
@@ -75,8 +71,8 @@ public class Game : MonoBehaviour
 
     void AddRandomPieceToQueue(){
         nextBuildingPieces.Enqueue(new BuildingPiece(){
-            prefab = prefabList[Random.Range(0, prefabList.Count)],
-            color = colorList[Random.Range(0, colorList.Count)]
+            prefab = prefabList[UnityEngine.Random.Range(0, prefabList.Count)],
+            color = colorList[UnityEngine.Random.Range(0, colorList.Count)]
         });
     }
 
@@ -91,7 +87,6 @@ public class Game : MonoBehaviour
             // Instantiate the object and connect to crane
             GameObject gameObject = Instantiate(piece.prefab, position, rotation, parent);
             crane.SetConnectedPiece(gameObject);
-            newBlock = gameObject;
 
             // Give sprite correct color
             SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -166,6 +161,15 @@ public class Game : MonoBehaviour
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;
             SpawnNextPieceEndless(newBlockPos, Quaternion.identity);
+        }
+    }
+
+    private void OnGameOver(int newScore){
+        if(PlayerPrefs.HasKey("highscore")){
+            int currentHighScore = PlayerPrefs.GetInt("highscore", int.MaxValue);
+            if(newScore > currentHighScore){
+                PlayerPrefs.SetInt("highscore", newScore);
+            }
         }
     }
 }
