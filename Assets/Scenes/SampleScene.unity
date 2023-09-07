@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 75249257}
   - component: {fileID: 75249258}
   - component: {fileID: 75249259}
+  - component: {fileID: 75249260}
   m_Layer: 0
   m_Name: LeftWall
   m_TagString: Untagged
@@ -228,6 +229,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &75249260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75249256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4292b2d3eec010843bb56bf0d41ac0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 519420031}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68d9f2f7164b074a8f25e1e94521893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceCraneToPieceOnSpawn: 0
   blockPrefab: {fileID: 2865106778928569170, guid: 001af199ba65b624388bc7391424fe58, type: 3}
   rectanglePrefab: {fileID: 6829127910588165010, guid: b67353beacdd2e542be21d61d31554ee, type: 3}
   parent: {fileID: 793686302}
@@ -515,18 +528,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3e4530568656948a505cd19a5eaaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftRightSpeed: 500
-  PieceLoweringSpeed: 0.05
+  LeftRightSpeed: 0.2
+  PieceLoweringSpeed: 0.1
   PieceTimeInterval: 1
-  MaxAccelerationCutoff: 1
-  startPos: {x: 0, y: 1}
+  MaxAcceleration: 0.3
+  mainCam: {fileID: 519420031}
   IsReadyForNextPiece: 1
-  smooth: 0.4
-  velocity: {x: 0, y: 0, z: 0}
-  newRotation: 0
-  sensitivity: 6
-  cameraY: 0
-  camera: {fileID: 519420031}
+  pieceStartHeight: 1.5
 --- !u!50 &1351376813
 Rigidbody2D:
   serializedVersion: 4
@@ -610,6 +618,7 @@ GameObject:
   - component: {fileID: 1571151398}
   - component: {fileID: 1571151399}
   - component: {fileID: 1571151400}
+  - component: {fileID: 1571151401}
   m_Layer: 0
   m_Name: RightWall
   m_TagString: Untagged
@@ -704,6 +713,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1571151401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571151397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4292b2d3eec010843bb56bf0d41ac0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 519420031}
 --- !u!1 &2051974165
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,36 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Crane : MonoBehaviour
 {
+    [Header("Movement")]
     public float LeftRightSpeed;
     public float PieceLoweringSpeed;
     public float PieceTimeInterval;
-    public float MaxAccelerationCutoff;
-    public Vector2 startPos;
+    public float MaxAcceleration;
+
+    [Header("Camera")]
+    public Camera mainCam;
+
+    [Header("Behaviour")]
+    public bool IsReadyForNextPiece = true;
+    public float pieceStartHeight;
+    private double lastPieceDroppedTime;
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
-    public bool IsReadyForNextPiece = true;
-    private double lastPieceDroppedTime;
+    private float leftEdgeScreenX, rightEdgeScreenX;
+    private GameObject ropeObject;
+    private LineRenderer lineRenderer;
 
-    Vector3 rot;
-    Camera MainCamera;
-    private Vector3 craneHalfWidth;
-    private float cameraLeftBoundary;
-    private float cameraRightBoundary;
-    public float smooth = 0.4f;
-    public Vector3 velocity = Vector3.zero;
-
-    private Vector3 currentAcceleration, initialAcceleration;
-    public float newRotation;
-    public float sensitivity = 6;
-    public float cameraY;
-    public Camera camera;
 
     // Start is called before the first frame update
     void Start()
@@ -39,108 +30,65 @@ public class Crane : MonoBehaviour
         Input.gyro.enabled = true;
         rb = GetComponent<Rigidbody2D>();
 
-        MainCamera = Camera.main;
-        craneHalfWidth = GetComponent<Collider2D>().bounds.size;
-
-        initialAcceleration = Input.acceleration;
-
+        // Get the edge of the screen
+        leftEdgeScreenX = mainCam.ViewportToWorldPoint(new Vector3(0,0,0)).x;
+        rightEdgeScreenX = mainCam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
+    
+        ropeObject = new GameObject();
+        ropeObject.AddComponent<LineRenderer>();
+        lineRenderer = ropeObject.GetComponent<LineRenderer>();
+        lineRenderer.startColor = Color.black;
+        lineRenderer.endColor = Color.black;
+        lineRenderer.startWidth = 0.05f;
+        lineRenderer.endWidth = 0.05f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Check if crane can start handling a new piece
         if (currentBuildingPiece == null && !IsReadyForNextPiece) {
             if (Time.realtimeSinceStartupAsDouble > lastPieceDroppedTime + PieceTimeInterval) {
+                // If it is allowed let Game know
                 IsReadyForNextPiece = true;
             }
         }
 
-        /*
-        Input.gyro.enabled = true;
-        float rotationRateX = Input.gyro.rotationRateUnbiased.x;
+        // Get the tilt of the phone
+        float accelerationX = Math.Clamp(Input.acceleration.x, -MaxAcceleration, MaxAcceleration);
+        accelerationX *= Time.deltaTime * LeftRightSpeed;
 
-        Debug.Log(rotationRateX);
-        acceleration = -rotationRateX * LeftRightSpeed * Time.deltaTime;
-        */
+        // Get the top of the camera screen
+        float translationY = mainCam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+        translationY -= rb.position.y;
 
-        // // Get the tilt of the phone
-        Vector3 acceleration = Input.acceleration;
-        if (acceleration.x > MaxAccelerationCutoff)
-        {
-            acceleration.x = MaxAccelerationCutoff;
+        // Build translation vector for this frame
+        Vector2 craneTranslation = new Vector3(accelerationX, translationY);
 
+        // Override tilt controls for testing with keyboard
+        if(Input.GetKey(KeyCode.A)){
+            craneTranslation.x = 0.3f * -LeftRightSpeed;   
         }
-
-
-
-        if (acceleration.x >= 0.30)
-        {
-            acceleration.x = 0.30f;
-            acceleration = Vector3.Lerp(acceleration, Input.acceleration - acceleration, Time.deltaTime / smooth);
+        else if(Input.GetKey(KeyCode.D)){
+            craneTranslation.x = 0.3f * LeftRightSpeed;
         }
-        else if(acceleration.x <= -0.30)
-        {
-            acceleration.x = -0.30f;
-            acceleration = Vector3.Lerp(acceleration, Input.acceleration - acceleration, Time.deltaTime / smooth);
-        }
-
-
-
-        acceleration *= Time.deltaTime * LeftRightSpeed;
-
-        Vector3 cranePosition = transform.position;
-
-        newRotation = Mathf.Clamp(acceleration.x * sensitivity, -0.30f, 0.30f);
         
-        // Calculate the camera boundaries
-        float cameraHalfWidth = MainCamera.orthographicSize * Screen.width / Screen.height;
-        float cameraLeftBoundary = MainCamera.transform.position.x - cameraHalfWidth;
-        float cameraRightBoundary = MainCamera.transform.position.x + cameraHalfWidth;
+        // Move crane
+        Vector2 newCranePosition = rb.position + craneTranslation;
+        newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX, rightEdgeScreenX);
+        rb.MovePosition(newCranePosition);
 
-        float accelerationX;
-        // Clamp the crane's position within the camera boundaries
-        cranePosition.x = Mathf.Clamp(cranePosition.x, cameraLeftBoundary, cameraRightBoundary);
+        // Release building piece when touch input is detected
+        if(Input.touchCount > 0) ReleaseConnectedPiece();
+        if(Input.GetKeyDown(KeyCode.R)) ReleaseConnectedPiece();
 
-        //When Players reaches desired (L/R)possition make him stop
-        if (transform.position.x <= cameraLeftBoundary)
-        {
-            Vector3 finalPosition;
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(cameraLeftBoundary, 0), ref velocity, transform.position.z);
-        }
-        else if (transform.position.x >= cameraRightBoundary)
-        {
-            Vector3 finalPosition;
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(cameraRightBoundary, 0), ref velocity, transform.position.z);
-        }
-
-
-        // Set the new position of the crane
-        transform.position = cranePosition;
-        Vector3 craneTranslation = new Vector3(acceleration.x, 0, 0);
-        craneTranslation *= Time.deltaTime;
-        transform.Translate(craneTranslation);
-
-        Vector3 p = camera.ViewportToWorldPoint(new Vector3(1, 1, camera.nearClipPlane));
-        Debug.Log(cameraY + "camera y");
-        Debug.Log(craneTranslation.y + "crane y");
-
-        if (p.y > transform.position.y)
-        {
-            transform.position = new Vector3(transform.position.x, p.y, transform.position.z);
-        }
         if (currentBuildingPiece != null){
             SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
-            joint.distance += PieceLoweringSpeed * Time.deltaTime;
+            joint.distance += PieceLoweringSpeed * Time.deltaTime;            
+            
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, currentBuildingPiece.transform.position);
         }        
-        if(Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            ReleaseConnectedPiece();
-        }
-    }
-
-    public void Reset(){
-        transform.position = startPos;
     }
 
     public void SetConnectedPiece(GameObject buildingPiece){
@@ -149,7 +97,14 @@ public class Crane : MonoBehaviour
         joint.connectedBody = rb;
         joint.anchor = new Vector2(0, 0.5f);
         joint.autoConfigureDistance = false;
-        joint.distance = 1.5f;
+        joint.distance = pieceStartHeight; 
+
+        lineRenderer.forceRenderingOff = false;
+
+        Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        Vector3 rbPosition = rb.position;
+        rbPosition.y -= 2;
+        rigidbody.MovePosition(rb.position);
         IsReadyForNextPiece = false;
     }
 
@@ -159,7 +114,13 @@ public class Crane : MonoBehaviour
             joint.breakForce = 0.0f;
             joint.breakTorque = 0.0f;
             lastPieceDroppedTime = Time.realtimeSinceStartupAsDouble;
+
+            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+            rb.constraints = RigidbodyConstraints2D.None;
             currentBuildingPiece = null;
+
+            // Hide line
+            lineRenderer.forceRenderingOff = true;
         }
     }
 
