@@ -27,6 +27,10 @@ public class Game : MonoBehaviour
     private GameObject newBlock;
     private Transform middleScreen;
 
+    public GameOverScreen GameOverScreen;
+    private List<GameObject> blocks = new List<GameObject>();
+    private GameObject firstBlock;
+
     float counter;
 
     private struct BuildingPiece{
@@ -99,10 +103,16 @@ public class Game : MonoBehaviour
 
     }
 
+    private void GameOver()
+    {
+        GameOverScreen.Setup();
+        Time.timeScale = 0;
+    }
+
     public void HasDropped(Collision2D collision)
     {
+        counter++;
         if (collision.gameObject.CompareTag("Landed Block"))
-
         {
             if (highestBlock != null)
             {
@@ -114,7 +124,6 @@ public class Game : MonoBehaviour
                 if (blockPos.y > cameraY.y)
                     {
                     cameraScript.smoothMove = 1;
-                    counter++;
 
                     cameraScript.targetPos.y += blockPos.y - cameraY.y;
                 }
@@ -134,6 +143,18 @@ public class Game : MonoBehaviour
                     highestBlock = collision.gameObject.transform;
             }
         }
+        if(firstBlock == null)
+        {
+
+            firstBlock = collision.otherRigidbody.gameObject;
+        }
+        else if(collision.gameObject.CompareTag("Floor") && collision.otherRigidbody.gameObject != firstBlock)
+        {
+            Debug.Log("boem");
+            GameOver();
+        }
+        Debug.Log(collision.otherRigidbody.gameObject != firstBlock);
+
     }
 
 

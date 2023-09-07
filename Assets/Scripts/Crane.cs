@@ -121,8 +121,6 @@ public class Crane : MonoBehaviour
         transform.Translate(craneTranslation);
 
         Vector3 p = camera.ViewportToWorldPoint(new Vector3(1, 1, camera.nearClipPlane));
-        Debug.Log(cameraY + "camera y");
-        Debug.Log(craneTranslation.y + "crane y");
 
         if (p.y > transform.position.y)
         {

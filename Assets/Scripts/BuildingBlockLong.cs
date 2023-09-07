@@ -24,14 +24,14 @@ public class BuildingBlockLong : MonoBehaviour
             transform.gameObject.tag = "Landed Block";
             this.target = target;
             Invoke("Landed",0f);
-            ignoreCollision = true;
+
         }
         else if (target.gameObject.tag == "Landed Block")
         {
             transform.gameObject.tag = "Landed Block";
             this.target = target;
             Invoke("Landed", 0f);
-            ignoreCollision = true;
+
         }
     }
 
