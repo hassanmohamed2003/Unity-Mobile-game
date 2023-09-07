@@ -21,6 +21,8 @@ public class Game : MonoBehaviour
     private Transform highestBlock;
     private GameObject newBlock;
     private Transform middleScreen;
+    public TMP_Text currentScore;
+    public TMP_Text highScore;
 
     public GameOverScreen GameOverScreen;
     private List<GameObject> blocks = new List<GameObject>();
@@ -99,6 +101,12 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
+        Debug.Log(blocks.Count);
+        currentScore.text = $"Score: {blocks.Count}";
+        highScore.text = $"High Score: {PlayerPrefs.GetInt("highscore", 0)}";
+
+        OnGameOver(blocks.Count);
+        Debug.Log(blocks.Count);
         GameOverScreen.Setup();
         Time.timeScale = 0;
     }
@@ -106,6 +114,11 @@ public class Game : MonoBehaviour
     public void HasDropped(Collision2D collision)
     {
         counter++;
+        if (!blocks.Contains(collision.otherRigidbody.gameObject))
+        {
+            blocks.Add(collision.otherRigidbody.gameObject);
+        }
+
         if (collision.gameObject.CompareTag("Landed Block"))
         {
             if (highestBlock != null)
@@ -144,7 +157,6 @@ public class Game : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Floor") && collision.otherRigidbody.gameObject != firstBlock)
         {
-            Debug.Log("boem");
             GameOver();
         }
         Debug.Log(collision.otherRigidbody.gameObject != firstBlock);
