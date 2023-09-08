@@ -15,11 +15,11 @@ public class Crane : MonoBehaviour
     [Header("Behaviour")]
     public bool IsReadyForNextPiece = true;
     public float pieceStartHeight;
+    public Vector2 ropeStartOffset;
     private double lastPieceDroppedTime;
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
     private float leftEdgeScreenX, rightEdgeScreenX;
-    private GameObject ropeObject;
     private LineRenderer lineRenderer;
 
 
@@ -33,14 +33,8 @@ public class Crane : MonoBehaviour
         // Get the edge of the screen
         leftEdgeScreenX = mainCam.ViewportToWorldPoint(new Vector3(0,0,0)).x;
         rightEdgeScreenX = mainCam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
-    
-        ropeObject = new GameObject();
-        ropeObject.AddComponent<LineRenderer>();
-        lineRenderer = ropeObject.GetComponent<LineRenderer>();
-        lineRenderer.startColor = Color.black;
-        lineRenderer.endColor = Color.black;
-        lineRenderer.startWidth = 0.05f;
-        lineRenderer.endWidth = 0.05f;
+
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -63,7 +57,7 @@ public class Crane : MonoBehaviour
         translationY -= rb.position.y;
 
         // Build translation vector for this frame
-        Vector2 craneTranslation = new Vector3(accelerationX, translationY);
+        Vector2 craneTranslation = new(accelerationX, translationY);
 
         // Override tilt controls for testing with keyboard
         if(Input.GetKey(KeyCode.A)){
@@ -84,10 +78,16 @@ public class Crane : MonoBehaviour
 
         if (currentBuildingPiece != null){
             SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
-            joint.distance += PieceLoweringSpeed * Time.deltaTime;            
+            joint.distance += PieceLoweringSpeed * Time.deltaTime;
+
+            Vector2 newRopeStartPos = (Vector2)transform.position - joint.anchor;
+            Vector2 newRopeEndPos = currentBuildingPiece.transform.position;
+            if(currentBuildingPiece.TryGetComponent(out BuildingBlock block)){
+                newRopeEndPos.y += block.ropeStartOffset;
+            }           
             
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, currentBuildingPiece.transform.position);
+            lineRenderer.SetPosition(0, newRopeStartPos);
+            lineRenderer.SetPosition(1, newRopeEndPos);
         }        
     }
 
@@ -95,7 +95,7 @@ public class Crane : MonoBehaviour
         currentBuildingPiece = buildingPiece;
         SpringJoint2D joint = buildingPiece.GetComponent<SpringJoint2D>();
         joint.connectedBody = rb;
-        joint.anchor = new Vector2(0, 0.5f);
+        joint.anchor = ropeStartOffset;
         joint.autoConfigureDistance = false;
         joint.distance = pieceStartHeight; 
 
