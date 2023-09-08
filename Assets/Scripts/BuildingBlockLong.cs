@@ -16,22 +16,19 @@ public class BuildingBlockLong : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D target)
     {
-        if (ignoreCollision)
-            return;
-
-        if (target.gameObject.tag == "Floor")
+        if (target.gameObject.CompareTag("Floor"))
         {
             transform.gameObject.tag = "Landed Block";
             this.target = target;
             Invoke("Landed",0f);
-
+            ignoreCollision = true;
         }
-        else if (target.gameObject.tag == "Landed Block")
+        else if (target.gameObject.CompareTag("Landed Block") || !ignoreCollision)
         {
             transform.gameObject.tag = "Landed Block";
             this.target = target;
             Invoke("Landed", 0f);
-
+            ignoreCollision = true;
         }
     }
 

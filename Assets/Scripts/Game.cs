@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -21,6 +22,7 @@ public class Game : MonoBehaviour
     private Transform highestBlock;
     private GameObject newBlock;
     private Transform middleScreen;
+    public TMP_Text EndScore;
     public TMP_Text currentScore;
     public TMP_Text highScore;
 
@@ -44,6 +46,7 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentScore.text = "0";
         prefabList = new(){
             blockPrefab,
             rectanglePrefab
@@ -89,6 +92,9 @@ public class Game : MonoBehaviour
             GameObject gameObject = Instantiate(piece.prefab, position, rotation, parent);
             crane.SetConnectedPiece(gameObject);
 
+            currentScore.text = $"{parent.childCount - 1}";
+
+            newBlock = gameObject;
             // Give sprite correct color
             SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
             renderer.color = piece.color;
@@ -102,7 +108,7 @@ public class Game : MonoBehaviour
     private void GameOver()
     {
         Debug.Log(blocks.Count);
-        currentScore.text = $"Score: {blocks.Count}";
+        EndScore.text = $"Score: {blocks.Count}";
         highScore.text = $"High Score: {PlayerPrefs.GetInt("highscore", 0)}";
 
         OnGameOver(blocks.Count);
@@ -129,7 +135,7 @@ public class Game : MonoBehaviour
 
 
                 if (blockPos.y > cameraY.y)
-                    {
+                {
                     cameraScript.smoothMove = 1;
 
                     cameraScript.targetPos.y += blockPos.y - cameraY.y;
@@ -144,23 +150,21 @@ public class Game : MonoBehaviour
 
 
 
-                if (highestBlock == null || collision.gameObject.transform.position.y > highestBlock.position.y)
-                {
+            if (highestBlock == null || collision.gameObject.transform.position.y > highestBlock.position.y)
+            {
 
-                    highestBlock = collision.gameObject.transform;
+                highestBlock = collision.gameObject.transform;
             }
         }
-        if(firstBlock == null)
+        if (firstBlock == null)
         {
 
             firstBlock = collision.otherRigidbody.gameObject;
         }
-        else if(collision.gameObject.CompareTag("Floor") && collision.otherRigidbody.gameObject != firstBlock)
+        else if (collision.gameObject.CompareTag("Floor") && collision.otherRigidbody.gameObject != firstBlock)
         {
             GameOver();
         }
-        Debug.Log(collision.otherRigidbody.gameObject != firstBlock);
-
     }
 
 
@@ -168,7 +172,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(crane.IsReadyForNextPiece){
+        if (crane.IsReadyForNextPiece){
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;
             SpawnNextPieceEndless(newBlockPos, Quaternion.identity);
