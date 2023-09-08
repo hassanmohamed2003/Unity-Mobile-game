@@ -8,6 +8,7 @@ public class BuildingBlock : MonoBehaviour
     private bool ignoreCollision;
     float counter;
     private Collision2D target;
+    public float ropeStartOffset;
 
     private bool hasLanded = false;
     // Start is called before the first frame update

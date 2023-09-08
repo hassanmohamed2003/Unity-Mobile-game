@@ -7,13 +7,11 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public static Game instance;
-    private Queue<BuildingPiece> nextBuildingPieces;
+    private Queue<GameObject> nextBuildingPieces;
     
     [Header("Prefabs")]
-    public GameObject blockPrefab;
-    public GameObject rectanglePrefab;
+    public List<GameObject> AvailablePrefabs;
     public Transform parent;
-    private List<GameObject> prefabList;
     private List<Color> colorList;
 
     public CameraFollow cameraScript;
@@ -30,11 +28,6 @@ public class Game : MonoBehaviour
 
     private int counter = 0;
 
-    private struct BuildingPiece{
-        public GameObject prefab; // Use Resources.Load() to find the prefab
-        public Color color; // Color of the block
-    }
-
     void Awake()
     {
         if (instance == null)
@@ -44,11 +37,6 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        prefabList = new(){
-            blockPrefab,
-            rectanglePrefab
-        };
-
         colorList = new(){
             Color.red,
             Color.black,
@@ -56,25 +44,22 @@ public class Game : MonoBehaviour
             Color.green,
             Color.white
         };
-        CreatePieceQueue(Enumerable.Empty<BuildingPiece>());
+        CreatePieceQueue(Enumerable.Empty<GameObject>());
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
     }
 
-    void CreatePieceQueue(IEnumerable<BuildingPiece> pieces){
-        nextBuildingPieces = new Queue<BuildingPiece>(pieces);
+    void CreatePieceQueue(IEnumerable<GameObject> pieces){
+        nextBuildingPieces = new Queue<GameObject>(pieces);
     }
 
-    void AddPieceToQueue(BuildingPiece piece){
-        nextBuildingPieces.Enqueue(piece);
+    void AddPieceToQueue(GameObject prefab){
+        nextBuildingPieces.Enqueue(prefab);
     }
 
     void AddRandomPieceToQueue(){
-        nextBuildingPieces.Enqueue(new BuildingPiece(){
-            prefab = prefabList[UnityEngine.Random.Range(0, prefabList.Count)],
-            color = colorList[UnityEngine.Random.Range(0, colorList.Count)]
-        });
+        nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
     }
 
     void EmptyPieceQueue(){
@@ -83,15 +68,11 @@ public class Game : MonoBehaviour
     void SpawnNextPieceEndless(Vector2 position, Quaternion rotation){
         if(nextBuildingPieces.Count > 0){
             // Get the next building piece
-            BuildingPiece piece = nextBuildingPieces.Dequeue();
+            GameObject prefab = nextBuildingPieces.Dequeue();
 
             // Instantiate the object and connect to crane
-            GameObject gameObject = Instantiate(piece.prefab, position, rotation, parent);
+            GameObject gameObject = Instantiate(prefab, position, rotation, parent);
             crane.SetConnectedPiece(gameObject);
-
-            // Give sprite correct color
-            SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-            renderer.color = piece.color;
 
             // Add a new random piece to the back of the queue
             AddRandomPieceToQueue();
