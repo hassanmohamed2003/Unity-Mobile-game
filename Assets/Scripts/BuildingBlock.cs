@@ -11,32 +11,37 @@ public class BuildingBlock : MonoBehaviour
     public float ropeStartOffset;
 
     private bool hasLanded = false;
+    private float currentRotation;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
+
+    // void FixedUpdate()
+    // {
+    //     currentRotation = rb.rotation;
+    // }
+
+    // void LateUpdate()
+    // {
+    //     float newRotation = rb.rotation;
+    //     float rotationUpdate = -(newRotation - currentRotation) * 0.1f;
+
+    //     rb.SetRotation(currentRotation + rotationUpdate);
+    // }
 
     private void OnCollisionEnter2D(Collision2D target)
     {
-
-        if (target.gameObject.CompareTag("Floor"))
+        if (target.gameObject.CompareTag("Landed Block") && ignoreCollision)
         {
-            transform.gameObject.tag = "Landed Block";
-            this.target = target;
-            Invoke("Landed", 0f);
-            ignoreCollision = true;
+            return;
         }
-        else if (target.gameObject.CompareTag("Landed Block"))
-        {
-            if (ignoreCollision)
-                return;
-            transform.gameObject.tag = "Landed Block";
-            this.target = target;
-            Invoke("Landed", 0f);
-            ignoreCollision = true;
-
-        }
+        transform.gameObject.tag = "Landed Block";
+        this.target = target;
+        Landed();
+        ignoreCollision = true;
     }
 
     void Landed()
@@ -49,11 +54,5 @@ public class BuildingBlock : MonoBehaviour
     public bool HasLanded
     {
         get { return hasLanded; }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

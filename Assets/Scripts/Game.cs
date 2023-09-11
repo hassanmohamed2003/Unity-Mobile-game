@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
     public List<GameObject> AvailablePrefabs;
     public Transform parent;
     private List<Color> colorList;
+    public int CheckPoint;
 
     public CameraFollow cameraScript;
     public Crane crane;
@@ -97,6 +98,15 @@ public class Game : MonoBehaviour
         GameOverScreen.Setup();
         Time.timeScale = 0;
     }
+    
+    private void FreezeCheckpointBlock()
+    {
+        int index = blocks.Count - CheckPoint - 1;
+        if(index >= 0 && blocks[index].TryGetComponent(out Rigidbody2D rb))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+    } 
 
     public void HasDropped(Collision2D collision)
     {
@@ -104,6 +114,7 @@ public class Game : MonoBehaviour
         if (!blocks.Contains(collision.otherRigidbody.gameObject))
         {
             blocks.Add(collision.otherRigidbody.gameObject);
+            FreezeCheckpointBlock();
         }
 
         if (collision.gameObject.CompareTag("Landed Block"))
@@ -140,7 +151,7 @@ public class Game : MonoBehaviour
         if (firstBlock == null)
         {
 
-            firstBlock = collision.otherRigidbody.gameObject;
+            firstBlock = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Floor") && collision.otherRigidbody.gameObject != firstBlock)
         {
