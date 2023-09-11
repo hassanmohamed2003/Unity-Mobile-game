@@ -157,6 +157,10 @@ public class Game : MonoBehaviour
                 cameraScript.smoothMove = moveAmount;
                 cameraScript.targetPos.y += blockPos.y - cameraY.y;
             }
+            else
+            {
+                cameraScript.smoothMove = 0;
+            }
 
             if (screenPos.y < 0.5f)
             {
