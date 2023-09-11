@@ -5,6 +5,7 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     public Camera mainCam;
+    public float WallEdgeOffset;
     private float leftEdgeScreenX, rightEdgeScreenX;
     
     // Start is called before the first frame update
@@ -18,9 +19,9 @@ public class Wall : MonoBehaviour
         Vector2 wallPosition = rb.position;
 
         if(wallPosition.x < 0){
-            wallPosition.x = leftEdgeScreenX - halfWidth;
+            wallPosition.x = leftEdgeScreenX - halfWidth - WallEdgeOffset;
         }else{
-            wallPosition.x = rightEdgeScreenX + halfWidth;
+            wallPosition.x = rightEdgeScreenX + halfWidth + WallEdgeOffset;
         }
 
         transform.position = wallPosition;     

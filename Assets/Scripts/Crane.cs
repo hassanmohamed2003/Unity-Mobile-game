@@ -16,6 +16,7 @@ public class Crane : MonoBehaviour
     public bool IsReadyForNextPiece = true;
     public float pieceStartHeight;
     public Vector2 ropeStartOffset;
+    public float InitialSwingForce;
     private double lastPieceDroppedTime;
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
@@ -105,6 +106,9 @@ public class Crane : MonoBehaviour
         Vector3 rbPosition = rb.position;
         rbPosition.y -= 2;
         rigidbody.MovePosition(rb.position);
+
+        Rigidbody2D rigidbodyPiece = currentBuildingPiece.GetComponent<Rigidbody2D>();
+        rigidbodyPiece.AddForce(Vector2.right * InitialSwingForce, ForceMode2D.Force);
         IsReadyForNextPiece = false;
     }
 
@@ -115,8 +119,9 @@ public class Crane : MonoBehaviour
             joint.breakTorque = 0.0f;
             lastPieceDroppedTime = Time.realtimeSinceStartupAsDouble;
 
-            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = currentBuildingPiece.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None;
+            rb.freezeRotation = false;
             currentBuildingPiece = null;
 
             // Hide line
