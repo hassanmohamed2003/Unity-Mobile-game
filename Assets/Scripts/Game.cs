@@ -79,7 +79,7 @@ public class Game : MonoBehaviour
             // Instantiate the object and connect to crane
             GameObject gameObject = Instantiate(prefab, position, rotation, parent);
             crane.SetConnectedPiece(gameObject);
-
+            PieceDropped = true;
 
 
             newBlock = gameObject;
@@ -131,7 +131,6 @@ public class Game : MonoBehaviour
         {
 
             firstBlock = collision.otherRigidbody.gameObject;
-            Debug.Log(blocks.IndexOf(firstBlock));
         }
         else if (collision.gameObject.TryGetComponent(out Floor floor) && collision.otherRigidbody.gameObject != firstBlock)
         {
@@ -152,10 +151,11 @@ public class Game : MonoBehaviour
             Debug.Log(blockPos);
             Debug.Log(cameraY);
 
-            if (blockPos.y > cameraY.y)
+            if (blockPos.y > cameraY.y && crane.released)
             {
                 cameraScript.smoothMove = moveAmount;
                 cameraScript.targetPos.y += blockPos.y - cameraY.y;
+                PieceDropped = false;
             }
             else
             {

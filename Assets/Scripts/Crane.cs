@@ -22,6 +22,7 @@ public class Crane : MonoBehaviour
     private Rigidbody2D rb;
     private float leftEdgeScreenX, rightEdgeScreenX;
     private LineRenderer lineRenderer;
+    public bool released;
 
 
     // Start is called before the first frame update
@@ -93,6 +94,7 @@ public class Crane : MonoBehaviour
     }
 
     public void SetConnectedPiece(GameObject buildingPiece){
+        released = false;
         currentBuildingPiece = buildingPiece;
         SpringJoint2D joint = buildingPiece.GetComponent<SpringJoint2D>();
         joint.connectedBody = rb;
@@ -126,6 +128,7 @@ public class Crane : MonoBehaviour
 
             // Hide line
             lineRenderer.forceRenderingOff = true;
+            released = true;
         }
     }
 
