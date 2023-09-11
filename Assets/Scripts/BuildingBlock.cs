@@ -27,10 +27,8 @@ public class BuildingBlock : MonoBehaviour
             Invoke("Landed", 0f);
             ignoreCollision = true;
         }
-        else if (target.gameObject.CompareTag("Landed Block"))
+        else if (target.gameObject.CompareTag("Landed Block") && !ignoreCollision)
         {
-            if (ignoreCollision)
-                return;
             transform.gameObject.tag = "Landed Block";
             this.target = target;
             Invoke("Landed", 0f);
