@@ -9,7 +9,7 @@ public class Game : MonoBehaviour
 {
     public static Game instance;
     private Queue<GameObject> nextBuildingPieces;
-    
+
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
     public Transform parent;
@@ -30,6 +30,10 @@ public class Game : MonoBehaviour
     private GameObject firstBlock;
 
     private int counter = 0;
+    bool MoveCamera = false;
+    bool PieceDropped = false;
+
+    public float moveAmount;
 
     void Awake()
     {
@@ -53,23 +57,23 @@ public class Game : MonoBehaviour
         AddRandomPieceToQueue();
     }
 
-    void CreatePieceQueue(IEnumerable<GameObject> pieces){
+    void CreatePieceQueue(IEnumerable<GameObject> pieces) {
         nextBuildingPieces = new Queue<GameObject>(pieces);
     }
 
-    void AddPieceToQueue(GameObject prefab){
+    void AddPieceToQueue(GameObject prefab) {
         nextBuildingPieces.Enqueue(prefab);
     }
 
-    void AddRandomPieceToQueue(){
+    void AddRandomPieceToQueue() {
         nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
     }
 
-    void EmptyPieceQueue(){
+    void EmptyPieceQueue() {
         nextBuildingPieces.Clear();
     }
-    void SpawnNextPieceEndless(Vector2 position, Quaternion rotation){
-        if(nextBuildingPieces.Count > 0){
+    void SpawnNextPieceEndless(Vector2 position, Quaternion rotation) {
+        if (nextBuildingPieces.Count > 0) {
             // Get the next building piece
             GameObject prefab = nextBuildingPieces.Dequeue();
 
@@ -77,7 +81,7 @@ public class Game : MonoBehaviour
             GameObject gameObject = Instantiate(prefab, position, rotation, parent);
             crane.SetConnectedPiece(gameObject);
 
-            currentScore.text = $"{parent.childCount - 1}";
+
 
             newBlock = gameObject;
 
@@ -111,33 +115,19 @@ public class Game : MonoBehaviour
     public void HasDropped(Collision2D collision)
     {
         counter++;
+        PieceDropped = true;
         if (!blocks.Contains(collision.otherRigidbody.gameObject))
         {
             blocks.Add(collision.otherRigidbody.gameObject);
             FreezeCheckpointBlock();
+            currentScore.text = $"{blocks.Count}";
         }
 
         if (collision.gameObject.CompareTag("Landed Block"))
         {
             if (highestBlock != null)
             {
-                Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
-                Vector3 blockPos = highestBlock.position;
-                Vector3 cameraY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
-
-
-                if (blockPos.y > cameraY.y)
-                {
-                    cameraScript.smoothMove = 1;
-
-                    cameraScript.targetPos.y += blockPos.y - cameraY.y;
-                }
-
-                if (screenPos.y < 0.5f)
-                {
-                    cameraScript.smoothMove = 0;
-                }
-
+                MoveCamera = true;
             }
 
 
@@ -148,17 +138,44 @@ public class Game : MonoBehaviour
                 highestBlock = collision.gameObject.transform;
             }
         }
+
         if (firstBlock == null)
         {
 
-            firstBlock = collision.gameObject;
+            firstBlock = collision.otherRigidbody.gameObject;
+            Debug.Log(blocks.IndexOf(firstBlock));
         }
-        else if (collision.gameObject.CompareTag("Floor") && collision.otherRigidbody.gameObject != firstBlock)
+        else if (collision.gameObject.TryGetComponent(out Floor floor) && collision.otherRigidbody.gameObject != firstBlock)
         {
+            blocks.Remove(collision.otherRigidbody.gameObject);
             GameOver();
         }
     }
 
+
+    void LateUpdate()
+    {
+        if (MoveCamera)
+        {
+            Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
+            Vector3 blockPos = highestBlock.position;
+            Vector3 cameraY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
+
+            Debug.Log(blockPos);
+            Debug.Log(cameraY);
+
+            if (blockPos.y > cameraY.y)
+            {
+                cameraScript.smoothMove = moveAmount;
+                cameraScript.targetPos.y += blockPos.y - cameraY.y;
+            }
+
+            if (screenPos.y < 0.5f)
+            {
+                cameraScript.smoothMove = 0;
+            }
+        }
+    }
 
 
     // Update is called once per frame
