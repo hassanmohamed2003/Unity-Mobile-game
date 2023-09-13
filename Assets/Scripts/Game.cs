@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Game : MonoBehaviour
 {
@@ -26,13 +27,17 @@ public class Game : MonoBehaviour
 
     public GameOverScreen GameOverScreen;
     private List<GameObject> blocks = new List<GameObject>();
+    private HashSet<GameObject> uniqueBlocks = new HashSet<GameObject>();
     private GameObject firstBlock;
 
     private int counter = 0;
     bool MoveCamera = false;
     bool PieceDropped = false;
-
     public float moveAmount;
+
+    string highScoreKey = "HighScore";
+    public int scoreAmount = 0;
+    public int highScoreAmount = 0;
 
     void Awake()
     {
@@ -54,6 +59,7 @@ public class Game : MonoBehaviour
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
+        highScoreAmount = PlayerPrefs.GetInt(highScoreKey, 0);
     }
 
     void CreatePieceQueue(IEnumerable<GameObject> pieces) {
@@ -78,11 +84,10 @@ public class Game : MonoBehaviour
 
             // Instantiate the object and connect to crane
             GameObject gameObject = Instantiate(prefab, position, rotation, parent);
+            newBlock = gameObject;
+            uniqueBlocks.Add(newBlock);
             crane.SetConnectedPiece(gameObject);
             PieceDropped = true;
-
-
-            newBlock = gameObject;
 
             // Add a new random piece to the back of the queue
             AddRandomPieceToQueue();
@@ -92,10 +97,9 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
+        currentScore.text = "";
         Debug.Log(blocks.Count);
         EndScore.text = $"Score: {blocks.Count}";
-        highScore.text = $"High Score: {PlayerPrefs.GetInt("highscore", 0)}";
-
         OnGameOver(blocks.Count);
         Debug.Log(blocks.Count);
         GameOverScreen.Setup();
@@ -103,8 +107,9 @@ public class Game : MonoBehaviour
     }
     public void HasDropped(Collision2D collision)
     {
-        counter++;
         PieceDropped = true;
+        counter++;
+
         if (!blocks.Contains(collision.otherRigidbody.gameObject))
         {
             blocks.Add(collision.otherRigidbody.gameObject);
@@ -161,11 +166,6 @@ public class Game : MonoBehaviour
             {
                 cameraScript.smoothMove = 0;
             }
-
-            if (screenPos.y < 0.5f)
-            {
-                cameraScript.smoothMove = 0;
-            }
         }
     }
 
@@ -181,11 +181,12 @@ public class Game : MonoBehaviour
     }
 
     private void OnGameOver(int newScore){
-        if(PlayerPrefs.HasKey("highscore")){
-            int currentHighScore = PlayerPrefs.GetInt("highscore", int.MaxValue);
-            if(newScore > currentHighScore){
-                PlayerPrefs.SetInt("highscore", newScore);
-            }
+        if (newScore > highScoreAmount)
+        {
+            PlayerPrefs.SetInt("HighScore", newScore);
+            PlayerPrefs.Save();
         }
+        currentScore.text = "";
+        highScore.text = $"High Score: {PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
     }
 }
