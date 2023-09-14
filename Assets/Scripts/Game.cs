@@ -155,7 +155,6 @@ public class Game : MonoBehaviour
         {
             blocks.Remove(collision.otherRigidbody.gameObject);
             crane.transform.position.Set(0.0f, crane.transform.position.y, crane.transform.position.z);
-            GameOver();
         }
     }
 
