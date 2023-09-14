@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
+// copyright by dreamberd
 public class Game : MonoBehaviour
 {
     public static Game instance;
@@ -12,7 +13,9 @@ public class Game : MonoBehaviour
 
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
-    public Transform parent;
+    public List<GameObject> AvailableClouds;
+    public Transform blocksParent;
+    public Transform cloudsParent;
     private List<Color> colorList;
     public int CheckPoint;
 
@@ -30,9 +33,14 @@ public class Game : MonoBehaviour
     private GameObject firstBlock;
 
     private int counter = 0;
+    private float lastCloudSpawned;
+    public float cloudSpawnInterval;
     bool MoveCamera = false;
     bool PieceDropped = false;
 
+    string highScoreKey = "HighScore";
+    public int scoreAmount = 0;
+    public int highScoreAmount = 0;
     public float moveAmount;
 
     void Awake()
@@ -55,6 +63,8 @@ public class Game : MonoBehaviour
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
+        highScoreAmount = PlayerPrefs.GetInt(highScoreKey, 0);
+        lastCloudSpawned = Time.realtimeSinceStartup;
     }
 
     void CreatePieceQueue(IEnumerable<GameObject> pieces) {
@@ -78,10 +88,8 @@ public class Game : MonoBehaviour
             GameObject prefab = nextBuildingPieces.Dequeue();
 
             // Instantiate the object and connect to crane
-            GameObject gameObject = Instantiate(prefab, position, rotation, parent);
+            GameObject gameObject = Instantiate(prefab, position, rotation, blocksParent);
             crane.SetConnectedPiece(gameObject);
-
-
 
             newBlock = gameObject;
 
@@ -93,10 +101,9 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
+        currentScore.text = "";
         Debug.Log(blocks.Count);
         EndScore.text = $"Score: {blocks.Count}";
-        highScore.text = $"High Score: {PlayerPrefs.GetInt("highscore", 0)}";
-
         OnGameOver(blocks.Count);
         Debug.Log(blocks.Count);
         GameOverScreen.Setup();
@@ -143,11 +150,11 @@ public class Game : MonoBehaviour
         {
 
             firstBlock = collision.otherRigidbody.gameObject;
-            Debug.Log(blocks.IndexOf(firstBlock));
         }
         else if (collision.gameObject.TryGetComponent(out Floor floor) && collision.otherRigidbody.gameObject != firstBlock)
         {
             blocks.Remove(collision.otherRigidbody.gameObject);
+            crane.transform.position.Set(0.0f, crane.transform.position.y, crane.transform.position.z);
             GameOver();
         }
     }
@@ -157,22 +164,12 @@ public class Game : MonoBehaviour
     {
         if (MoveCamera)
         {
-            Vector3 screenPos = Camera.main.WorldToViewportPoint(highestBlock.position);
-            Vector3 blockPos = highestBlock.position;
             Vector3 cameraY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
 
-            Debug.Log(blockPos);
-            Debug.Log(cameraY);
-
-            if (blockPos.y > cameraY.y)
+            if( highestBlock.gameObject.TryGetComponent(out BuildingBlock block) && 
+                (block.transform.position.y + block.ropeStartOffset) > cameraY.y)
             {
-                cameraScript.smoothMove = moveAmount;
-                cameraScript.targetPos.y += blockPos.y - cameraY.y;
-            }
-
-            if (screenPos.y < 0.5f)
-            {
-                cameraScript.smoothMove = 0;
+                cameraScript.targetPos.y = block.transform.position.y + block.ropeStartOffset;
             }
         }
     }
@@ -181,6 +178,12 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if(Time.realtimeSinceStartup + lastCloudSpawned > cloudSpawnInterval)
+        // {
+        //     GameObject cloudPrefab = AvailableClouds[UnityEngine.Random.Range(0, AvailableClouds.Count)];
+        //     Vector3 cloudPos = new(0.0f, 0.0f, 0.0f);
+        //     Instantiate(cloudPrefab, cloudPos, Quaternion.identity, cloudsParent);
+        // }
         if (crane.IsReadyForNextPiece){
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;
@@ -189,11 +192,12 @@ public class Game : MonoBehaviour
     }
 
     private void OnGameOver(int newScore){
-        if(PlayerPrefs.HasKey("highscore")){
-            int currentHighScore = PlayerPrefs.GetInt("highscore", int.MaxValue);
-            if(newScore > currentHighScore){
-                PlayerPrefs.SetInt("highscore", newScore);
-            }
+        if (newScore > highScoreAmount)
+        {
+            PlayerPrefs.SetInt("HighScore", newScore);
+            PlayerPrefs.Save();
         }
+        currentScore.text = "";
+        highScore.text = $"High Score: {PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
     }
 }
