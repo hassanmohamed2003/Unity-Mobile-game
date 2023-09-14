@@ -15,12 +15,17 @@ public class Menu_Controller : MonoBehaviour {
 	public AudioClip _audioClip;
 	[Tooltip("_audioSource defines the Audio Source component in this scene.")]
 	public AudioSource _audioSource;
+
+	public List<GameObject> LevelVariants;
 	
 	//The private variable 'scene' defined below is used for example/development purposes.
 	//It is used in correlation with the Escape_Menu script to return to last scene on key press.
 	UnityEngine.SceneManagement.Scene scene;
 
 	void Awake () {
+		LevelSelector.Levels.Clear();
+		LevelSelector.Levels.AddRange(LevelVariants);
+
 		if(!PlayerPrefs.HasKey("_Mute")){
 			PlayerPrefs.SetInt("_Mute", 0);
 		}
@@ -37,6 +42,8 @@ public class Menu_Controller : MonoBehaviour {
 	
 	public void PlayGame () {
 		_audioSource.PlayOneShot(_audioClip);
+		LevelSelector.IsEndless = false;
+		LevelSelector.CurrentLevelID = 2;
 		PlayerPrefs.SetString("_LastScene", scene.name);
 		UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneToLoadOnPlay);
 	}

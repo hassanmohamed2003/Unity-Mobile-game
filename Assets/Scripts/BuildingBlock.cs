@@ -19,19 +19,6 @@ public class BuildingBlock : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // void FixedUpdate()
-    // {
-    //     currentRotation = rb.rotation;
-    // }
-
-    // void LateUpdate()
-    // {
-    //     float newRotation = rb.rotation;
-    //     float rotationUpdate = -(newRotation - currentRotation) * 0.1f;
-
-    //     rb.SetRotation(currentRotation + rotationUpdate);
-    // }
-
     private void OnCollisionEnter2D(Collision2D target)
     {
         if (target.gameObject.CompareTag("Landed Block") && ignoreCollision)

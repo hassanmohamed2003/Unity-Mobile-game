@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 
-// copyright by dreamberd
 public class Game : MonoBehaviour
 {
     public static Game instance;
@@ -14,29 +14,23 @@ public class Game : MonoBehaviour
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
     public List<GameObject> AvailableClouds;
+    public List<Sprite> AvailableBackgrounds;
     public Transform blocksParent;
     public Transform cloudsParent;
-    private List<Color> colorList;
     public int CheckPoint;
 
     public CameraFollow cameraScript;
     public Crane crane;
     private Transform highestBlock;
-    private GameObject newBlock;
-    private Transform middleScreen;
     public TMP_Text EndScore;
     public TMP_Text currentScore;
     public TMP_Text highScore;
 
     public GameOverScreen GameOverScreen;
-    private List<GameObject> blocks = new List<GameObject>();
+    private readonly List<GameObject> blocks = new();
     private GameObject firstBlock;
-
-    private int counter = 0;
-    private float lastCloudSpawned;
     public float cloudSpawnInterval;
     bool MoveCamera = false;
-    bool PieceDropped = false;
 
     string highScoreKey = "HighScore";
     public int scoreAmount = 0;
@@ -52,37 +46,49 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        colorList = new(){
-            Color.red,
-            Color.black,
-            Color.blue,
-            Color.green,
-            Color.white
-        };
+        // Get the high score
+        highScoreAmount = PlayerPrefs.GetInt(highScoreKey, 0);
+
+        // Check if we're starting a level or playing endless mode
+        Debug.Log($"Is Endless? {LevelSelector.IsEndless}");
+        if(LevelSelector.IsEndless) StartEndless();
+        else StartLevel();
+    }
+
+    void StartEndless()
+    {
+        // Create a Queue with random pieces
         CreatePieceQueue(Enumerable.Empty<GameObject>());
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
-        highScoreAmount = PlayerPrefs.GetInt(highScoreKey, 0);
-        lastCloudSpawned = Time.realtimeSinceStartup;
+    }
+
+    void StartLevel()
+    {   
+        // Get the id of the level
+        int levelID = LevelSelector.CurrentLevelID;
+
+        // Convert to LevelStructure object
+        LevelStructure level = LevelSelector.Levels[levelID - 1].GetComponent<LevelStructure>();
+
+        Debug.Log($"{level.levelName} loaded");
+
+        Debug.Log($"Pieces to place: {level.pieces.Count}");
+
+        // Convert pieces from IDs to actual prefabs
+        CreatePieceQueue(level.pieces);
     }
 
     void CreatePieceQueue(IEnumerable<GameObject> pieces) {
         nextBuildingPieces = new Queue<GameObject>(pieces);
     }
 
-    void AddPieceToQueue(GameObject prefab) {
-        nextBuildingPieces.Enqueue(prefab);
-    }
-
     void AddRandomPieceToQueue() {
         nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
     }
 
-    void EmptyPieceQueue() {
-        nextBuildingPieces.Clear();
-    }
-    void SpawnNextPieceEndless(Vector2 position, Quaternion rotation) {
+    void SpawnNextPiece(Vector2 position, Quaternion rotation, bool endless) {
         if (nextBuildingPieces.Count > 0) {
             // Get the next building piece
             GameObject prefab = nextBuildingPieces.Dequeue();
@@ -91,21 +97,16 @@ public class Game : MonoBehaviour
             GameObject gameObject = Instantiate(prefab, position, rotation, blocksParent);
             crane.SetConnectedPiece(gameObject);
 
-            newBlock = gameObject;
-
-            // Add a new random piece to the back of the queue
-            AddRandomPieceToQueue();
+            // If in endless mode add a new piece to the queue
+            if(endless) AddRandomPieceToQueue();
         }
-
     }
 
     private void GameOver()
     {
         currentScore.text = "";
-        Debug.Log(blocks.Count);
         EndScore.text = $"Score: {blocks.Count}";
         OnGameOver(blocks.Count);
-        Debug.Log(blocks.Count);
         GameOverScreen.Setup();
         Time.timeScale = 0;
     }
@@ -121,9 +122,7 @@ public class Game : MonoBehaviour
 
     public void HasDropped(Collision2D collision)
     {
-        counter++;
-        PieceDropped = true;
-        if (!blocks.Contains(collision.otherRigidbody.gameObject))
+        if (!blocks.Contains(collision.otherRigidbody.gameObject) && !collision.gameObject.CompareTag("Wall"))
         {
             blocks.Add(collision.otherRigidbody.gameObject);
             FreezeCheckpointBlock();
@@ -187,7 +186,15 @@ public class Game : MonoBehaviour
         if (crane.IsReadyForNextPiece){
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;
-            SpawnNextPieceEndless(newBlockPos, Quaternion.identity);
+            if(PlayerPrefs.GetInt("IsEndless") == 1)
+            {
+                SpawnNextPiece(newBlockPos, Quaternion.identity, true);
+            }
+            else if(nextBuildingPieces.Count > 0)
+            {
+                SpawnNextPiece(newBlockPos, Quaternion.identity, false);
+            }
+            
         }
     }
 
