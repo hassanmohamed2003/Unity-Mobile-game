@@ -20,15 +20,18 @@ public class Menu_Controller : MonoBehaviour {
 	//It is used in correlation with the Escape_Menu script to return to last scene on key press.
 	UnityEngine.SceneManagement.Scene scene;
 
-	void Awake () {
+    public Animation anim;
+
+    void Awake () {
 		if(!PlayerPrefs.HasKey("_Mute")){
 			PlayerPrefs.SetInt("_Mute", 0);
 		}
 		
 		scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-		PlayerPrefs.SetString("_LastScene", scene.name.ToString()); 
-		//Debug.Log(scene.name);
-	}
+		PlayerPrefs.SetString("_LastScene", scene.name.ToString());
+        anim = GetComponent<Animation>();
+        //Debug.Log(scene.name);
+    }
 	
 	public void OpenWebpage () {
 		_audioSource.PlayOneShot(_audioClip);
@@ -64,5 +67,10 @@ public class Menu_Controller : MonoBehaviour {
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#endif
+	}
+
+	public void buttonClick()
+	{
+		anim.Play("click");
 	}
 }

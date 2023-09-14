@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/loop-transition-example/LoopingExample.uss?fileID=7433441132597879392&amp;guid=f2b3eff1a261ed24290d28d6de217ca6&amp;type=3#LoopingExample" />
+    <ui:VisualElement name="container">
+        <ui:VisualElement style="width: 304px; top: -200px;">
+            <ui:Label name="a2b-label" class="text-style" style="background-image: url(&apos;project://database/Assets/Textures/UI/Banner.png?fileID=2800000&amp;guid=9acd0c10b3260c845bfe240596752b1e&amp;type=3#Banner&apos;);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
