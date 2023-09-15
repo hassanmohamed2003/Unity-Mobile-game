@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Menu_Controller : MonoBehaviour {
 
 	[Tooltip("_sceneToLoadOnPlay is the name of the scene that will be loaded when users click play")]
-	public string _sceneToLoadOnPlay = "Game";
+	public string _sceneToLoadOnPlay = "LevelSelection";
 	[Tooltip("_webpageURL defines the URL that will be opened when users click on your branding icon")]
 	public string _webpageURL = "http://www.alpaca.studio";
 	[Tooltip("_soundButtons define the SoundOn[0] and SoundOff[1] Button objects.")]
