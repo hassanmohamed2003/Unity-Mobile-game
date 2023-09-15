@@ -22,6 +22,12 @@ public class Menu_Controller : MonoBehaviour {
 
     public Animation anim;
 
+    public Animator animatorReverse;
+    public Animator animator;
+
+    public GameObject transition;
+	public float transitionTime;
+
     void Awake () {
 		if(!PlayerPrefs.HasKey("_Mute")){
 			PlayerPrefs.SetInt("_Mute", 0);
@@ -39,10 +45,19 @@ public class Menu_Controller : MonoBehaviour {
 	}
 	
 	public void PlayGame () {
-		_audioSource.PlayOneShot(_audioClip);
-		PlayerPrefs.SetString("_LastScene", scene.name);
-		UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneToLoadOnPlay);
-	}
+        transition.SetActive(true);
+		IEnumerator coroutine = Transition();
+		StartCoroutine(coroutine);
+        _audioSource.PlayOneShot(_audioClip);
+    }
+	IEnumerator Transition()
+	{
+        animator.SetTrigger("Start");
+		yield return new WaitForSeconds(transitionTime);
+        PlayerPrefs.SetString("_LastScene", scene.name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneToLoadOnPlay);
+        animator.ResetTrigger("Start");
+    }
 	
 	public void Mute () {
 		_audioSource.PlayOneShot(_audioClip);
