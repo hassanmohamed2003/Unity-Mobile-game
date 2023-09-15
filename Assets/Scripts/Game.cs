@@ -25,6 +25,9 @@ public class Game : MonoBehaviour
     public TMP_Text EndScore;
     public TMP_Text currentScore;
     public TMP_Text highScore;
+    public AudioSource audioSource;
+    public AudioClip buildingHitSound;
+    public AudioClip explosionSound;
 
     public GameOverScreen GameOverScreen;
     private readonly List<GameObject> blocks = new();
@@ -122,6 +125,7 @@ public class Game : MonoBehaviour
 
     public void HasDropped(Collision2D collision)
     {
+        audioSource.PlayOneShot(buildingHitSound);
         if (!blocks.Contains(collision.otherRigidbody.gameObject) && !collision.gameObject.CompareTag("Wall"))
         {
             blocks.Add(collision.otherRigidbody.gameObject);
@@ -152,6 +156,7 @@ public class Game : MonoBehaviour
         }
         else if (collision.gameObject.TryGetComponent(out Floor floor) && collision.otherRigidbody.gameObject != firstBlock)
         {
+            audioSource.PlayOneShot(explosionSound);
             blocks.Remove(collision.otherRigidbody.gameObject);
             crane.transform.position.Set(0.0f, crane.transform.position.y, crane.transform.position.z);
             GameOver();
@@ -186,7 +191,7 @@ public class Game : MonoBehaviour
         if (crane.IsReadyForNextPiece){
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;
-            if(PlayerPrefs.GetInt("IsEndless") == 1)
+            if(LevelSelector.IsEndless)
             {
                 SpawnNextPiece(newBlockPos, Quaternion.identity, true);
             }

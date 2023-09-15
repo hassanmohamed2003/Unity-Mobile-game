@@ -42,10 +42,15 @@ public class Menu_Controller : MonoBehaviour {
 	
 	public void PlayGame () {
 		_audioSource.PlayOneShot(_audioClip);
-		LevelSelector.IsEndless = false;
-		LevelSelector.CurrentLevelID = 2;
 		PlayerPrefs.SetString("_LastScene", scene.name);
-		UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneToLoadOnPlay);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelection");
+	}
+
+	public void PlayGameEndless () {
+		_audioSource.PlayOneShot(_audioClip);
+		PlayerPrefs.SetString("_LastScene", scene.name);
+		LevelSelector.IsEndless = true;
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
 	}
 	
 	public void Mute () {
