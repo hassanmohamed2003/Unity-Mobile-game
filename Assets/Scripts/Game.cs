@@ -20,14 +20,19 @@ public class Game : MonoBehaviour
     public int CheckPoint;
 
     public CameraFollow cameraScript;
+    public float cameraTargetHeight;
     public Crane crane;
     private Transform highestBlock;
     public TMP_Text EndScore;
     public TMP_Text currentScore;
     public TMP_Text highScore;
+
+    [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip buildingHitSound;
     public AudioClip explosionSound;
+    public AudioClip ropeBlinkSound;
+    public AudioClip ropeBreakSound;
 
     public GameOverScreen GameOverScreen;
     private readonly List<GameObject> blocks = new();
@@ -120,6 +125,7 @@ public class Game : MonoBehaviour
         if(index >= 0 && blocks[index].TryGetComponent(out Rigidbody2D rb))
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.bodyType = RigidbodyType2D.Static;
         }
     } 
 
@@ -168,12 +174,19 @@ public class Game : MonoBehaviour
     {
         if (MoveCamera)
         {
-            Vector3 cameraY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
+            // Get the camera's world position at the specified target height
+            Vector3 cameraWorldPos = Camera.main.ViewportToWorldPoint(new Vector3(0, cameraTargetHeight, 0));
 
+            // Check if the highest block is above the target height
             if( highestBlock.gameObject.TryGetComponent(out BuildingBlock block) && 
-                (block.transform.position.y + block.ropeStartOffset) > cameraY.y)
+                (block.transform.position.y + block.ropeStartOffset) > cameraWorldPos.y)
             {
-                cameraScript.targetPos.y = block.transform.position.y + block.ropeStartOffset;
+                // Calculate offset from bottom to highest block
+                Vector3 bottomScreenWorldPos = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0));
+                float offset = block.transform.position.y + block.ropeStartOffset - bottomScreenWorldPos.y;
+
+                // Add multiple of offset to camera's targetpos to update it
+                cameraScript.targetPos.y = bottomScreenWorldPos.y + (0.5f/cameraTargetHeight * offset);
             }
         }
     }
@@ -182,12 +195,6 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(Time.realtimeSinceStartup + lastCloudSpawned > cloudSpawnInterval)
-        // {
-        //     GameObject cloudPrefab = AvailableClouds[UnityEngine.Random.Range(0, AvailableClouds.Count)];
-        //     Vector3 cloudPos = new(0.0f, 0.0f, 0.0f);
-        //     Instantiate(cloudPrefab, cloudPos, Quaternion.identity, cloudsParent);
-        // }
         if (crane.IsReadyForNextPiece){
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;
