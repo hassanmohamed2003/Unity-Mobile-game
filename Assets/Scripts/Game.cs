@@ -10,6 +10,7 @@ public class Game : MonoBehaviour
 {
     public static Game instance;
     private Queue<GameObject> nextBuildingPieces;
+    public GameObject particle;
 
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
@@ -125,6 +126,14 @@ public class Game : MonoBehaviour
         PieceDropped = true;
         if (!blocks.Contains(collision.otherRigidbody.gameObject))
         {
+            ContactPoint2D contact = collision.contacts[0];
+            Vector3 pos = contact.point;
+            Debug.Log(contact.normalImpulse);
+            if(contact.normalImpulse > 100)
+            {
+                Instantiate(particle, contact.point, Quaternion.identity);
+            }
+
             blocks.Add(collision.otherRigidbody.gameObject);
             FreezeCheckpointBlock();
             currentScore.text = $"{blocks.Count}";
