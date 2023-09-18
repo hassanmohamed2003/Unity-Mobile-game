@@ -22,7 +22,7 @@ public class Crane : MonoBehaviour
     private Rigidbody2D rb;
     private float leftEdgeScreenX, rightEdgeScreenX;
     private LineRenderer lineRenderer;
-
+    public bool isGameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +41,7 @@ public class Crane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Check if crane can start handling a new piece
         if (currentBuildingPiece == null && !IsReadyForNextPiece) {
             if (Time.realtimeSinceStartupAsDouble > lastPieceDroppedTime + PieceTimeInterval) {
@@ -51,6 +52,7 @@ public class Crane : MonoBehaviour
 
         // Get the tilt of the phone
         float accelerationX = Math.Clamp(Input.acceleration.x, -MaxAcceleration, MaxAcceleration);
+
         accelerationX *= Time.deltaTime * LeftRightSpeed;
 
         // Get the top of the camera screen
@@ -71,7 +73,11 @@ public class Crane : MonoBehaviour
         // Move crane
         Vector2 newCranePosition = rb.position + craneTranslation;
         newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX, rightEdgeScreenX);
-        rb.MovePosition(newCranePosition);
+
+        if (!isGameOver)
+        {
+            rb.MovePosition(newCranePosition);
+        }
 
         // Release building piece when touch input is detected
         if(Input.touchCount > 0) ReleaseConnectedPiece();

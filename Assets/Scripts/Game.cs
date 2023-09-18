@@ -10,7 +10,9 @@ public class Game : MonoBehaviour
 {
     public static Game instance;
     private Queue<GameObject> nextBuildingPieces;
-    public GameObject particle;
+    public GameObject particleBlocks;
+    public GameObject particleScore;
+
 
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
@@ -28,6 +30,7 @@ public class Game : MonoBehaviour
     public TMP_Text EndScore;
     public TMP_Text currentScore;
     public TMP_Text highScore;
+    public Animator animator;
 
     public GameOverScreen GameOverScreen;
     private List<GameObject> blocks = new List<GameObject>();
@@ -43,6 +46,7 @@ public class Game : MonoBehaviour
     public int scoreAmount = 0;
     public int highScoreAmount = 0;
     public float moveAmount;
+    public bool isGameOver = false;
 
     void Awake()
     {
@@ -102,13 +106,15 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
+        isGameOver = true;
+        crane.isGameOver = isGameOver;
         currentScore.text = "";
         Debug.Log(blocks.Count);
         EndScore.text = $"Score: {blocks.Count}";
         OnGameOver(blocks.Count);
+        animator.SetTrigger("onGameOver");
         Debug.Log(blocks.Count);
         GameOverScreen.Setup();
-        Time.timeScale = 0;
     }
     
     private void FreezeCheckpointBlock()
@@ -122,6 +128,11 @@ public class Game : MonoBehaviour
 
     public void HasDropped(Collision2D collision)
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         counter++;
         PieceDropped = true;
         if (!blocks.Contains(collision.otherRigidbody.gameObject))
@@ -131,11 +142,16 @@ public class Game : MonoBehaviour
             Debug.Log(contact.normalImpulse);
             if(contact.normalImpulse > 100)
             {
-                Instantiate(particle, contact.point, Quaternion.identity);
+                Instantiate(particleBlocks, contact.point, Quaternion.identity);
             }
-
+            int amountBlocks = blocks.Count;
             blocks.Add(collision.otherRigidbody.gameObject);
             FreezeCheckpointBlock();
+            if (blocks.Count > amountBlocks)
+            {
+                Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
+
+            }
             currentScore.text = $"{blocks.Count}";
         }
 
@@ -164,6 +180,7 @@ public class Game : MonoBehaviour
         {
             blocks.Remove(collision.otherRigidbody.gameObject);
             crane.transform.position.Set(0.0f, crane.transform.position.y, crane.transform.position.z);
+            GameOver();
         }
     }
 
