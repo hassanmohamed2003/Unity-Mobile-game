@@ -36,6 +36,7 @@ public class Menu_Controller : MonoBehaviour {
             UnityEngine.SceneManagement.SceneManager.LoadScene("CutScene");
         }
 
+
 		if(!PlayerPrefs.HasKey("_Mute")){
 			PlayerPrefs.SetInt("_Mute", 0);
 		}
