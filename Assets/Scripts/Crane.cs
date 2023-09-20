@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Crane : MonoBehaviour
@@ -17,12 +18,20 @@ public class Crane : MonoBehaviour
     public float pieceStartHeight;
     public Vector2 ropeStartOffset;
     public float InitialSwingForce;
+
+    [Header("Rope Settings")]
+    public float ropeBreakTime;
+    public float blinkStartInterval;
+    public float blinkActiveTime;
+    public float timeTillFirstBlink;
+
     private double lastPieceDroppedTime;
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
     private float leftEdgeScreenX, rightEdgeScreenX;
     private LineRenderer lineRenderer;
     public bool isGameOver;
+    public bool EnableRopeBreak = true;
 
     // Start is called before the first frame update
     void Start()
@@ -72,7 +81,7 @@ public class Crane : MonoBehaviour
         
         // Move crane
         Vector2 newCranePosition = rb.position + craneTranslation;
-        newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX, rightEdgeScreenX);
+        newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX + 0.28f, rightEdgeScreenX - 0.28f);
 
         if (!isGameOver)
         {
@@ -98,6 +107,27 @@ public class Crane : MonoBehaviour
         }        
     }
 
+    IEnumerator RopeBreakingRoutine()
+    {
+        float startTime = Time.realtimeSinceStartup;
+        float blinkInterval = blinkStartInterval;
+        yield return new WaitForSeconds(timeTillFirstBlink);
+        for(float time = startTime; time < startTime + ropeBreakTime; time = Time.realtimeSinceStartup)
+        {
+            if(currentBuildingPiece == null) yield break;
+            yield return new WaitForSeconds(blinkInterval);
+            Game.instance.audioSource.PlayOneShot(Game.instance.ropeBlinkSound);
+            lineRenderer.startColor = Color.red;
+            lineRenderer.endColor = Color.red;
+            if(currentBuildingPiece == null) yield break;
+            yield return new WaitForSeconds(blinkActiveTime);
+            lineRenderer.startColor = Color.black;
+            lineRenderer.endColor = Color.black;
+            blinkInterval -= 0.05f;
+        }
+        if(currentBuildingPiece != null) ReleaseConnectedPiece();
+    }
+
     public void SetConnectedPiece(GameObject buildingPiece){
         currentBuildingPiece = buildingPiece;
         SpringJoint2D joint = buildingPiece.GetComponent<SpringJoint2D>();
@@ -106,6 +136,8 @@ public class Crane : MonoBehaviour
         joint.autoConfigureDistance = false;
         joint.distance = pieceStartHeight; 
 
+        lineRenderer.startColor = Color.black;
+        lineRenderer.endColor = Color.black;
         lineRenderer.forceRenderingOff = false;
 
         Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -114,8 +146,15 @@ public class Crane : MonoBehaviour
         rigidbody.MovePosition(rb.position);
 
         Rigidbody2D rigidbodyPiece = currentBuildingPiece.GetComponent<Rigidbody2D>();
-        rigidbodyPiece.AddForce(Vector2.right * InitialSwingForce, ForceMode2D.Force);
+        Vector2 force = new(UnityEngine.Random.Range(-1.0f, 1.0f), 0.0f);
+        rigidbodyPiece.AddForce(force * InitialSwingForce, ForceMode2D.Force);
         IsReadyForNextPiece = false;
+
+        if(EnableRopeBreak)
+        {
+            IEnumerator ropeRoutine = RopeBreakingRoutine();
+            StartCoroutine(ropeRoutine);        
+        }
     }
 
     public void ReleaseConnectedPiece(){
@@ -124,6 +163,8 @@ public class Crane : MonoBehaviour
             joint.breakForce = 0.0f;
             joint.breakTorque = 0.0f;
             lastPieceDroppedTime = Time.realtimeSinceStartupAsDouble;
+
+            Game.instance.audioSource.PlayOneShot(Game.instance.ropeBreakSound);
 
             Rigidbody2D rb = currentBuildingPiece.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None;

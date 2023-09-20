@@ -22,6 +22,11 @@ public class GameOverScreen : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+    
+    private void SetTimescaleZero()
+    {
+        Time.timeScale = 0;
+    } 
 
     public void Restart()
     {

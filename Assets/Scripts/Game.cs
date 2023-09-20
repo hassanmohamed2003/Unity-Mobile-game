@@ -14,40 +14,48 @@ public class Game : MonoBehaviour
     public GameObject particleScore;
     public GameObject particlePerfect;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip buildingHitSound;
+    public AudioClip explosionSound;
+    public AudioClip ropeBlinkSound;
+    public AudioClip ropeBreakSound;
+    public AudioClip perfectSound;
+
 
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
     public List<GameObject> AvailableClouds;
-    public Transform blocksParent;
-    public Transform cloudsParent;
-    private List<Color> colorList;
-    public int CheckPoint;
 
     public CameraFollow cameraScript;
+    public float CameraTargetHeight;
     public Crane crane;
     private Transform highestBlock;
-    private GameObject newBlock;
-    private Transform middleScreen;
     public TMP_Text EndScore;
     public TMP_Text currentScore;
     public TMP_Text highScore;
     public Animator animator;
+    public Transform blocksParent;
+    public int CheckPoint;
 
     public GameOverScreen GameOverScreen;
+    public TMP_Text TiltTutorial;
+    public TMP_Text TapTutorial;
+    public TMP_Text RopeTutorial;
     private List<GameObject> blocks = new List<GameObject>();
     private GameObject firstBlock;
 
     private int counter = 0;
     private float lastCloudSpawned;
-    public float cloudSpawnInterval;
     bool MoveCamera = false;
-    bool PieceDropped = false;
+    private int spawnedBlockCounter = 0;
 
-    string highScoreKey = "HighScore";
+    private string highScoreKey = "HighScore";
     public int scoreAmount = 0;
     public int highScoreAmount = 0;
     public float moveAmount;
     public bool isGameOver = false;
+    private bool hasCompletedFirstPlay;
 
     void Awake()
     {
@@ -58,13 +66,16 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        colorList = new(){
-            Color.red,
-            Color.black,
-            Color.blue,
-            Color.green,
-            Color.white
-        };
+        // PlayerPrefs.SetInt("HasCompletedFirstPlay", 0);
+        // PlayerPrefs.Save();
+        // Hide Score for tutorial texts
+        hasCompletedFirstPlay = PlayerPrefs.GetInt("HasCompletedFirstPlay", 0) == 1;
+        if(!hasCompletedFirstPlay)
+        {
+            currentScore.gameObject.SetActive(false);
+            crane.EnableRopeBreak = false;
+        }
+
         CreatePieceQueue(Enumerable.Empty<GameObject>());
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
@@ -77,32 +88,65 @@ public class Game : MonoBehaviour
         nextBuildingPieces = new Queue<GameObject>(pieces);
     }
 
-    void AddPieceToQueue(GameObject prefab) {
-        nextBuildingPieces.Enqueue(prefab);
-    }
-
     void AddRandomPieceToQueue() {
         nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
     }
 
-    void EmptyPieceQueue() {
-        nextBuildingPieces.Clear();
-    }
     void SpawnNextPieceEndless(Vector2 position, Quaternion rotation) {
         if (nextBuildingPieces.Count > 0) {
             // Get the next building piece
             GameObject prefab = nextBuildingPieces.Dequeue();
 
+            // Tutorial stuff
+            spawnedBlockCounter++;
+            if(!hasCompletedFirstPlay && spawnedBlockCounter == 1)
+            {
+                StartCoroutine(ShowTiltTutorial());
+            }
+            else if(!hasCompletedFirstPlay && spawnedBlockCounter == 3)
+            {
+                crane.EnableRopeBreak = true;
+                StartCoroutine(ShowRopeTutorial());
+            }
+
             // Instantiate the object and connect to crane
             GameObject gameObject = Instantiate(prefab, position, rotation, blocksParent);
             crane.SetConnectedPiece(gameObject);
-
-            newBlock = gameObject;
 
             // Add a new random piece to the back of the queue
             AddRandomPieceToQueue();
         }
 
+    }
+
+    IEnumerator ShowTiltTutorial()
+    {
+        yield return new WaitForSeconds(2.0f);
+        TiltTutorial.gameObject.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        TiltTutorial.gameObject.SetActive(false);
+
+        StartCoroutine(ShowTapTutorial());
+    }
+
+    IEnumerator ShowTapTutorial()
+    {
+        yield return new WaitForSeconds(4.0f);
+        TapTutorial.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        TapTutorial.gameObject.SetActive(false); 
+    }
+
+    IEnumerator ShowRopeTutorial()
+    {
+        yield return new WaitForSeconds(2.0f);
+        RopeTutorial.gameObject.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        RopeTutorial.gameObject.SetActive(false);
+        currentScore.gameObject.SetActive(true);
+        PlayerPrefs.SetInt("HasCompletedFirstPlay", 1);
+        hasCompletedFirstPlay = true;
+        PlayerPrefs.Save();
     }
 
     private void GameOver()
@@ -111,6 +155,7 @@ public class Game : MonoBehaviour
         crane.isGameOver = isGameOver;
         currentScore.text = "";
         EndScore.text = $"{counter}";
+        audioSource.PlayOneShot(explosionSound);
         OnGameOver(counter);
         animator.SetTrigger("onGameOver");
         GameOverScreen.Setup();
@@ -122,8 +167,9 @@ public class Game : MonoBehaviour
         if(index >= 0 && blocks[index].TryGetComponent(out Rigidbody2D rb))
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.bodyType = RigidbodyType2D.Static;
         }
-    } 
+    }
 
     private void checkPlacement(Collision2D collision)
     {
@@ -137,6 +183,7 @@ public class Game : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(perfectSound);
                 Instantiate(particlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
                 counter++;
             }
@@ -154,17 +201,15 @@ public class Game : MonoBehaviour
             return;
         }
 
-        PieceDropped = true;
         if (!blocks.Contains(collision.otherRigidbody.gameObject))
         {
             counter++;
             ContactPoint2D contact = collision.contacts[0];
-            Vector3 pos = contact.point;
             if(contact.normalImpulse > 100)
             {
+                audioSource.PlayOneShot(buildingHitSound);
                 Instantiate(particleBlocks, contact.point, Quaternion.identity);
             }
-            int amountBlocks = counter;
             blocks.Add(collision.otherRigidbody.gameObject);
             FreezeCheckpointBlock();
             checkPlacement(collision);
@@ -205,12 +250,19 @@ public class Game : MonoBehaviour
     {
         if (MoveCamera)
         {
-            Vector3 cameraY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
+            // Get the camera's world position at the specified target height
+            Vector3 cameraWorldPos = Camera.main.ViewportToWorldPoint(new Vector3(0, CameraTargetHeight, 0));
 
+            // Check if the highest block is above the target height
             if( highestBlock.gameObject.TryGetComponent(out BuildingBlock block) && 
-                (block.transform.position.y + block.ropeStartOffset) > cameraY.y)
+                (block.transform.position.y + block.ropeStartOffset) > cameraWorldPos.y)
             {
-                cameraScript.targetPos.y = block.transform.position.y + block.ropeStartOffset;
+                // Calculate offset from bottom to highest block
+                Vector3 bottomScreenWorldPos = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0));
+                float offset = block.transform.position.y + block.ropeStartOffset - bottomScreenWorldPos.y;
+
+                // Add multiple of offset to camera's targetpos to update it
+                cameraScript.targetPos.y = bottomScreenWorldPos.y + (0.5f/CameraTargetHeight * offset);
             }
         }
     }
@@ -219,12 +271,6 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(Time.realtimeSinceStartup + lastCloudSpawned > cloudSpawnInterval)
-        // {
-        //     GameObject cloudPrefab = AvailableClouds[UnityEngine.Random.Range(0, AvailableClouds.Count)];
-        //     Vector3 cloudPos = new(0.0f, 0.0f, 0.0f);
-        //     Instantiate(cloudPrefab, cloudPos, Quaternion.identity, cloudsParent);
-        // }
         if (crane.IsReadyForNextPiece){
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;

@@ -11,6 +11,7 @@ public class Menu_Controller : MonoBehaviour {
 	public string _webpageURL = "http://www.alpaca.studio";
 	[Tooltip("_soundButtons define the SoundOn[0] and SoundOff[1] Button objects.")]
 	public Button[] _soundButtons;
+	public AudioClip _backgroundMusic;
 	[Tooltip("_audioClip defines the audio to be played on button click.")]
 	public AudioClip _audioClip;
 	[Tooltip("_audioSource defines the Audio Source component in this scene.")]
@@ -32,7 +33,8 @@ public class Menu_Controller : MonoBehaviour {
 		if(!PlayerPrefs.HasKey("_Mute")){
 			PlayerPrefs.SetInt("_Mute", 0);
 		}
-		
+		_audioSource.clip = _backgroundMusic;
+		_audioSource.Play();
 		scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 		PlayerPrefs.SetString("_LastScene", scene.name.ToString());
         anim = GetComponent<Animation>();
