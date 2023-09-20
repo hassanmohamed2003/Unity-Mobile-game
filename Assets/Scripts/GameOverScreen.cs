@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameOverScreen : MonoBehaviour
 {
     public string RestartScene = "Game";
-    public string MenuScene = "Mobile";
+    public string MenuScene = "StartMenu";
     // Start is called before the first frame update
     void Start()
     {

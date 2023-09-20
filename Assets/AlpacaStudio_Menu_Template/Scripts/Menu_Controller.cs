@@ -30,7 +30,8 @@ public class Menu_Controller : MonoBehaviour {
 	public float transitionTime;
 
     void Awake () {
-		if(PlayerPrefs.GetInt("HasWatchedCutscene", 0) == 0)
+		Debug.Log(PlayerPrefs.GetInt("HasWatchedCutscene", 0));
+		if (PlayerPrefs.GetInt("HasWatchedCutscene", 0) == 0)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("CutScene");
         }
