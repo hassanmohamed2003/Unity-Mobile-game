@@ -50,6 +50,7 @@ public class Crane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Check if crane can start handling a new piece
         if (currentBuildingPiece == null && !IsReadyForNextPiece) {
             if (Time.realtimeSinceStartupAsDouble > lastPieceDroppedTime + PieceTimeInterval) {
@@ -60,6 +61,7 @@ public class Crane : MonoBehaviour
 
         // Get the tilt of the phone
         float accelerationX = Math.Clamp(Input.acceleration.x, -MaxAcceleration, MaxAcceleration);
+
         accelerationX *= Time.deltaTime * LeftRightSpeed;
 
         // Get the top of the camera screen

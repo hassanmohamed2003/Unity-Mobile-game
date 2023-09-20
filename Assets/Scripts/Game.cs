@@ -10,6 +10,10 @@ public class Game : MonoBehaviour
 {
     public static Game instance;
     private Queue<GameObject> nextBuildingPieces;
+    public GameObject particleBlocks;
+    public GameObject particleScore;
+    public GameObject particlePerfect;
+
 
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
@@ -26,6 +30,7 @@ public class Game : MonoBehaviour
     public TMP_Text EndScore;
     public TMP_Text currentScore;
     public TMP_Text highScore;
+    public Animator animator;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -40,10 +45,12 @@ public class Game : MonoBehaviour
     public float cloudSpawnInterval;
     bool MoveCamera = false;
 
+    private int counter = 0;
     string highScoreKey = "HighScore";
     public int scoreAmount = 0;
     public int highScoreAmount = 0;
     public float moveAmount;
+    public bool isGameOver = false;
 
     void Awake()
     {
@@ -112,11 +119,12 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
+        isGameOver = true;
         currentScore.text = "";
-        EndScore.text = $"Score: {blocks.Count}";
-        OnGameOver(blocks.Count);
+        EndScore.text = $"{counter}";
+        OnGameOver(counter);
+        animator.SetTrigger("onGameOver");
         GameOverScreen.Setup();
-        Time.timeScale = 0;
     }
     
     private void FreezeCheckpointBlock()
@@ -129,14 +137,50 @@ public class Game : MonoBehaviour
         }
     } 
 
+    private void checkPlacement(Collision2D collision)
+    {
+        if (collision.rigidbody)
+        {
+            float landingBock = collision.otherRigidbody.transform.position.x;
+            float landedBock = collision.rigidbody.transform.position.x;
+            if (landedBock - landingBock > 0.11 || landedBock - landingBock < -0.11)
+            {
+                Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(particlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
+                counter++;
+            }
+        }
+        else
+        {
+            Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
+        }
+    }
+
     public void HasDropped(Collision2D collision)
     {
-        audioSource.PlayOneShot(buildingHitSound);
-        if (!blocks.Contains(collision.otherRigidbody.gameObject) && !collision.gameObject.CompareTag("Wall"))
+        if (isGameOver)
         {
+            return;
+        }
+
+        PieceDropped = true;
+        if (!blocks.Contains(collision.otherRigidbody.gameObject))
+        {
+            counter++;
+            ContactPoint2D contact = collision.contacts[0];
+            Vector3 pos = contact.point;
+            if(contact.normalImpulse > 100)
+            {
+                Instantiate(particleBlocks, contact.point, Quaternion.identity);
+            }
+            int amountBlocks = counter;
             blocks.Add(collision.otherRigidbody.gameObject);
             FreezeCheckpointBlock();
-            currentScore.text = $"{blocks.Count}";
+            checkPlacement(collision);
+            currentScore.text = $"{counter}";
         }
 
         if (collision.gameObject.CompareTag("Landed Block"))
@@ -217,6 +261,6 @@ public class Game : MonoBehaviour
             PlayerPrefs.Save();
         }
         currentScore.text = "";
-        highScore.text = $"High Score: {PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
+        highScore.text = $"{PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
     }
 }

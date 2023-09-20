@@ -21,8 +21,14 @@ public class Menu_Controller : MonoBehaviour {
 	//The private variable 'scene' defined below is used for example/development purposes.
 	//It is used in correlation with the Escape_Menu script to return to last scene on key press.
 	UnityEngine.SceneManagement.Scene scene;
+    public Animation anim;
+    public Animator animatorReverse;
+    public Animator animator;
 
-	void Awake () {
+    public GameObject transition;
+	public float transitionTime;
+
+    void Awake () {
 		LevelSelector.Levels.Clear();
 		LevelSelector.Levels.AddRange(LevelVariants);
 
@@ -31,9 +37,9 @@ public class Menu_Controller : MonoBehaviour {
 		}
 		
 		scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-		PlayerPrefs.SetString("_LastScene", scene.name.ToString()); 
-		//Debug.Log(scene.name);
-	}
+		PlayerPrefs.SetString("_LastScene", scene.name.ToString());
+        anim = GetComponent<Animation>();
+    }
 	
 	public void OpenWebpage () {
 		_audioSource.PlayOneShot(_audioClip);
@@ -85,5 +91,10 @@ public class Menu_Controller : MonoBehaviour {
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#endif
+	}
+
+	public void buttonClick()
+	{
+		anim.Play("click");
 	}
 }
