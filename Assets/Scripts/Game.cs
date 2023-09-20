@@ -52,6 +52,8 @@ public class Game : MonoBehaviour
     public float moveAmount;
     public bool isGameOver = false;
 
+    public bool PieceDropped = false;
+
     void Awake()
     {
         if (instance == null)
