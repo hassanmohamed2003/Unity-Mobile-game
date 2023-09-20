@@ -30,6 +30,7 @@ public class Crane : MonoBehaviour
     private Rigidbody2D rb;
     private float leftEdgeScreenX, rightEdgeScreenX;
     private LineRenderer lineRenderer;
+    private bool enableRopeBreak = false;
 
 
     // Start is called before the first frame update
@@ -109,7 +110,7 @@ public class Crane : MonoBehaviour
         {
             if(currentBuildingPiece == null) yield break;
             yield return new WaitForSeconds(blinkInterval);
-            Game.instance.audioSource.PlayOneShot(Game.instance.ropeBlinkSound);
+            Tutorial.instance.audioSource.PlayOneShot(Tutorial.instance.ropeBlinkSound);
             lineRenderer.startColor = Color.red;
             lineRenderer.endColor = Color.red;
             if(currentBuildingPiece == null) yield break;
@@ -145,8 +146,12 @@ public class Crane : MonoBehaviour
         rigidbodyPiece.AddForce(force * InitialSwingForce, ForceMode2D.Force);
         IsReadyForNextPiece = false;
 
-        IEnumerator ropeRoutine = RopeBreakingRoutine();
-        StartCoroutine(ropeRoutine);
+        if(enableRopeBreak)
+        {
+            IEnumerator ropeRoutine = RopeBreakingRoutine();
+            StartCoroutine(ropeRoutine);
+        }
+        enableRopeBreak = true;        
     }
 
     public void ReleaseConnectedPiece(){
@@ -156,7 +161,7 @@ public class Crane : MonoBehaviour
             joint.breakTorque = 0.0f;
             lastPieceDroppedTime = Time.realtimeSinceStartupAsDouble;
 
-            Game.instance.audioSource.PlayOneShot(Game.instance.ropeBreakSound);
+            Tutorial.instance.audioSource.PlayOneShot(Tutorial.instance.ropeBreakSound);
 
             Rigidbody2D rb = currentBuildingPiece.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None;

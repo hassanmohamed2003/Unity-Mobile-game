@@ -49,8 +49,17 @@ public class Menu_Controller : MonoBehaviour {
 	public void PlayGameEndless () {
 		_audioSource.PlayOneShot(_audioClip);
 		PlayerPrefs.SetString("_LastScene", scene.name);
-		LevelSelector.IsEndless = true;
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+		if(PlayerPrefs.GetInt("HasCompletedTutorial", 0) == 0)
+		{
+			LevelSelector.IsEndless = false;
+			LevelSelector.CurrentLevelID = 0;
+			UnityEngine.SceneManagement.SceneManager.LoadScene("Tutorial");
+		}
+		else
+		{
+			LevelSelector.IsEndless = true;
+			UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+		}
 	}
 	
 	public void Mute () {

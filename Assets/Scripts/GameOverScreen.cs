@@ -33,4 +33,10 @@ public class GameOverScreen : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(MenuScene);
         Time.timeScale = 1;
     }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
 }

@@ -34,7 +34,7 @@ public class BuildingBlock : MonoBehaviour
     void Landed()
     {
         counter++;
-        Game.instance.HasDropped(this.target);
+        Tutorial.instance.HasDropped(this.target);
         hasLanded = true;
     }
 
