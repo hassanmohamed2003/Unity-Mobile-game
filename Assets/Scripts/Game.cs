@@ -110,8 +110,8 @@ public class Game : MonoBehaviour
         isGameOver = true;
         crane.isGameOver = isGameOver;
         currentScore.text = "";
-        EndScore.text = $"Score: {blocks.Count}";
-        OnGameOver(blocks.Count);
+        EndScore.text = $"{counter}";
+        OnGameOver(counter);
         animator.SetTrigger("onGameOver");
         GameOverScreen.Setup();
     }
@@ -138,13 +138,12 @@ public class Game : MonoBehaviour
             else
             {
                 Instantiate(particlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
-                blocks.Add(collision.otherRigidbody.gameObject);
+                counter++;
             }
         }
         else
         {
             Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
-
         }
     }
 
@@ -155,24 +154,21 @@ public class Game : MonoBehaviour
             return;
         }
 
-        counter++;
         PieceDropped = true;
         if (!blocks.Contains(collision.otherRigidbody.gameObject))
         {
+            counter++;
             ContactPoint2D contact = collision.contacts[0];
             Vector3 pos = contact.point;
             if(contact.normalImpulse > 100)
             {
                 Instantiate(particleBlocks, contact.point, Quaternion.identity);
             }
-            int amountBlocks = blocks.Count;
+            int amountBlocks = counter;
             blocks.Add(collision.otherRigidbody.gameObject);
             FreezeCheckpointBlock();
-            if (blocks.Count > amountBlocks)
-            {
-                checkPlacement(collision);
-            }
-            currentScore.text = $"{blocks.Count}";
+            checkPlacement(collision);
+            currentScore.text = $"{counter}";
         }
 
         if (collision.gameObject.CompareTag("Landed Block"))
@@ -243,6 +239,6 @@ public class Game : MonoBehaviour
             PlayerPrefs.Save();
         }
         currentScore.text = "";
-        highScore.text = $"High Score: {PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
+        highScore.text = $"{PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
     }
 }
