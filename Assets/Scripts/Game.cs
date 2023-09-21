@@ -13,6 +13,7 @@ public class Game : MonoBehaviour
     public GameObject particleBlocks;
     public GameObject particleScore;
     public GameObject particlePerfect;
+    public GameObject particleHighscore;
 
     [Header("Audio")]
     public AudioSource audioSource;
