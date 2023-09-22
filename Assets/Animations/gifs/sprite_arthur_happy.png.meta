@@ -1,0 +1,1109 @@
+fileFormatVersion: 2
+guid: 687ef34b454f7604d84187986c89cd64
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite_arthur_happy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2600
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a7b8085e53df04e98599201ec40c63
+      internalID: 2114708261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_1
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2600
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45b4fe94237a6234c867bf9e27d98ef3
+      internalID: -1705502792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_2
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 2600
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15d1e469bdb5ad44e9d51c010c7e5008
+      internalID: 491161360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_3
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 2600
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99474aae34e9b5459952957c8cc5fd4
+      internalID: 382989145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_4
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 2600
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f7f9d1450bab15479473722adc910dc
+      internalID: -433756236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2275
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3315db7f744c00f4fabe1ea3ddbab921
+      internalID: 1591599342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_6
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2275
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d74316dffd30b48b4d4b88ee91adf9
+      internalID: 1777264091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 2275
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94dd1bb2df5990d41ade44105e35df0e
+      internalID: 29809552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_8
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 2275
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04cf5ad887bbef9409328a650a46621d
+      internalID: 1662513160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_9
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 2275
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87f72f645232f7549a217e9d4c3b4c81
+      internalID: -1703171148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1950
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8961305b03a5a7f4c86a21b6b108b5c0
+      internalID: 764149263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_11
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1950
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2baaa472b4910cd4a93c902811afdb2e
+      internalID: 1577271546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_12
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1950
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4a4181bf8a820649b70585182e71fb6
+      internalID: 192240201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_13
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1950
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cdbbab5262ac514984b76d11e0c9e65
+      internalID: -2024774245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_14
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1950
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1440c2f70333bfd4e9df78aee6998d95
+      internalID: -110923787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1625
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff0f5e4c7381f44a9515fa82187a982
+      internalID: 1869216698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_16
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1625
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9acd2252062b56459d5c5e50c19a2dd
+      internalID: 25726951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_17
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1625
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fd8e9088495e794eafe262e94f34f84
+      internalID: -529165562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_18
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1625
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc592a1c17dd5c42a4d8932ff4b8725
+      internalID: 1273479756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_19
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1625
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 606d2e8c7a960f34897f702d47eafc70
+      internalID: 408431517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1300
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0e709a170110364e94489513950894e
+      internalID: 498795963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_21
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1300
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a0225f8f3b30741a2f095a63c860c1
+      internalID: -1769249966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_22
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1300
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd6ef24bfafba5d4a9f4639ed8d501a0
+      internalID: 639516473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_23
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1300
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a13232effa97a54bb617673b40834c0
+      internalID: -2114266488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_24
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1300
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3e5ed19dce43e448d357a5c202c0f4
+      internalID: -360328942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 975
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 024cc8ce7981d6d49b251f78b2419e21
+      internalID: 1572738913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_26
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 975
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8e12dc2ef79ee04c89f0f99a7bc2887
+      internalID: 873540801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_27
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 975
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5875a323ec0cec440811d70d8698d230
+      internalID: -2084841585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_28
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 975
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 512c42cfb335e7b4a87c36deceec7d6e
+      internalID: -455207964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_29
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 975
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59aa14671fb55cd428c7f2b139f47d4d
+      internalID: -1841148695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 650
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e6ed8354ca9c54abb845d51d71576d
+      internalID: 708779497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_31
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 650
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a3a420883143104f87accbd287ef166
+      internalID: 2023004831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_32
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 650
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b4ed6046cc5d44f8f40482a4eab94a
+      internalID: -496975888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_33
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 650
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b32642e3bb277554892d9ce1161e42cb
+      internalID: 906976797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_34
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 650
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 459a16968e6bbf24f96e294a3f10c2fd
+      internalID: 1498829492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c0abaf6d3f6021458b10d88f2e3a99b
+      internalID: -899377057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_36
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 325
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89dada901bf785845879a7d1a29bde2a
+      internalID: 1554433434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_37
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 325
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7e832a32e1e094479ae88a89146b54f
+      internalID: 375684290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_38
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 325
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4251a39d6f7a60d4db99619ab96ea1e4
+      internalID: -323525056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_39
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 325
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d3f4aa54caff94d93e32718a838399
+      internalID: 694003273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 903052b77eb2f784b96077609863c56f
+      internalID: -2082209356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_41
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2646f9bad6e25c944bcbf38d520921bf
+      internalID: 1365946806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_42
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 145f1846e2b285e4bae0cb4de406ec64
+      internalID: 1925075698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_happy_43
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 0
+        width: 560
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3ca0f248b356074b98bd28fe94f0f9b
+      internalID: 741141530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprite_arthur_happy_0: 2114708261
+      sprite_arthur_happy_1: -1705502792
+      sprite_arthur_happy_10: 764149263
+      sprite_arthur_happy_11: 1577271546
+      sprite_arthur_happy_12: 192240201
+      sprite_arthur_happy_13: -2024774245
+      sprite_arthur_happy_14: -110923787
+      sprite_arthur_happy_15: 1869216698
+      sprite_arthur_happy_16: 25726951
+      sprite_arthur_happy_17: -529165562
+      sprite_arthur_happy_18: 1273479756
+      sprite_arthur_happy_19: 408431517
+      sprite_arthur_happy_2: 491161360
+      sprite_arthur_happy_20: 498795963
+      sprite_arthur_happy_21: -1769249966
+      sprite_arthur_happy_22: 639516473
+      sprite_arthur_happy_23: -2114266488
+      sprite_arthur_happy_24: -360328942
+      sprite_arthur_happy_25: 1572738913
+      sprite_arthur_happy_26: 873540801
+      sprite_arthur_happy_27: -2084841585
+      sprite_arthur_happy_28: -455207964
+      sprite_arthur_happy_29: -1841148695
+      sprite_arthur_happy_3: 382989145
+      sprite_arthur_happy_30: 708779497
+      sprite_arthur_happy_31: 2023004831
+      sprite_arthur_happy_32: -496975888
+      sprite_arthur_happy_33: 906976797
+      sprite_arthur_happy_34: 1498829492
+      sprite_arthur_happy_35: -899377057
+      sprite_arthur_happy_36: 1554433434
+      sprite_arthur_happy_37: 375684290
+      sprite_arthur_happy_38: -323525056
+      sprite_arthur_happy_39: 694003273
+      sprite_arthur_happy_4: -433756236
+      sprite_arthur_happy_40: -2082209356
+      sprite_arthur_happy_41: 1365946806
+      sprite_arthur_happy_42: 1925075698
+      sprite_arthur_happy_43: 741141530
+      sprite_arthur_happy_44: -976173438
+      sprite_arthur_happy_5: 1591599342
+      sprite_arthur_happy_6: 1777264091
+      sprite_arthur_happy_7: 29809552
+      sprite_arthur_happy_8: 1662513160
+      sprite_arthur_happy_9: -1703171148
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1397 @@
+fileFormatVersion: 2
+guid: d0c405e24af6c8e46bf6eff659c62829
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite_arthur_mad_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3564
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7485d87a0cd0d85418ba67995d49531f
+      internalID: -1991010477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_1
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 3564
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9dd1bfe7aa99824f99d30b6d8e26fcf
+      internalID: -1702429198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_2
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 3564
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b1da308f5b9874fa3ebc7f4aa4571c
+      internalID: -15366895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_3
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 3564
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f87ec5a9ba952bd44926ccf3ea002f1b
+      internalID: 1672212866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_4
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 3564
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b42efec82fc33594cb1ab5fc1a6d64d7
+      internalID: -132365504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3240
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b8504975f00ae41a8386e517b64af3
+      internalID: 474341582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_6
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 3240
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a29a53225278c4f4d8a548593a2da011
+      internalID: -2078831363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 3240
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4bf920a278f95140a1f1ddd514674af
+      internalID: -573153168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_8
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 3240
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d40cce60948904b9088a4f2a162456
+      internalID: 1945173757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_9
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 3240
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1429e0603745a498da11cf15da0625
+      internalID: -98654182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2916
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 566f1466c94a6934085664c3d78c9bde
+      internalID: 96295864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_11
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2916
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c19ce812173709840ae8a06d698e7f18
+      internalID: 111164307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_12
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 2916
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85aa6e1d89df1df4da702107e618c4cb
+      internalID: 1632045959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_13
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 2916
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c6e96de3c4ab14e97c378b069f1c04
+      internalID: 700042423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_14
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 2916
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea2fc7258d126c7468cd1075381d7c63
+      internalID: 1024892147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2592
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f1289d1966a7a3439dca66c82794643
+      internalID: 316992382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_16
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2592
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc1a808a12a156c439bd7443f044f437
+      internalID: -1919935027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_17
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 2592
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d8d9ed6ec67d94ea4854badfe817f0
+      internalID: -81628456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_18
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 2592
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e6026bb97284347a36fc75fa149c11
+      internalID: -23108748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_19
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 2592
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d61bd9784c863043b5896d69c3ceb54
+      internalID: -1945714637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2268
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3875d9f939ee941a645ca657cccee0
+      internalID: 436445101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_21
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2268
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e42984398c0b84eb8f6dfbca3adeac
+      internalID: -9334857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_22
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 2268
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8db6f1a77bfefeb4f97354903237a483
+      internalID: -837955249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_23
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 2268
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53593cda200a062449ed8966deb3adbf
+      internalID: 601106634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_24
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 2268
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fba200859b363545b90a1967e9c9269
+      internalID: -975141914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1944
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4867ffedd8630fd49a6bf0b393c3612d
+      internalID: 1888983653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_26
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1944
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e473e2aa9eee9f41ad46481fe612404
+      internalID: 1712763032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_27
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1944
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d82a62596938d74ea221be7a5cff384
+      internalID: 1315647841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_28
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1944
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b3a79e60f9856540bdea677f77fa13a
+      internalID: -393656177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_29
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1944
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090078b4911a4f344b150a76aa8c3e48
+      internalID: -2072158553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1620
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e9c45ca205161f4c94453ac3b1322cf
+      internalID: -1017650120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_31
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1620
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d39661d262a134b9942e83eab8962c
+      internalID: 1758810130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_32
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1620
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4240464b0ea27448bb259217d88e46e
+      internalID: -491012469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_33
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1620
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842dbce5a232ad744ba89807990b4c28
+      internalID: 1372910799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_34
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1620
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb8f7a224ea9dd4aa35c50f924b81f2
+      internalID: 278811787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1296
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8b6985980e8084ebae9a7d2f0ac551
+      internalID: 594761728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_36
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1296
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af7149b7b3b9c1240b85ef90f218e1f7
+      internalID: -1192924242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_37
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1296
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d012319113b80647b7aa6467dc3a6d3
+      internalID: 1048761261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_38
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1296
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50709036896bbf14e90bb22b7529ef02
+      internalID: 902022152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_39
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1296
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1763283cc85ae94395b6faea04b47c8
+      internalID: -384468578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 972
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b55312afed8ac2346b7bcff94597fa98
+      internalID: -254406037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_41
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 972
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3134df8ff1952b14aa5534a259b2f363
+      internalID: 101452527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_42
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 972
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14b5e315bbbf46044bb817d2a4dd5120
+      internalID: 1186639496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_43
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 972
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 017ce56a19229514d96fe17e37720f6a
+      internalID: 1118462051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_44
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 972
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef53187c8fb7dd047bc23043182932cf
+      internalID: -1887329156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 648
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c121fdde943704ba8dc5ed83ca3499
+      internalID: 950465544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_46
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 648
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d1201806db628144b83b2f650eb63c5
+      internalID: -227645245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_47
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 648
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847818319fcc8914992f797621e5fc0c
+      internalID: 1905734950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_48
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 648
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c75da493e038ae743bc898676919d5fb
+      internalID: 2051638467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_49
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 648
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73596678a375f7d4282a82cf9f897e8e
+      internalID: 771966666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6019fe2c64f34e44e8c379375db21ef1
+      internalID: 202933883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_51
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 324
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29851c8d765a9bb46949e6380dc678d5
+      internalID: 2052715491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_52
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 324
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77ef8f3c5d8fc4949b7f901fa274968d
+      internalID: -1990186023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_53
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 324
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56df0122e03d1b741b297b1a22b8bcb7
+      internalID: -236723320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_54
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 324
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed66512e5e85534ca6ba79b50ae6dd5
+      internalID: 1799854501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3495fc1c221b7184eb48e402cb6ff8b4
+      internalID: -1377173233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_arthur_mad_56
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 560
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b16b45fbc3e1284788cd84ff111db05
+      internalID: -983742005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprite_arthur_mad_0: -1991010477
+      sprite_arthur_mad_1: -1702429198
+      sprite_arthur_mad_10: 96295864
+      sprite_arthur_mad_11: 111164307
+      sprite_arthur_mad_12: 1632045959
+      sprite_arthur_mad_13: 700042423
+      sprite_arthur_mad_14: 1024892147
+      sprite_arthur_mad_15: 316992382
+      sprite_arthur_mad_16: -1919935027
+      sprite_arthur_mad_17: -81628456
+      sprite_arthur_mad_18: -23108748
+      sprite_arthur_mad_19: -1945714637
+      sprite_arthur_mad_2: -15366895
+      sprite_arthur_mad_20: 436445101
+      sprite_arthur_mad_21: -9334857
+      sprite_arthur_mad_22: -837955249
+      sprite_arthur_mad_23: 601106634
+      sprite_arthur_mad_24: -975141914
+      sprite_arthur_mad_25: 1888983653
+      sprite_arthur_mad_26: 1712763032
+      sprite_arthur_mad_27: 1315647841
+      sprite_arthur_mad_28: -393656177
+      sprite_arthur_mad_29: -2072158553
+      sprite_arthur_mad_3: 1672212866
+      sprite_arthur_mad_30: -1017650120
+      sprite_arthur_mad_31: 1758810130
+      sprite_arthur_mad_32: -491012469
+      sprite_arthur_mad_33: 1372910799
+      sprite_arthur_mad_34: 278811787
+      sprite_arthur_mad_35: 594761728
+      sprite_arthur_mad_36: -1192924242
+      sprite_arthur_mad_37: 1048761261
+      sprite_arthur_mad_38: 902022152
+      sprite_arthur_mad_39: -384468578
+      sprite_arthur_mad_4: -132365504
+      sprite_arthur_mad_40: -254406037
+      sprite_arthur_mad_41: 101452527
+      sprite_arthur_mad_42: 1186639496
+      sprite_arthur_mad_43: 1118462051
+      sprite_arthur_mad_44: -1887329156
+      sprite_arthur_mad_45: 950465544
+      sprite_arthur_mad_46: -227645245
+      sprite_arthur_mad_47: 1905734950
+      sprite_arthur_mad_48: 2051638467
+      sprite_arthur_mad_49: 771966666
+      sprite_arthur_mad_5: 474341582
+      sprite_arthur_mad_50: 202933883
+      sprite_arthur_mad_51: 2052715491
+      sprite_arthur_mad_52: -1990186023
+      sprite_arthur_mad_53: -236723320
+      sprite_arthur_mad_54: 1799854501
+      sprite_arthur_mad_55: -1377173233
+      sprite_arthur_mad_56: -983742005
+      sprite_arthur_mad_57: -817853407
+      sprite_arthur_mad_58: 318391486
+      sprite_arthur_mad_59: 482940878
+      sprite_arthur_mad_6: -2078831363
+      sprite_arthur_mad_7: -573153168
+      sprite_arthur_mad_8: 1945173757
+      sprite_arthur_mad_9: -98654182
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

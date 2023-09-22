@@ -14,6 +14,8 @@ public class Game : MonoBehaviour
     public GameObject particleScore;
     public GameObject particlePerfect;
     public GameObject particleHighscore;
+    public GameObject arthurHappy;
+    public GameObject arthurMad;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -22,6 +24,7 @@ public class Game : MonoBehaviour
     public AudioClip ropeBlinkSound;
     public AudioClip ropeBreakSound;
     public AudioClip perfectSound;
+    public List<AudioClip> comboSounds;
 
 
     [Header("Prefabs")]
@@ -37,6 +40,7 @@ public class Game : MonoBehaviour
     public TMP_Text highScore;
     public Animator animator;
     public Transform blocksParent;
+    public Transform canvas;
     public int CheckPoint;
 
     public GameOverScreen GameOverScreen;
@@ -47,6 +51,7 @@ public class Game : MonoBehaviour
     private GameObject firstBlock;
 
     private int counter = 0;
+    private int comboCounter = 0;
     private float lastCloudSpawned;
     bool MoveCamera = false;
     private int spawnedBlockCounter = 0;
@@ -57,12 +62,12 @@ public class Game : MonoBehaviour
     public float moveAmount;
     public bool isGameOver = false;
     private bool hasCompletedFirstPlay;
+    private bool hasHighscore = false;
 
     void Awake()
     {
         if (instance == null)
             instance = this;
-
     }
 
     // Start is called before the first frame update
@@ -133,7 +138,7 @@ public class Game : MonoBehaviour
 
     IEnumerator ShowTapTutorial()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         TapTutorial.gameObject.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         TapTutorial.gameObject.SetActive(false); 
@@ -153,6 +158,7 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
+        arthurMad.SetActive(true);
         isGameOver = true;
         crane.isGameOver = isGameOver;
         currentScore.text = "";
@@ -173,6 +179,27 @@ public class Game : MonoBehaviour
         }
     }
 
+    private void comboCheck()
+    {
+        Debug.Log(comboCounter);
+
+        if (comboCounter == 1)
+        {
+            Debug.Log("artur");
+            arthurHappy.SetActive(true);
+        }
+        if (comboCounter < 3)
+        {
+            audioSource.PlayOneShot(comboSounds[comboCounter]);
+            comboCounter++;
+        }
+        else if(comboCounter > 3)
+        {
+            audioSource.PlayOneShot(comboSounds.Last());
+        }
+
+    }
+
     private void checkPlacement(Collision2D collision)
     {
         if (collision.rigidbody)
@@ -181,13 +208,14 @@ public class Game : MonoBehaviour
             float landedBock = collision.rigidbody.transform.position.x;
             if (landedBock - landingBock > 0.11 || landedBock - landingBock < -0.11)
             {
+                comboCounter = 0;
                 Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
             }
             else
             {
-                audioSource.PlayOneShot(perfectSound);
                 Instantiate(particlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
                 counter++;
+                comboCheck();
             }
         }
         else
@@ -280,11 +308,21 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void launchConfetti()
+    {
+        if (hasHighscore)
+        {
+            Instantiate(particleHighscore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0)), Quaternion.identity);
+        }
+    }
+
     private void OnGameOver(int newScore){
         if (newScore > highScoreAmount)
         {
             PlayerPrefs.SetInt("HighScore", newScore);
             PlayerPrefs.Save();
+            hasHighscore = true;
+            arthurMad.SetActive(true);
         }
         currentScore.text = "";
         highScore.text = $"{PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
