@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Menu_Controller : MonoBehaviour {
@@ -51,8 +52,26 @@ public class Menu_Controller : MonoBehaviour {
 		_audioSource.PlayOneShot(_audioClip);
 		Application.OpenURL(_webpageURL);
 	}
+
+	public void PlayLevel(int levelID)
+	{
+		GameState.CurrentLevelID = levelID;
+		GameState.IsEndless = false;
+		transition.SetActive(true);
+		IEnumerator coroutine = Transition();
+		StartCoroutine(coroutine);
+        _audioSource.PlayOneShot(_audioClip);
+	}
+
+	public void GoToLevelSelector()
+	{
+		transition.SetActive(true);
+		_audioSource.PlayOneShot(_audioClip);
+		SceneManager.LoadScene("LevelSelection");
+	}
 	
-	public void PlayGame () {
+	public void PlayEndless () {
+		GameState.IsEndless = true;
         transition.SetActive(true);
 		IEnumerator coroutine = Transition();
 		StartCoroutine(coroutine);

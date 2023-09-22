@@ -6,11 +6,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-// copyright by dreamberd
 public class Game : MonoBehaviour
 {
     public static Game instance;
     private Queue<GameObject> nextBuildingPieces;
+
+    [Header("Particle System")]
     public GameObject particleBlocks;
     public GameObject particleScore;
     public GameObject particlePerfect;
@@ -22,42 +23,51 @@ public class Game : MonoBehaviour
     public AudioClip ropeBlinkSound;
     public AudioClip ropeBreakSound;
     public AudioClip perfectSound;
-
+    public AudioClip levelCompleteSound;
 
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
     public List<GameObject> AvailableClouds;
+    public List<TextAsset> AvailableLevelFiles;
+    public List<GameObject> AvailableBackgrounds;
+    public List<PhysicsMaterial2D> AvailableBuildingPhysicsMaterials;
+    public Transform blocksParent;
 
+    [Header("Camera")]
     public CameraFollow cameraScript;
     public float CameraTargetHeight;
-    public Crane crane;
-    private Transform highestBlock;
-    public TMP_Text EndScore;
-    public TMP_Text currentScore;
-    public TMP_Text highScore;
-    public Animator animator;
-    public Transform blocksParent;
-    public int CheckPoint;
 
-    public GameOverScreen GameOverScreen;
+    [Header("Crane")]
+    public Crane crane;
+
+    [Header("UI")]
+    public GameOverScreen EndlessGameOverScreen;
+    public GameOverScreen LevelGameOverScreen;
     public TMP_Text TiltTutorial;
     public TMP_Text TapTutorial;
     public TMP_Text RopeTutorial;
-    private List<GameObject> blocks = new List<GameObject>();
-    private HashSet<GameObject> uniqueBlocks = new HashSet<GameObject>();
+    public TMP_Text EndScore;
+    public TMP_Text EndStars;
+    public TMP_Text currentScore;
+    public TMP_Text highScore;
+    public Animator animator;
+
+    [Header("Game Behaviour")]
+    public int CheckPoint;
+    
+    private List<GameObject> blocks = new();
     private GameObject firstBlock;
-
+    private Transform highestBlock;
     private int counter = 0;
-    private float lastCloudSpawned;
-    bool MoveCamera = false;
+    private bool MoveCamera = false;
     private int spawnedBlockCounter = 0;
-
-    private string highScoreKey = "HighScore";
-    public int scoreAmount = 0;
-    public int highScoreAmount = 0;
-    public float moveAmount;
-    public bool isGameOver = false;
+    private readonly string highScoreKey = "HighScore";
+    private int highScoreAmount = 0;
+    private bool isGameOver = false;
     private bool hasCompletedFirstPlay;
+    private int firstStarRequirement;
+    private int secondStarRequirement;
+    private int thirdStarRequirement;
 
     void Awake()
     {
@@ -69,8 +79,6 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // PlayerPrefs.SetInt("HasCompletedFirstPlay", 0);
-        // PlayerPrefs.Save();
         // Hide Score for tutorial texts
         hasCompletedFirstPlay = PlayerPrefs.GetInt("HasCompletedFirstPlay", 0) == 1;
         if(!hasCompletedFirstPlay)
@@ -79,12 +87,50 @@ public class Game : MonoBehaviour
             crane.EnableRopeBreak = false;
         }
 
+        if(GameState.IsEndless) StartEndless();
+        else StartLevel();
+    }
+
+    private void StartEndless()
+    {
+        // Set default background
+        AvailableBackgrounds.ForEach(x => x.SetActive(false));
+        AvailableBackgrounds[1].SetActive(true);
+
         CreatePieceQueue(Enumerable.Empty<GameObject>());
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
         AddRandomPieceToQueue();
         highScoreAmount = PlayerPrefs.GetInt(highScoreKey, 0);
-        lastCloudSpawned = Time.realtimeSinceStartup;
+    }
+
+    private void StartLevel()
+    {
+        // Get the level structure from the level file
+        LevelStructure structure = LevelStructure.GetLevelStructureFromAsset(AvailableLevelFiles[GameState.CurrentLevelID]);
+            
+        // Set the star requirements
+        firstStarRequirement = structure.FirstStarScoreRequirement;
+        secondStarRequirement = structure.SecondStarScoreRequirement;
+        thirdStarRequirement = structure.ThirdStarScoreRequirement;
+
+        // Transform piece IDs into actual pieces
+        List<GameObject> pieces = structure.LevelPieceIDs.Select(id => AvailablePrefabs[id]).ToList();
+
+        // Set the physics material for each building piece
+        pieces.ForEach(piece => {
+            if(piece.TryGetComponent(out Rigidbody2D rb))
+            {
+                rb.sharedMaterial = AvailableBuildingPhysicsMaterials[structure.BuildingPhysicsMaterialID];
+            } 
+        });
+
+        // Build the queue with building pieces
+        CreatePieceQueue(structure.LevelPieceIDs.Select(id => AvailablePrefabs[id]));
+
+        // Turn all backgrounds off, only enable correct one
+        AvailableBackgrounds.ForEach(x => x.SetActive(false));
+        AvailableBackgrounds[structure.BackgroundID].SetActive(true);
     }
 
     void CreatePieceQueue(IEnumerable<GameObject> pieces) {
@@ -95,7 +141,7 @@ public class Game : MonoBehaviour
         nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
     }
 
-    void SpawnNextPieceEndless(Vector2 position, Quaternion rotation) {
+    void SpawnNextPiece(Vector2 position, Quaternion rotation, bool endless) {
         if (nextBuildingPieces.Count > 0) {
             // Get the next building piece
             GameObject prefab = nextBuildingPieces.Dequeue();
@@ -116,8 +162,12 @@ public class Game : MonoBehaviour
             GameObject gameObject = Instantiate(prefab, position, rotation, blocksParent);
             crane.SetConnectedPiece(gameObject);
 
-            // Add a new random piece to the back of the queue
-            AddRandomPieceToQueue();
+            // Add a new random piece to the back of the queue if in endless mode
+            if(endless) AddRandomPieceToQueue();
+        }
+        else
+        {
+            LevelGameOver();
         }
 
     }
@@ -152,7 +202,24 @@ public class Game : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void GameOver()
+    private void LevelGameOver()
+    {
+        isGameOver = true;
+        crane.isGameOver = isGameOver;
+        currentScore.text = "";
+        EndScore.text = $"{counter}";
+        int stars;
+        if(counter >= thirdStarRequirement) stars = 3;
+        else if(counter >= secondStarRequirement) stars = 2;
+        else if(counter >= firstStarRequirement) stars = 1;
+        else stars = 0;
+        EndStars.text = $"{stars}";
+        audioSource.PlayOneShot(levelCompleteSound);
+        animator.SetTrigger("onGameOver");
+        LevelGameOverScreen.Setup();
+    }
+
+    private void EndlessGameOver()
     {
         isGameOver = true;
         crane.isGameOver = isGameOver;
@@ -161,7 +228,7 @@ public class Game : MonoBehaviour
         audioSource.PlayOneShot(explosionSound);
         OnGameOver(counter);
         animator.SetTrigger("onGameOver");
-        GameOverScreen.Setup();
+        EndlessGameOverScreen.Setup();
     }
     
     private void FreezeCheckpointBlock()
@@ -244,7 +311,8 @@ public class Game : MonoBehaviour
         {
             blocks.Remove(collision.otherRigidbody.gameObject);
             crane.transform.position.Set(0.0f, crane.transform.position.y, crane.transform.position.z);
-            GameOver();
+            if(GameState.IsEndless) EndlessGameOver();
+            else LevelGameOver();
         }
     }
 
@@ -274,10 +342,10 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (crane.IsReadyForNextPiece){
+        if (crane.IsReadyForNextPiece && !isGameOver){
             Vector2 newBlockPos = crane.transform.position;
             newBlockPos.y -= 2.0f;
-            SpawnNextPieceEndless(newBlockPos, Quaternion.identity);
+            SpawnNextPiece(newBlockPos, Quaternion.identity, GameState.IsEndless);
         }
     }
 
