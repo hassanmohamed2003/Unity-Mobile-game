@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 // copyright by dreamberd
 public class Game : MonoBehaviour
@@ -43,6 +44,7 @@ public class Game : MonoBehaviour
     public TMP_Text TapTutorial;
     public TMP_Text RopeTutorial;
     private List<GameObject> blocks = new List<GameObject>();
+    private HashSet<GameObject> uniqueBlocks = new HashSet<GameObject>();
     private GameObject firstBlock;
 
     private int counter = 0;
