@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class Game : MonoBehaviour
@@ -15,6 +17,9 @@ public class Game : MonoBehaviour
     public GameObject particleBlocks;
     public GameObject particleScore;
     public GameObject particlePerfect;
+    public GameObject particleHighscore;
+    public GameObject arthurHappy;
+    public GameObject arthurMad;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -23,11 +28,13 @@ public class Game : MonoBehaviour
     public AudioClip ropeBlinkSound;
     public AudioClip ropeBreakSound;
     public AudioClip perfectSound;
+    public List<AudioClip> comboSounds;
     public AudioClip levelCompleteSound;
 
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
     public List<GameObject> AvailableClouds;
+    public List<GameObject> AvailableArthurs;
     public List<TextAsset> AvailableLevelFiles;
     public List<GameObject> AvailableBackgrounds;
     public List<PhysicsMaterial2D> AvailableBuildingPhysicsMaterials;
@@ -51,6 +58,8 @@ public class Game : MonoBehaviour
     public TMP_Text currentScore;
     public TMP_Text highScore;
     public Animator animator;
+    public Transform blocksParent;
+    public Transform canvas;
 
     [Header("Game Behaviour")]
     public int CheckPoint;
@@ -59,12 +68,15 @@ public class Game : MonoBehaviour
     private GameObject firstBlock;
     private Transform highestBlock;
     private int counter = 0;
-    private bool MoveCamera = false;
+    private int comboCounter = 0;
+    private float lastCloudSpawned;
+    bool MoveCamera = false;
     private int spawnedBlockCounter = 0;
     private readonly string highScoreKey = "HighScore";
     private int highScoreAmount = 0;
     private bool isGameOver = false;
     private bool hasCompletedFirstPlay;
+    private bool hasHighscore = false;
     private int firstStarRequirement;
     private int secondStarRequirement;
     private int thirdStarRequirement;
@@ -73,7 +85,6 @@ public class Game : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-
     }
 
     // Start is called before the first frame update
@@ -195,7 +206,7 @@ public class Game : MonoBehaviour
 
     IEnumerator ShowTapTutorial()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         TapTutorial.gameObject.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         TapTutorial.gameObject.SetActive(false); 
@@ -267,6 +278,27 @@ public class Game : MonoBehaviour
         }
     }
 
+    private void comboCheck()
+    {
+        Debug.Log(comboCounter);
+        if (comboCounter < 1)
+        {
+            AvailableArthurs[0].SetActive(false);
+            audioSource.PlayOneShot(comboSounds[comboCounter]);
+            comboCounter++;
+        }
+
+        else if(comboCounter == 1)
+        {
+            audioSource.PlayOneShot(comboSounds[comboCounter]);
+
+            AvailableArthurs[0].SetActive(true);
+
+            comboCounter = 0;
+        }
+
+    }
+
     private void checkPlacement(Collision2D collision)
     {
         if (collision.rigidbody)
@@ -275,13 +307,15 @@ public class Game : MonoBehaviour
             float landedBock = collision.rigidbody.transform.position.x;
             if (landedBock - landingBock > 0.11 || landedBock - landingBock < -0.11)
             {
+                arthurHappy.SetActive(false);
+                comboCounter = 0;
                 Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
             }
             else
             {
-                audioSource.PlayOneShot(perfectSound);
                 Instantiate(particlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
                 counter++;
+                comboCheck();
             }
         }
         else
@@ -367,6 +401,26 @@ public class Game : MonoBehaviour
                 // Add multiple of offset to camera's targetpos to update it
                 cameraScript.targetPos.y = bottomScreenWorldPos.y + (0.5f/CameraTargetHeight * offset);
             }
+            //Change Arthurs position
+            if (AvailableArthurs[0].activeSelf)
+            {
+                AvailableArthurs[0].transform.position = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.1f));
+                Vector3 arthurHappy = AvailableArthurs[0].transform.position;
+
+                AvailableArthurs[0].transform.position = new Vector3(arthurHappy.x, arthurHappy.y, 0);
+            }
+
+            if (AvailableArthurs[1].activeSelf)
+            {
+                AvailableArthurs[1].transform.position = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.1f));
+
+
+                Vector3 arthurMad = AvailableArthurs[1].transform.position;
+
+                AvailableArthurs[1].transform.position = new Vector3(arthurMad.x, arthurMad.y, 0);
+
+            }
+
         }
     }
 
@@ -381,11 +435,24 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void launchConfetti()
+    {
+        if (hasHighscore)
+        {
+            Instantiate(particleHighscore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0)), Quaternion.identity);
+        }
+    }
+
     private void OnGameOver(int newScore){
         if (newScore > highScoreAmount)
         {
             PlayerPrefs.SetInt("HighScore", newScore);
             PlayerPrefs.Save();
+            hasHighscore = true;
+        }
+        else
+        {
+            AvailableArthurs[1].SetActive(true);
         }
         currentScore.text = "";
         highScore.text = $"{PlayerPrefs.GetInt("HighScore", highScoreAmount)}";

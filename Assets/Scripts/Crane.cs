@@ -29,7 +29,7 @@ public class Crane : MonoBehaviour
     public bool HasLastPieceLanded;
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
-    private float leftEdgeScreenX, rightEdgeScreenX;
+    public float leftEdgeScreenX, rightEdgeScreenX;
     private LineRenderer lineRenderer;
     public bool isGameOver;
     public bool EnableRopeBreak = true;
@@ -51,61 +51,66 @@ public class Crane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Check if crane can start handling a new piece
-        if (currentBuildingPiece == null && !IsReadyForNextPiece) {
-            if (HasLastPieceLanded) {
-                // If it is allowed let Game know
-                IsReadyForNextPiece = true;
-            }
-        }
-
-        // Get the tilt of the phone
-        float accelerationX = Math.Clamp(Input.acceleration.x, -MaxAcceleration, MaxAcceleration);
-
-        accelerationX *= Time.deltaTime * LeftRightSpeed;
-
-        // Get the top of the camera screen
-        float translationY = mainCam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
-        translationY -= rb.position.y;
-
-        // Build translation vector for this frame
-        Vector2 craneTranslation = new(accelerationX, translationY);
-
-        // Override tilt controls for testing with keyboard
-        if(Input.GetKey(KeyCode.A)){
-            craneTranslation.x = 0.03f * -LeftRightSpeed;   
-        }
-        else if(Input.GetKey(KeyCode.D)){
-            craneTranslation.x = 0.03f * LeftRightSpeed;
-        }
-        
-        // Move crane
-        Vector2 newCranePosition = rb.position + craneTranslation;
-        newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX + 0.28f, rightEdgeScreenX - 0.28f);
-
         if (!isGameOver)
         {
+            // Check if crane can start handling a new piece
+            if (currentBuildingPiece == null && !IsReadyForNextPiece)
+            {
+                if (Time.realtimeSinceStartupAsDouble > lastPieceDroppedTime + PieceTimeInterval)
+                {
+                    // If it is allowed let Game know
+                    IsReadyForNextPiece = true;
+                }
+            }
+
+            // Get the tilt of the phone
+            float accelerationX = Math.Clamp(Input.acceleration.x, -MaxAcceleration, MaxAcceleration);
+
+            accelerationX *= Time.deltaTime * LeftRightSpeed;
+
+            // Get the top of the camera screen
+            float translationY = mainCam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+            translationY -= rb.position.y;
+
+            // Build translation vector for this frame
+            Vector2 craneTranslation = new(accelerationX, translationY);
+
+            // Override tilt controls for testing with keyboard
+            if (Input.GetKey(KeyCode.A))
+            {
+                craneTranslation.x = 0.3f * -LeftRightSpeed;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                craneTranslation.x = 0.3f * LeftRightSpeed;
+            }
+
+            // Move crane
+            Vector2 newCranePosition = rb.position + craneTranslation;
+            newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX + 0.28f, rightEdgeScreenX - 0.28f);
+
             rb.MovePosition(newCranePosition);
+
+            // Release building piece when touch input is detected
+            if (Input.touchCount > 0) ReleaseConnectedPiece();
+            if (Input.GetKeyDown(KeyCode.R)) ReleaseConnectedPiece();
+
+            if (currentBuildingPiece != null)
+            {
+                SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
+                joint.distance += PieceLoweringSpeed * Time.deltaTime;
+
+                Vector2 newRopeStartPos = (Vector2)transform.position - joint.anchor;
+                Vector2 newRopeEndPos = currentBuildingPiece.transform.position;
+                if (currentBuildingPiece.TryGetComponent(out BuildingBlock block))
+                {
+                    newRopeEndPos.y += block.ropeStartOffset;
+                }
+
+                lineRenderer.SetPosition(0, newRopeStartPos);
+                lineRenderer.SetPosition(1, newRopeEndPos);
+            }
         }
-
-        // Release building piece when touch input is detected
-        if(Input.touchCount > 0) ReleaseConnectedPiece();
-        if(Input.GetKeyDown(KeyCode.R)) ReleaseConnectedPiece();
-
-        if (currentBuildingPiece != null){
-            SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
-            joint.distance += PieceLoweringSpeed * Time.deltaTime;
-
-            Vector2 newRopeStartPos = (Vector2)transform.position - joint.anchor;
-            Vector2 newRopeEndPos = currentBuildingPiece.transform.position;
-            if(currentBuildingPiece.TryGetComponent(out BuildingBlock block)){
-                newRopeEndPos.y += block.ropeStartOffset;
-            }           
-            
-            lineRenderer.SetPosition(0, newRopeStartPos);
-            lineRenderer.SetPosition(1, newRopeEndPos);
-        }        
     }
 
     IEnumerator RopeBreakingRoutine()

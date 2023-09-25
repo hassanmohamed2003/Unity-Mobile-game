@@ -6,6 +6,7 @@ public class GameOverScreen : MonoBehaviour
 {
     public string RestartScene = "Game";
     public string MenuScene = "StartMenu";
+    public Game game;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,15 @@ public class GameOverScreen : MonoBehaviour
     
     private void SetTimescaleZero()
     {
+        /*
         Time.timeScale = 0;
-    } 
+        */
+    }
+
+    private void launchConfetti()
+    {
+        game.launchConfetti();
+    }
 
     public void Restart()
     {
