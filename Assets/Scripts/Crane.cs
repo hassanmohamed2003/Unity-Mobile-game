@@ -147,8 +147,12 @@ public class Crane : MonoBehaviour
         rigidbody.MovePosition(rb.position);
 
         Rigidbody2D rigidbodyPiece = currentBuildingPiece.GetComponent<Rigidbody2D>();
-        Vector2 force = new(UnityEngine.Random.Range(-1.0f, 1.0f), 0.0f);
-        rigidbodyPiece.AddForce(force * InitialSwingForce, ForceMode2D.Force);
+        Vector2 force = new(UnityEngine.Random.Range(0.5f, 0.8f), 0.0f);
+        if(UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f)
+        {
+            force *= -1.0f;
+        }
+        rigidbodyPiece.AddForce(force * InitialSwingForce * rigidbodyPiece.mass, ForceMode2D.Force);
         IsReadyForNextPiece = false;
 
         if(EnableRopeBreak)
@@ -167,10 +171,6 @@ public class Crane : MonoBehaviour
             HasLastPieceLanded = false;
 
             Game.instance.audioSource.PlayOneShot(Game.instance.ropeBreakSound);
-
-            Rigidbody2D rb = currentBuildingPiece.GetComponent<Rigidbody2D>();
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.freezeRotation = false;
             currentBuildingPiece = null;
 
             // Hide line

@@ -137,8 +137,19 @@ public class Game : MonoBehaviour
         nextBuildingPieces = new Queue<GameObject>(pieces);
     }
 
-    void AddRandomPieceToQueue() {
-        nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
+    void AddRandomPieceToQueue() 
+    {
+        if(nextBuildingPieces.Count == 0)
+        {
+            nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
+            return;
+        }
+        GameObject newPrefab = nextBuildingPieces.Last();
+        while(newPrefab == nextBuildingPieces.Last())
+        {
+            newPrefab = AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)];
+        }
+        nextBuildingPieces.Enqueue(newPrefab);
     }
 
     void SpawnNextPiece(Vector2 position, Quaternion rotation, bool endless) {
@@ -239,6 +250,19 @@ public class Game : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             rb.bodyType = RigidbodyType2D.Static;
         }
+        UpdateCheckpoint();
+    }
+
+    private void UpdateCheckpoint()
+    {
+        if(blocks.Count < 200)
+        {
+            CheckPoint = 4 + blocks.Count/25;
+        }
+        else if(blocks.Count < 1000)
+        {
+            CheckPoint = 10 + blocks.Count/100;
+        }
     }
 
     private void checkPlacement(Collision2D collision)
@@ -282,6 +306,8 @@ public class Game : MonoBehaviour
             }
             collision.otherRigidbody.velocity = Vector3.zero;
             collision.otherRigidbody.angularVelocity = 0;
+            collision.otherRigidbody.constraints = RigidbodyConstraints2D.None;
+            collision.otherRigidbody.freezeRotation = false;
             crane.HasLastPieceLanded = true;
             blocks.Add(collision.otherRigidbody.gameObject);
 
