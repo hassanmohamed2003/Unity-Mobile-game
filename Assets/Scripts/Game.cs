@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 // copyright by dreamberd
 public class Game : MonoBehaviour
@@ -159,8 +161,6 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
-        AvailableArthurs[1].transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.2f, 0.5f, 0));
-        AvailableArthurs[1].SetActive(true);
         isGameOver = true;
         crane.isGameOver = isGameOver;
         currentScore.text = "";
@@ -184,21 +184,20 @@ public class Game : MonoBehaviour
     private void comboCheck()
     {
         Debug.Log(comboCounter);
-
-        if (comboCounter == 1)
+        if (comboCounter < 1)
         {
-            Debug.Log("artur");
-            AvailableArthurs[0].transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.2f, 0.5f, 0));
-            AvailableArthurs[0].SetActive(true);
-        }
-        if (comboCounter < 3)
-        {
+            AvailableArthurs[0].SetActive(false);
             audioSource.PlayOneShot(comboSounds[comboCounter]);
             comboCounter++;
         }
-        else if(comboCounter > 3)
+
+        else if(comboCounter == 1)
         {
-            audioSource.PlayOneShot(comboSounds.Last());
+            audioSource.PlayOneShot(comboSounds[comboCounter]);
+
+            AvailableArthurs[0].SetActive(true);
+
+            comboCounter = 0;
         }
 
     }
@@ -298,6 +297,26 @@ public class Game : MonoBehaviour
                 // Add multiple of offset to camera's targetpos to update it
                 cameraScript.targetPos.y = bottomScreenWorldPos.y + (0.5f/CameraTargetHeight * offset);
             }
+            //Change Arthurs position
+            if (AvailableArthurs[0].activeSelf)
+            {
+                AvailableArthurs[0].transform.position = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.1f));
+                Vector3 arthurHappy = AvailableArthurs[0].transform.position;
+
+                AvailableArthurs[0].transform.position = new Vector3(arthurHappy.x, arthurHappy.y, 0);
+            }
+
+            if (AvailableArthurs[1].activeSelf)
+            {
+                AvailableArthurs[1].transform.position = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.1f));
+
+
+                Vector3 arthurMad = AvailableArthurs[1].transform.position;
+
+                AvailableArthurs[1].transform.position = new Vector3(arthurMad.x, arthurMad.y, 0);
+
+            }
+
         }
     }
 
@@ -326,6 +345,10 @@ public class Game : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", newScore);
             PlayerPrefs.Save();
             hasHighscore = true;
+        }
+        else
+        {
+            AvailableArthurs[1].SetActive(true);
         }
         currentScore.text = "";
         highScore.text = $"{PlayerPrefs.GetInt("HighScore", highScoreAmount)}";

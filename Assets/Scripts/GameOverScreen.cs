@@ -26,7 +26,9 @@ public class GameOverScreen : MonoBehaviour
     
     private void SetTimescaleZero()
     {
+        /*
         Time.timeScale = 0;
+        */
     }
 
     private void launchConfetti()
