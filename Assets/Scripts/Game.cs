@@ -30,6 +30,7 @@ public class Game : MonoBehaviour
     [Header("Prefabs")]
     public List<GameObject> AvailablePrefabs;
     public List<GameObject> AvailableClouds;
+    public List<GameObject> AvailableArthurs;
 
     public CameraFollow cameraScript;
     public float CameraTargetHeight;
@@ -158,7 +159,8 @@ public class Game : MonoBehaviour
 
     private void GameOver()
     {
-        arthurMad.SetActive(true);
+        AvailableArthurs[1].transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.2f, 0.5f, 0));
+        AvailableArthurs[1].SetActive(true);
         isGameOver = true;
         crane.isGameOver = isGameOver;
         currentScore.text = "";
@@ -186,7 +188,8 @@ public class Game : MonoBehaviour
         if (comboCounter == 1)
         {
             Debug.Log("artur");
-            arthurHappy.SetActive(true);
+            AvailableArthurs[0].transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.2f, 0.5f, 0));
+            AvailableArthurs[0].SetActive(true);
         }
         if (comboCounter < 3)
         {
@@ -208,6 +211,7 @@ public class Game : MonoBehaviour
             float landedBock = collision.rigidbody.transform.position.x;
             if (landedBock - landingBock > 0.11 || landedBock - landingBock < -0.11)
             {
+                arthurHappy.SetActive(false);
                 comboCounter = 0;
                 Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
             }
@@ -322,7 +326,6 @@ public class Game : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", newScore);
             PlayerPrefs.Save();
             hasHighscore = true;
-            arthurMad.SetActive(true);
         }
         currentScore.text = "";
         highScore.text = $"{PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
