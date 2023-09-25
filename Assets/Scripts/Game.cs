@@ -255,13 +255,15 @@ public class Game : MonoBehaviour
 
     private void UpdateCheckpoint()
     {
-        if(blocks.Count < 200)
+        const int highScoreThreshold = 210;
+        if(blocks.Count < highScoreThreshold)
         {
-            CheckPoint = 4 + blocks.Count/25;
+            CheckPoint = 4 + blocks.Count/15;
         }
-        else if(blocks.Count < 1000)
+        else if(blocks.Count > highScoreThreshold)
         {
-            CheckPoint = 10 + blocks.Count/100;
+            int lowerScore = 4 + highScoreThreshold/15;
+            CheckPoint = lowerScore + (blocks.Count - highScoreThreshold)/100;
         }
     }
 

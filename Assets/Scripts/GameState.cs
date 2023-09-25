@@ -4,6 +4,6 @@ using UnityEngine;
 
 public static class GameState
 {
-    public static bool IsEndless;
+    public static bool IsEndless = true;
     public static int CurrentLevelID;
 }
