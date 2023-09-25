@@ -26,6 +26,7 @@ public class Crane : MonoBehaviour
     public float timeTillFirstBlink;
 
     private double lastPieceDroppedTime;
+    public bool HasLastPieceLanded;
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
     private float leftEdgeScreenX, rightEdgeScreenX;
@@ -53,7 +54,7 @@ public class Crane : MonoBehaviour
 
         // Check if crane can start handling a new piece
         if (currentBuildingPiece == null && !IsReadyForNextPiece) {
-            if (Time.realtimeSinceStartupAsDouble > lastPieceDroppedTime + PieceTimeInterval) {
+            if (HasLastPieceLanded) {
                 // If it is allowed let Game know
                 IsReadyForNextPiece = true;
             }
@@ -73,10 +74,10 @@ public class Crane : MonoBehaviour
 
         // Override tilt controls for testing with keyboard
         if(Input.GetKey(KeyCode.A)){
-            craneTranslation.x = 0.3f * -LeftRightSpeed;   
+            craneTranslation.x = 0.03f * -LeftRightSpeed;   
         }
         else if(Input.GetKey(KeyCode.D)){
-            craneTranslation.x = 0.3f * LeftRightSpeed;
+            craneTranslation.x = 0.03f * LeftRightSpeed;
         }
         
         // Move crane
@@ -163,6 +164,7 @@ public class Crane : MonoBehaviour
             joint.breakForce = 0.0f;
             joint.breakTorque = 0.0f;
             lastPieceDroppedTime = Time.realtimeSinceStartupAsDouble;
+            HasLastPieceLanded = false;
 
             Game.instance.audioSource.PlayOneShot(Game.instance.ropeBreakSound);
 

@@ -280,7 +280,11 @@ public class Game : MonoBehaviour
                 audioSource.PlayOneShot(buildingHitSound);
                 Instantiate(particleBlocks, contact.point, Quaternion.identity);
             }
+            collision.otherRigidbody.velocity = Vector3.zero;
+            collision.otherRigidbody.angularVelocity = 0;
+            crane.HasLastPieceLanded = true;
             blocks.Add(collision.otherRigidbody.gameObject);
+
             FreezeCheckpointBlock();
             checkPlacement(collision);
             currentScore.text = $"{counter}";
