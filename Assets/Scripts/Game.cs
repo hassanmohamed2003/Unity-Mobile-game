@@ -50,9 +50,9 @@ public class Game : MonoBehaviour
     [Header("UI")]
     public GameOverScreen EndlessGameOverScreen;
     public GameOverScreen LevelGameOverScreen;
-    public TMP_Text TiltTutorial;
-    public TMP_Text TapTutorial;
-    public TMP_Text RopeTutorial;
+    public GameObject TiltTutorial;
+    public GameObject TapTutorial;
+    public GameObject RopeTutorial;
     public TMP_Text EndScore;
     public TMP_Text EndStars;
     public TMP_Text currentScore;
