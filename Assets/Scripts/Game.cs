@@ -58,7 +58,6 @@ public class Game : MonoBehaviour
     public TMP_Text currentScore;
     public TMP_Text highScore;
     public Animator animator;
-    public Transform blocksParent;
     public Transform canvas;
 
     [Header("Game Behaviour")]
@@ -281,14 +280,14 @@ public class Game : MonoBehaviour
     private void comboCheck()
     {
         Debug.Log(comboCounter);
-        if (comboCounter < 1)
+        if (comboCounter < 2)
         {
             AvailableArthurs[0].SetActive(false);
             audioSource.PlayOneShot(comboSounds[comboCounter]);
             comboCounter++;
         }
 
-        else if(comboCounter == 1)
+        else if(comboCounter == 2)
         {
             audioSource.PlayOneShot(comboSounds[comboCounter]);
 
@@ -439,11 +438,13 @@ public class Game : MonoBehaviour
     {
         if (hasHighscore)
         {
+            audioSource.PlayOneShot(levelCompleteSound);
             Instantiate(particleHighscore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0)), Quaternion.identity);
         }
     }
 
     private void OnGameOver(int newScore){
+        crane.OnGameOver();
         if (newScore > highScoreAmount)
         {
             PlayerPrefs.SetInt("HighScore", newScore);

@@ -33,6 +33,7 @@ public class Crane : MonoBehaviour
     private LineRenderer lineRenderer;
     public bool isGameOver;
     public bool EnableRopeBreak = true;
+    private IEnumerator RopeRoutine;
 
     // Start is called before the first frame update
     void Start()
@@ -78,11 +79,11 @@ public class Crane : MonoBehaviour
             // Override tilt controls for testing with keyboard
             if (Input.GetKey(KeyCode.A))
             {
-                craneTranslation.x = 0.3f * -LeftRightSpeed;
+                craneTranslation.x = 0.03f * -LeftRightSpeed;
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                craneTranslation.x = 0.3f * LeftRightSpeed;
+                craneTranslation.x = 0.03f * LeftRightSpeed;
             }
 
             // Move crane
@@ -94,23 +95,28 @@ public class Crane : MonoBehaviour
             // Release building piece when touch input is detected
             if (Input.touchCount > 0) ReleaseConnectedPiece();
             if (Input.GetKeyDown(KeyCode.R)) ReleaseConnectedPiece();
-
-            if (currentBuildingPiece != null)
-            {
-                SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
-                joint.distance += PieceLoweringSpeed * Time.deltaTime;
-
-                Vector2 newRopeStartPos = (Vector2)transform.position - joint.anchor;
-                Vector2 newRopeEndPos = currentBuildingPiece.transform.position;
-                if (currentBuildingPiece.TryGetComponent(out BuildingBlock block))
-                {
-                    newRopeEndPos.y += block.ropeStartOffset;
-                }
-
-                lineRenderer.SetPosition(0, newRopeStartPos);
-                lineRenderer.SetPosition(1, newRopeEndPos);
-            }
         }
+        if (currentBuildingPiece != null && lineRenderer != null)
+        {
+            SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
+            joint.distance += PieceLoweringSpeed * Time.deltaTime;
+
+            Vector2 newRopeStartPos = (Vector2)transform.position - joint.anchor;
+            Vector2 newRopeEndPos = currentBuildingPiece.transform.position;
+            if (currentBuildingPiece.TryGetComponent(out BuildingBlock block))
+            {
+                newRopeEndPos.y += block.ropeStartOffset;
+            }
+
+            lineRenderer.SetPosition(0, newRopeStartPos);
+            lineRenderer.SetPosition(1, newRopeEndPos);
+        }
+    }
+
+    public void OnGameOver()
+    {
+        PieceLoweringSpeed = 0.0f;
+        if(RopeRoutine != null) StopCoroutine(RopeRoutine);
     }
 
     IEnumerator RopeBreakingRoutine()
@@ -162,8 +168,8 @@ public class Crane : MonoBehaviour
 
         if(EnableRopeBreak)
         {
-            IEnumerator ropeRoutine = RopeBreakingRoutine();
-            StartCoroutine(ropeRoutine);        
+            RopeRoutine = RopeBreakingRoutine();
+            StartCoroutine(RopeRoutine);        
         }
     }
 
