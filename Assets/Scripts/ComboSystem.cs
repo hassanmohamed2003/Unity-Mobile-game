@@ -15,6 +15,10 @@ public class ComboSystem : MonoBehaviour
     
     [Header("Audio")]
     public AudioPlayer audioPlayer;
+
+    [Header("Score System")]
+    public ScoreSystem scoreSystem;
+    
     private int comboCounter = 0;
     public void CheckPlacement(Collision2D collision, int score)
     {
@@ -31,6 +35,7 @@ public class ComboSystem : MonoBehaviour
             else
             {
                 particlePlayer.PlayPerfectParticles();
+                scoreSystem.IncrementScore();
                 ComboCheck();
             }
         }

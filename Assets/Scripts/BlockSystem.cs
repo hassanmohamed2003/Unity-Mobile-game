@@ -70,6 +70,10 @@ public class BlockSystem : MonoBehaviour
             // Add a new random piece to the back of the queue if in endless mode
             if(endless) AddRandomPieceToQueue();
         }
+        else
+        {
+            Game.instance.LevelGameOver();
+        }
     }
 
     public bool LandedBlocksContains(GameObject block)

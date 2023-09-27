@@ -48,7 +48,6 @@ public class Game : MonoBehaviour
     public BlockSystem blockSystem;
     private Transform highestBlock;
     private bool isGameOver = false;
-    private bool hasHighscore = false;
 
     void Awake()
     {
@@ -111,7 +110,7 @@ public class Game : MonoBehaviour
         CameraMovementEnabled = value;
     } 
 
-    private void LevelGameOver()
+    public void LevelGameOver()
     {
         isGameOver = true;
         crane.OnGameOver();      
@@ -127,7 +126,7 @@ public class Game : MonoBehaviour
         AudioPlayer.PlaySoundEffect(AudioPlayer.ExplosionSound);
 
         // You better beat the highscore
-        scoreSystem.UpdateHighscore(scoreSystem.Score, out hasHighscore);
+        scoreSystem.UpdateHighscore(scoreSystem.Score, out bool hasHighscore);
 
         // If new highscore play effects
         if(hasHighscore)

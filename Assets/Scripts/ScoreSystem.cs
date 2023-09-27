@@ -51,6 +51,17 @@ public class ScoreSystem : MonoBehaviour
         }
     }
 
+    public void SaveLevelResults(int levelID)
+    {
+        int stars = GetStars();
+        int previousStars = PlayerPrefs.GetInt($"Level{levelID}Stars", stars);
+        if(stars > previousStars)
+        {
+            PlayerPrefs.SetInt($"Level{levelID}Stars", stars);
+        }
+        PlayerPrefs.Save();
+    }
+
     public int GetHighscore()
     {
         return highscoreAmount;
