@@ -115,6 +115,7 @@ public class Crane : MonoBehaviour
 
     public void OnGameOver()
     {
+        isGameOver = true;
         PieceLoweringSpeed = 0.0f;
         if(RopeRoutine != null) StopCoroutine(RopeRoutine);
     }
@@ -123,16 +124,19 @@ public class Crane : MonoBehaviour
     {
         float startTime = Time.realtimeSinceStartup;
         float blinkInterval = blinkStartInterval;
+        if(currentBuildingPiece == null) yield break;
         yield return new WaitForSeconds(timeTillFirstBlink);
         for(float time = startTime; time < startTime + ropeBreakTime; time = Time.realtimeSinceStartup)
         {
             if(currentBuildingPiece == null) yield break;
             yield return new WaitForSeconds(blinkInterval);
-            Game.instance.audioSource.PlayOneShot(Game.instance.ropeBlinkSound);
+            if(currentBuildingPiece == null) yield break;
+            Game.instance.AudioPlayer.PlaySoundEffect(Game.instance.AudioPlayer.RopeBlinkSound);
             lineRenderer.startColor = Color.red;
             lineRenderer.endColor = Color.red;
             if(currentBuildingPiece == null) yield break;
             yield return new WaitForSeconds(blinkActiveTime);
+            if(currentBuildingPiece == null) yield break;
             lineRenderer.startColor = Color.black;
             lineRenderer.endColor = Color.black;
             blinkInterval -= 0.05f;
@@ -181,7 +185,7 @@ public class Crane : MonoBehaviour
             lastPieceDroppedTime = Time.realtimeSinceStartupAsDouble;
             HasLastPieceLanded = false;
 
-            Game.instance.audioSource.PlayOneShot(Game.instance.ropeBreakSound);
+            Game.instance.AudioPlayer.PlaySoundEffect(Game.instance.AudioPlayer.RopeBreakSound);
             currentBuildingPiece = null;
 
             // Hide line
@@ -189,5 +193,8 @@ public class Crane : MonoBehaviour
         }
     }
 
-
+    public void Center()
+    {
+        transform.position.Set(0.0f, transform.position.y, transform.position.z);
+    }
 }
