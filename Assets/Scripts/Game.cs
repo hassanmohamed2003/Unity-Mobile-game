@@ -340,7 +340,6 @@ public class Game : MonoBehaviour
                 Instantiate(particleBlocks, contact.point, Quaternion.identity);
             }
             collision.otherRigidbody.velocity = Vector3.zero;
-            collision.otherRigidbody.angularVelocity = 0;
             collision.otherRigidbody.constraints = RigidbodyConstraints2D.None;
             collision.otherRigidbody.freezeRotation = false;
             crane.HasLastPieceLanded = true;
