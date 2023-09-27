@@ -15,6 +15,7 @@ public class Game : MonoBehaviour
 
     [Header("Particle System")]
     public GameObject particleBlocks;
+    public GameObject particleBlocksCombo;
     public GameObject particleScore;
     public GameObject particlePerfect;
     public GameObject particleHighscore;
@@ -79,6 +80,8 @@ public class Game : MonoBehaviour
     private int firstStarRequirement;
     private int secondStarRequirement;
     private int thirdStarRequirement;
+    const int highScoreThreshold = 210;
+
 
     void Awake()
     {
@@ -261,6 +264,7 @@ public class Game : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
         }
         UpdateCheckpoint();
+        UpdateRopeSwing();
     }
 
     private void UpdateCheckpoint()
@@ -276,21 +280,26 @@ public class Game : MonoBehaviour
             CheckPoint = lowerScore + (blocks.Count - highScoreThreshold)/100;
         }
     }
+    private void UpdateRopeSwing()
+    {
+        const int limit = 130;
+        if (blocks.Count > highScoreThreshold && crane.InitialSwingForce < limit)
+        {
+            crane.InitialSwingForce += 1.25f;
+        }
+        Debug.Log(crane.InitialSwingForce);
+    }
 
     private void comboCheck()
     {
-        Debug.Log(comboCounter);
         if (comboCounter < 2)
         {
             AvailableArthurs[0].SetActive(false);
-            audioSource.PlayOneShot(comboSounds[comboCounter]);
             comboCounter++;
         }
 
         else if(comboCounter == 2)
         {
-            audioSource.PlayOneShot(comboSounds[comboCounter]);
-
             AvailableArthurs[0].SetActive(true);
 
             comboCounter = 0;
@@ -298,23 +307,35 @@ public class Game : MonoBehaviour
 
     }
 
-    private void checkPlacement(Collision2D collision)
+    private void checkPlacement(Collision2D collision, ContactPoint2D contact)
     {
         if (collision.rigidbody)
         {
             float landingBock = collision.otherRigidbody.transform.position.x;
             float landedBock = collision.rigidbody.transform.position.x;
+
             if (landedBock - landingBock > 0.11 || landedBock - landingBock < -0.11)
             {
                 arthurHappy.SetActive(false);
                 comboCounter = 0;
                 Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
+                if (contact.normalImpulse > 100)
+                {
+                    audioSource.PlayOneShot(buildingHitSound);
+                    Instantiate(particleBlocks, contact.point, Quaternion.identity);
+                }
             }
             else
             {
                 Instantiate(particlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
-                counter++;
+                if (contact.normalImpulse > 100)
+                {
+                    Debug.Log(comboCounter);
+                    audioSource.PlayOneShot(comboSounds[comboCounter]);
+                    Instantiate(particleBlocksCombo, contact.point, Quaternion.identity);
+                }
                 comboCheck();
+                counter++;
             }
         }
         else
@@ -334,11 +355,16 @@ public class Game : MonoBehaviour
         {
             counter++;
             ContactPoint2D contact = collision.contacts[0];
-            if(contact.normalImpulse > 100)
+            checkPlacement(collision, contact);
+            /*
+            if (contact.normalImpulse > 100)
             {
                 audioSource.PlayOneShot(buildingHitSound);
                 Instantiate(particleBlocks, contact.point, Quaternion.identity);
+                Debug.Log("dust");
+                if(comboCounter)
             }
+            */
             collision.otherRigidbody.velocity = Vector3.zero;
             collision.otherRigidbody.constraints = RigidbodyConstraints2D.None;
             collision.otherRigidbody.freezeRotation = false;
@@ -346,7 +372,6 @@ public class Game : MonoBehaviour
             blocks.Add(collision.otherRigidbody.gameObject);
 
             FreezeCheckpointBlock();
-            checkPlacement(collision);
             currentScore.text = $"{counter}";
         }
 

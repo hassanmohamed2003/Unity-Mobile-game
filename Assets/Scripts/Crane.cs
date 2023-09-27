@@ -119,6 +119,8 @@ public class Crane : MonoBehaviour
         if(RopeRoutine != null) StopCoroutine(RopeRoutine);
     }
 
+
+
     IEnumerator RopeBreakingRoutine()
     {
         float startTime = Time.realtimeSinceStartup;
