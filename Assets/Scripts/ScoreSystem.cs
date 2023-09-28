@@ -1,41 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreSystem : MonoBehaviour
 {
-    private readonly string highScoreKey = "HighScore";
+    public UnityEvent<int, int> ScoreUpdatedEvent;
+    public UnityEvent NewHighScoreEvent;
+    public UnityEvent NoHighscoreEvent;
+
+    private int score;
+    private int stars;
     private int highscoreAmount;
     private int firstStarRequirement;
     private int secondStarRequirement;
     private int thirdStarRequirement;
-    public int Score {
-        get;
-        private set;
-    }
-
     void Start()
     {
-        highscoreAmount = PlayerPrefs.GetInt(highScoreKey, 0);
+        highscoreAmount = PlayerPrefs.GetInt("HighScore", 0);
     }
 
-    public void SetStarScores(int first, int second, int third)
+    public void SetStarScores(LevelStructure structure)
     {
-        firstStarRequirement = first;
-        secondStarRequirement = second;
-        thirdStarRequirement = third;
+        firstStarRequirement = structure.FirstStarScoreRequirement;
+        secondStarRequirement = structure.SecondStarScoreRequirement;
+        thirdStarRequirement = structure.ThirdStarScoreRequirement;
     }
 
     public int GetStars()
     {
-        if(Score >= thirdStarRequirement) return 3;
-        else if(Score >= secondStarRequirement) return 2;
-        else if(Score >= firstStarRequirement) return 1;
+        if(score >= thirdStarRequirement) return 3;
+        else if(score >= secondStarRequirement) return 2;
+        else if(score >= firstStarRequirement) return 1;
         else return 0;
     }
 
-    public void UpdateHighscore(int score, out bool isHighscore)
+    public void UpdateHighscore()
     {
         if (score > highscoreAmount)
         {
@@ -43,11 +41,11 @@ public class ScoreSystem : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score);
             PlayerPrefs.Save();
             highscoreAmount = score;
-            isHighscore = true;
+            NewHighScoreEvent.Invoke();
         }
         else
         {
-            isHighscore = false;
+            NoHighscoreEvent.Invoke();
         }
     }
 
@@ -67,8 +65,15 @@ public class ScoreSystem : MonoBehaviour
         return highscoreAmount;
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+
     public void IncrementScore()
     {
-        Score++;
+        score++;
+        stars = GetStars();
+        ScoreUpdatedEvent.Invoke(score, stars);
     }
 }

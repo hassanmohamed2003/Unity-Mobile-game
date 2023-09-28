@@ -20,14 +20,19 @@ public class ParticleHandler : MonoBehaviour
         Instantiate(ParticlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
     }
 
-    public void PlayDustCloudParticles(Vector2 position)
+    public void PlayDustCloudParticles(ContactPoint2D contact)
     {
-        Instantiate(ParticleDustCloud, position, Quaternion.identity);
+        Instantiate(ParticleDustCloud, contact.point, Quaternion.identity);
+    }
+
+    public void PlayHighscoreParticlesDelayed()
+    {
+        StartCoroutine(PlayHighscoreParticles());
     }
 
     public IEnumerator PlayHighscoreParticles()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         Instantiate(ParticleHighscore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0)), Quaternion.identity);
     }
 }

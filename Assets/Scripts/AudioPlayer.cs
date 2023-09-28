@@ -22,4 +22,34 @@ public class AudioPlayer : MonoBehaviour
     {
         audioSource.PlayOneShot(soundEffect);
     }
+
+    public void PlayBuildingHitSound()
+    {
+        audioSource.PlayOneShot(BuildingHitSound);
+    }
+
+    public void PlayComboSound(int combo)
+    {
+        audioSource.PlayOneShot(ComboSounds[combo]);
+    }
+
+    public void PlayExplosionSound()
+    {
+        audioSource.PlayOneShot(ExplosionSound);
+    }
+
+    public void PlayLevelCompleteSound()
+    {
+        audioSource.PlayOneShot(LevelCompleteSound);
+    }
+
+    public void PlayRopeBreakSound()
+    {
+        audioSource.PlayOneShot(RopeBreakSound);
+    }
+
+    public void PlayRopeBlinkSound()
+    {
+        audioSource.PlayOneShot(RopeBlinkSound);
+    }
 }

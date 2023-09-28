@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class LevelUIHandler : MonoBehaviour
 {
+    [Header("")]
     [Header("Game Over Screens")]
     public GameOverScreen EndlessGameOverScreen;
     public GameOverScreen LevelGameOverScreen;
@@ -19,12 +21,12 @@ public class LevelUIHandler : MonoBehaviour
     public TMP_Text EndHighScore;
     public TMP_Text CurrentScore;
 
-    [Header("Crane")]
-    public Crane crane;
-
     [Header("Animator")]
     public Animator Animator;
     public bool HasCompletedFirstPlay{ get; private set; }
+
+    private int score;
+    private int stars;
 
     void Awake()
     {
@@ -32,7 +34,7 @@ public class LevelUIHandler : MonoBehaviour
         if(!HasCompletedFirstPlay)
         {
             SetScoreTextVisibility(false);
-            crane.EnableRopeBreak = false;
+            // crane.EnableRopeBreak = false;
         }
     }
 
@@ -41,12 +43,14 @@ public class LevelUIHandler : MonoBehaviour
         CurrentScore.gameObject.SetActive(visible);
     }
 
-    public void OnScoreUpdate(int score)
+    public void OnScoreUpdate(int score, int stars)
     {
         CurrentScore.text = $"{score}";
+        this.score = score;
+        this.stars = stars;
     }
 
-    public void OnLevelGameOver(int score, int stars)
+    public void OnLevelGameOver()
     {
         CurrentScore.text = "";
         EndScoreLevel.text = $"{score}";
@@ -55,11 +59,11 @@ public class LevelUIHandler : MonoBehaviour
         LevelGameOverScreen.Setup();
     }
 
-    public void OnEndlessGameOver(int score, int previousHighscore)
+    public void OnEndlessGameOver()
     {
         SetScoreTextVisibility(false);
         EndScoreEndless.text = $"{score}";
-        EndHighScore.text = $"{PlayerPrefs.GetInt("HighScore", previousHighscore)}";
+        EndHighScore.text = $"{PlayerPrefs.GetInt("HighScore", 0)}";
         Animator.SetTrigger("onGameOver");
         EndlessGameOverScreen.Setup();
     }

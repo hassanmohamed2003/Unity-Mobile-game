@@ -1,26 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ComboSystem : MonoBehaviour
 {
     [Header("Perfect Precision")]
     public float PerfectPrecision;
-    
-    [Header("Arthur")]
-    public Arthur arthur;
-
-    [Header("Particles")]
-    public ParticleHandler particlePlayer;
-    
-    [Header("Audio")]
-    public AudioPlayer audioPlayer;
-
-    [Header("Score System")]
-    public ScoreSystem scoreSystem;
+    public UnityEvent PerfectLandingEvent;
+    public UnityEvent NormalLandingEvent;
+    public UnityEvent<int> NormalComboEvent;
+    public UnityEvent MaxComboEvent;
     
     private int comboCounter = 0;
-    public void CheckPlacement(Collision2D collision, int score)
+    public void CheckPlacement(Collision2D collision)
     {
         if (collision.rigidbody)
         {
@@ -28,20 +21,14 @@ public class ComboSystem : MonoBehaviour
             float landedBock = collision.rigidbody.transform.position.x;
             if (landedBock - landingBock > PerfectPrecision || landedBock - landingBock < -PerfectPrecision)
             {
-                arthur.StopHappyAnimation();
+                NormalLandingEvent.Invoke();
                 comboCounter = 0;
-                particlePlayer.PlayScoreParticles();
             }
             else
             {
-                particlePlayer.PlayPerfectParticles();
-                scoreSystem.IncrementScore();
+                PerfectLandingEvent.Invoke();
                 ComboCheck();
             }
-        }
-        else
-        {
-            particlePlayer.PlayScoreParticles();
         }
     }
 
@@ -49,14 +36,12 @@ public class ComboSystem : MonoBehaviour
     {
         if (comboCounter < 2)
         {
-            arthur.StopHappyAnimation();
-            audioPlayer.PlaySoundEffect(audioPlayer.ComboSounds[comboCounter]);
+            NormalComboEvent.Invoke(comboCounter);
             comboCounter++;
         }
         else if(comboCounter == 2)
         {
-            arthur.StartHappyAnimation();
-            audioPlayer.PlaySoundEffect(audioPlayer.ComboSounds[comboCounter]);
+            MaxComboEvent.Invoke();
             comboCounter = 0;
         }
     }

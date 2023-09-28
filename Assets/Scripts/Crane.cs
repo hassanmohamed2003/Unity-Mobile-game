@@ -1,20 +1,17 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Crane : MonoBehaviour
-{
+{    
     [Header("Movement")]
     public float LeftRightSpeed;
     public float PieceLoweringSpeed;
     public float PieceTimeInterval;
     public float MaxAcceleration;
 
-    [Header("Camera")]
-    public Camera mainCam;
-
     [Header("Behaviour")]
-    public bool IsReadyForNextPiece = true;
     public float pieceStartHeight;
     public Vector2 ropeStartOffset;
     public float InitialSwingForce;
@@ -25,152 +22,143 @@ public class Crane : MonoBehaviour
     public float blinkActiveTime;
     public float timeTillFirstBlink;
 
-    private double lastPieceDroppedTime;
-    public bool HasLastPieceLanded;
+    [Header("Events")]
+    public UnityEvent RopeBreakEvent;
+    public UnityEvent RopeBlinkEvent;
+    
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
-    public float leftEdgeScreenX, rightEdgeScreenX;
+    private float leftEdgeScreenX, rightEdgeScreenX;
     private LineRenderer lineRenderer;
-    public bool isGameOver;
-    public bool EnableRopeBreak = true;
+    private bool enableRopeBreak = true;
     private IEnumerator RopeRoutine;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        lineRenderer = GetComponent<LineRenderer>();
+    }
+
     void Start()
     {
-        lastPieceDroppedTime = Time.realtimeSinceStartup;
         Input.gyro.enabled = true;
-        rb = GetComponent<Rigidbody2D>();
 
         // Get the edge of the screen
-        leftEdgeScreenX = mainCam.ViewportToWorldPoint(new Vector3(0,0,0)).x;
-        rightEdgeScreenX = mainCam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
-
-        lineRenderer = GetComponent<LineRenderer>();
+        leftEdgeScreenX = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0)).x;
+        rightEdgeScreenX = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isGameOver)
+        if (!Game.instance.IsGameOver)
         {
-            // Check if crane can start handling a new piece
-            if (currentBuildingPiece == null && !IsReadyForNextPiece)
-            {
-                if (Time.realtimeSinceStartupAsDouble > lastPieceDroppedTime + PieceTimeInterval)
-                {
-                    // If it is allowed let Game know
-                    IsReadyForNextPiece = true;
-                }
-            }
-
-            // Get the tilt of the phone
-            float accelerationX = Math.Clamp(Input.acceleration.x, -MaxAcceleration, MaxAcceleration);
-
-            accelerationX *= Time.deltaTime * LeftRightSpeed;
-
-            // Get the top of the camera screen
-            float translationY = mainCam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
-            translationY -= rb.position.y;
-
-            // Build translation vector for this frame
-            Vector2 craneTranslation = new(accelerationX, translationY);
-
-            // Override tilt controls for testing with keyboard
-            if (Input.GetKey(KeyCode.A))
-            {
-                craneTranslation.x = 0.03f * -LeftRightSpeed;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                craneTranslation.x = 0.03f * LeftRightSpeed;
-            }
-
-            // Move crane
-            Vector2 newCranePosition = rb.position + craneTranslation;
-            newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX + 0.28f, rightEdgeScreenX - 0.28f);
-
-            rb.MovePosition(newCranePosition);
-
-            // Release building piece when touch input is detected
-            if (Input.touchCount > 0) ReleaseConnectedPiece();
-            if (Input.GetKeyDown(KeyCode.R)) ReleaseConnectedPiece();
+            HandleUserInput();
+            UpdateRope();
         }
+    }
+
+    private void HandleUserInput()
+    {
+        // Get the tilt of the phone
+        float accelerationX = Math.Clamp(Input.acceleration.x, -MaxAcceleration, MaxAcceleration);
+
+        accelerationX *= Time.deltaTime * LeftRightSpeed;
+
+        // Get the top of the camera screen
+        float translationY = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+        translationY -= rb.position.y;
+
+        // Build translation vector for this frame
+        Vector2 craneTranslation = new(accelerationX, translationY);
+
+        // Override tilt controls for testing with keyboard
+        if (Input.GetKey(KeyCode.A))
+        {
+            craneTranslation.x = 0.03f * -LeftRightSpeed;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            craneTranslation.x = 0.03f * LeftRightSpeed;
+        }
+
+        // Move crane
+        Vector2 newCranePosition = rb.position + craneTranslation;
+        newCranePosition.x = Math.Clamp(newCranePosition.x, leftEdgeScreenX + 0.28f, rightEdgeScreenX - 0.28f);
+
+        rb.MovePosition(newCranePosition);
+
+        // Release building piece when touch input is detected
+        if (Input.touchCount > 0) ReleaseConnectedPiece();
+        if (Input.GetKeyDown(KeyCode.R)) ReleaseConnectedPiece();
+    }
+
+    private void UpdateRope()
+    {
         if (currentBuildingPiece != null && lineRenderer != null)
         {
+            // Increase the length of the joint
             SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
             joint.distance += PieceLoweringSpeed * Time.deltaTime;
 
+            // Update the line from the crane to the connected block
             Vector2 newRopeStartPos = (Vector2)transform.position - joint.anchor;
             Vector2 newRopeEndPos = currentBuildingPiece.transform.position;
             if (currentBuildingPiece.TryGetComponent(out BuildingBlock block))
             {
                 newRopeEndPos.y += block.ropeStartOffset;
             }
-
             lineRenderer.SetPosition(0, newRopeStartPos);
             lineRenderer.SetPosition(1, newRopeEndPos);
         }
     }
 
+    public void SetRopeBreak(bool enabled)
+    {
+        enableRopeBreak = enabled;
+    }
+
     public void OnGameOver()
     {
-        isGameOver = true;
         PieceLoweringSpeed = 0.0f;
         if(RopeRoutine != null) StopCoroutine(RopeRoutine);
+        Center();
     }
 
-    IEnumerator RopeBreakingRoutine()
+    public void Center()
     {
-        float startTime = Time.realtimeSinceStartup;
-        float blinkInterval = blinkStartInterval;
-        if(currentBuildingPiece == null) yield break;
-        yield return new WaitForSeconds(timeTillFirstBlink);
-        for(float time = startTime; time < startTime + ropeBreakTime; time = Time.realtimeSinceStartup)
-        {
-            if(currentBuildingPiece == null) yield break;
-            yield return new WaitForSeconds(blinkInterval);
-            if(currentBuildingPiece == null) yield break;
-            Game.instance.AudioPlayer.PlaySoundEffect(Game.instance.AudioPlayer.RopeBlinkSound);
-            lineRenderer.startColor = Color.red;
-            lineRenderer.endColor = Color.red;
-            if(currentBuildingPiece == null) yield break;
-            yield return new WaitForSeconds(blinkActiveTime);
-            if(currentBuildingPiece == null) yield break;
-            lineRenderer.startColor = Color.black;
-            lineRenderer.endColor = Color.black;
-            blinkInterval -= 0.05f;
-        }
-        if(currentBuildingPiece != null) ReleaseConnectedPiece();
+        transform.position.Set(0.0f, transform.position.y, transform.position.z);
     }
 
-    public void SetConnectedPiece(GameObject buildingPiece){
-        currentBuildingPiece = buildingPiece;
-        SpringJoint2D joint = buildingPiece.GetComponent<SpringJoint2D>();
+    public void SetConnectedPiece(GameObject newBlock)
+    {        
+        currentBuildingPiece = newBlock;
+        
+        // Setup SpringJoint
+        SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
         joint.connectedBody = rb;
         joint.anchor = ropeStartOffset;
         joint.autoConfigureDistance = false;
-        joint.distance = pieceStartHeight; 
+        joint.distance = pieceStartHeight;
 
+        // Setup LineRenderer
         lineRenderer.startColor = Color.black;
         lineRenderer.endColor = Color.black;
         lineRenderer.forceRenderingOff = false;
 
-        Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        Vector3 rbPosition = rb.position;
-        rbPosition.y -= 2;
-        rigidbody.MovePosition(rb.position);
-
+        // Update new block's RigidBody
         Rigidbody2D rigidbodyPiece = currentBuildingPiece.GetComponent<Rigidbody2D>();
         Vector2 force = new(UnityEngine.Random.Range(0.5f, 0.8f), 0.0f);
         if(UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f)
         {
             force *= -1.0f;
         }
-        rigidbodyPiece.AddForce(force * InitialSwingForce * rigidbodyPiece.mass, ForceMode2D.Force);
-        IsReadyForNextPiece = false;
 
-        if(EnableRopeBreak)
+        // Initiate block swing
+        rigidbodyPiece.AddForce(InitialSwingForce * rigidbodyPiece.mass * force, ForceMode2D.Force);
+
+        // Start the rope breaking if enabled
+        if(enableRopeBreak)
         {
             RopeRoutine = RopeBreakingRoutine();
             StartCoroutine(RopeRoutine);        
@@ -179,22 +167,38 @@ public class Crane : MonoBehaviour
 
     public void ReleaseConnectedPiece(){
         if(currentBuildingPiece != null){
+            // Break the SpringJoint
             SpringJoint2D joint = currentBuildingPiece.GetComponent<SpringJoint2D>();
             joint.breakForce = 0.0f;
             joint.breakTorque = 0.0f;
-            lastPieceDroppedTime = Time.realtimeSinceStartupAsDouble;
-            HasLastPieceLanded = false;
 
-            Game.instance.AudioPlayer.PlaySoundEffect(Game.instance.AudioPlayer.RopeBreakSound);
+            RopeBreakEvent.Invoke();
             currentBuildingPiece = null;
+
+            // Stop the rope breaking, it's already broken
+            if(RopeRoutine != null) StopCoroutine(RopeRoutine);
 
             // Hide line
             lineRenderer.forceRenderingOff = true;
         }
     }
 
-    public void Center()
+    IEnumerator RopeBreakingRoutine()
     {
-        transform.position.Set(0.0f, transform.position.y, transform.position.z);
+        float startTime = Time.realtimeSinceStartup;
+        float blinkInterval = blinkStartInterval;
+        yield return new WaitForSeconds(timeTillFirstBlink);
+        for(float time = startTime; time < startTime + ropeBreakTime; time = Time.realtimeSinceStartup)
+        {
+            yield return new WaitForSeconds(blinkInterval);
+            RopeBlinkEvent.Invoke();
+            lineRenderer.startColor = Color.red;
+            lineRenderer.endColor = Color.red;
+            yield return new WaitForSeconds(blinkActiveTime);
+            lineRenderer.startColor = Color.black;
+            lineRenderer.endColor = Color.black;
+            blinkInterval -= 0.05f;
+        }
+        if(currentBuildingPiece != null) ReleaseConnectedPiece();
     }
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CheckpointSystem : MonoBehaviour
 {
+    public BlockSystem blockSystem;
     private int checkpoint = 4;
-    public void FreezeCheckpointBlock(List<GameObject> blocks)
+    public void FreezeCheckpointBlock()
     {
+        List<GameObject> blocks = blockSystem.GetLandedBlocks();
         int index = blocks.Count - checkpoint - 1;
         if(index >= 0 && blocks[index].TryGetComponent(out Rigidbody2D rb))
         {

@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BlockSystem : MonoBehaviour
 {
@@ -12,21 +12,26 @@ public class BlockSystem : MonoBehaviour
     public List<GameObject> availablePrefabs;
     public List<PhysicsMaterial2D> availableBuildingPhysicsMaterials;
 
-    [Header("Crane")]
-    public Crane crane;
+    [Header("Events")]
+    public UnityEvent<Transform> HighestBlockUpdatedEvent;
+    public UnityEvent<Collision2D> NewBlockLandedEvent;
+    public UnityEvent<GameObject> NewBlockSpawnedEvent;
+    public UnityEvent OutOfBlocksEvent;
 
-    private Queue<GameObject> nextBuildingPieces;
+    [Header("Crane Transform")]
+    public Transform CraneTransform;
+
+    private Queue<GameObject> nextBuildingPieces = new();
     private List<GameObject> landedBlocks = new();
     private int spawnedBlockCounter = 0;
-    private GameObject firstBlock;
-    public bool FirstBlockPlaced{ get; private set; } = false;
+    private Transform highestBlock;
+    public bool HasFirstBlockLanded {get; private set;} = false;
+    private bool waitingForCamera = false;
 
-    public void CreatePieceQueue(IEnumerable<GameObject> pieces) {
-        nextBuildingPieces = new Queue<GameObject>(pieces);
-    }
-
-    public void CreatePieceQueue(IEnumerable<int> pieceIDs, int buildingPhysicsMaterialID)
+    public void CreatePieceQueueFromLevel(LevelStructure structure)
     {
+        IEnumerable<int> pieceIDs = structure.LevelPieceIDs;
+        int buildingPhysicsMaterialID = structure.BuildingPhysicsMaterialID;
         List<GameObject> prefabs = pieceIDs.Select(id => availablePrefabs[id]).ToList();
         
         prefabs.ForEach(piece => {
@@ -53,7 +58,7 @@ public class BlockSystem : MonoBehaviour
         nextBuildingPieces.Enqueue(newPrefab);
     }
 
-    public void SpawnNextPiece(Vector2 position, Quaternion rotation, bool endless) {
+    public void SpawnNextPiece() {
         if (nextBuildingPieces.Count > 0) 
         {
             // Get the next building piece
@@ -63,16 +68,25 @@ public class BlockSystem : MonoBehaviour
             spawnedBlockCounter++;
             Game.instance.OnPieceSpawnedFirstPlay(spawnedBlockCounter);
 
-            // Instantiate the object and connect to crane
-            GameObject gameObject = Instantiate(prefab, position, rotation, blocksParent);
-            crane.SetConnectedPiece(gameObject);
+            if(prefab.TryGetComponent(out BuildingBlock block))
+            {
+                block.blockSystem = this;
+            }
+
+            Vector2 newBlockPos = CraneTransform.position;
+            newBlockPos.y -= 2.0f;
+            GameObject gameObject = Instantiate(prefab, newBlockPos, Quaternion.identity, blocksParent);
+
+            // Let other systems know a new block has been spawned
+            NewBlockSpawnedEvent.Invoke(gameObject);
 
             // Add a new random piece to the back of the queue if in endless mode
-            if(endless) AddRandomPieceToQueue();
+            if(GameState.IsEndless) AddRandomPieceToQueue();
         }
         else
         {
-            Game.instance.LevelGameOver();
+            // Let other systems know that the block system is out of blocks (Level completed)
+            OutOfBlocksEvent.Invoke();
         }
     }
 
@@ -91,14 +105,34 @@ public class BlockSystem : MonoBehaviour
         return landedBlocks;
     }
 
-    public void SetFirstBlock(GameObject block)
+    public void OnBlockCollision(Collision2D collision)
     {
-        FirstBlockPlaced = true;
-        firstBlock = block;
+        // Check if this block hasn't already landed before
+        if(!LandedBlocksContains(collision.otherRigidbody.gameObject))
+        {
+            // If it hasn't add it to the list
+            AddLandedBlock(collision.otherRigidbody.gameObject);
+            
+            // Let other systems know a new block has landed
+            NewBlockLandedEvent.Invoke(collision);
+
+            SpawnNextPiece();
+
+            HasFirstBlockLanded = true;
+        }
+        UpdateHighestBlockOnCollision(collision);
     }
 
-    public bool IsFirstBlock(GameObject block)
+    public void UpdateHighestBlockOnCollision(Collision2D collision)
     {
-        return firstBlock == block;
+        // If this new colliding block is positioned higher then the current highest block
+        if(highestBlock == null || collision.gameObject.transform.position.y > highestBlock.position.y)
+        {
+            // Set it as the new highest block
+            highestBlock = collision.gameObject.transform;
+
+            // Let other systems know there is a new highest block
+            HighestBlockUpdatedEvent.Invoke(highestBlock);
+        }
     }
 }

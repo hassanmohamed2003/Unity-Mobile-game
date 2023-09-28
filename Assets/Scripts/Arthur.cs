@@ -6,6 +6,12 @@ public class Arthur : MonoBehaviour
 {
     public GameObject arthurHappy;
     public GameObject arthurSad;
+
+    public void OnCameraPositionUpdate(Camera cam)
+    {
+        // Update arthur's position based on camera's new position
+        UpdatePosition(cam.ViewportToWorldPoint(new Vector2(0.5f, 0.1f)));
+    }
     public void UpdatePosition(Vector3 position)
     {
         position.z = 0.0f;
