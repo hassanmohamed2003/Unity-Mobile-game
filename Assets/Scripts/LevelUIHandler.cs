@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelUIHandler : MonoBehaviour
 {
@@ -25,6 +27,10 @@ public class LevelUIHandler : MonoBehaviour
 
     [Header("Animator")]
     public Animator Animator;
+
+    [Header("Events")]
+    public UnityEvent GotStarLevelEndEvent;
+    public UnityEvent NoStarLevelEndEvent;
     public bool HasCompletedFirstPlay{ get; private set; }
 
     private int score;
@@ -57,6 +63,15 @@ public class LevelUIHandler : MonoBehaviour
         CurrentScore.text = "";
         EndScoreLevel.text = $"{score}";
         // EndStars.text = $"{stars}";
+        if(stars > 0)
+        {
+            GotStarLevelEndEvent.Invoke();
+        }
+        else
+        {
+            NoStarLevelEndEvent.Invoke();
+        }
+
         if(stars == 1)
         {
             Stars[0].transform.localScale = new Vector2(2f, 2f);

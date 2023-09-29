@@ -20,7 +20,7 @@ public class Arthur : MonoBehaviour
         arthurHappyNewPosition.z = 0.0f;
         UpdatePositionHappy(arthurHappyNewPosition);
 
-        Vector3 arthurSadNewPosition = cam.ViewportToWorldPoint(new Vector2(0.3f, 0.1f));
+        Vector3 arthurSadNewPosition = cam.ViewportToWorldPoint(new Vector2(0.5f, 0.1f));
         arthurSadNewPosition.z = 0.0f;
         UpdatePositionSad(arthurSadNewPosition);
     }
@@ -36,6 +36,7 @@ public class Arthur : MonoBehaviour
     public void StartHappyAnimation()
     {
         arthurHappy.SetActive(true);
+        arthurHappy.GetComponent<Animator>().Play("arthur_happy", -1, 0.0f);
     }
     public void StopHappyAnimation()
     {
@@ -44,6 +45,7 @@ public class Arthur : MonoBehaviour
     public void StartSadAnimation()
     {
         arthurSad.SetActive(true);
+        arthurHappy.GetComponent<Animator>().Play("arthur_mad", -1, 0.0f);
     }
     public void StopSadAnimation()
     {
