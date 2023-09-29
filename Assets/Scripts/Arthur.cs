@@ -7,15 +7,30 @@ public class Arthur : MonoBehaviour
     public GameObject arthurHappy;
     public GameObject arthurSad;
 
+    void Start()
+    {
+        OnCameraPositionUpdate(Camera.main);
+    }
+
     public void OnCameraPositionUpdate(Camera cam)
     {
         // Update arthur's position based on camera's new position
-        UpdatePosition(cam.ViewportToWorldPoint(new Vector2(0.5f, 0.1f)));
+        Vector3 arthurHappyNewPosition = cam.ViewportToWorldPoint(new Vector2(0.3f, 0.6f));
+        arthurHappyNewPosition.x = arthurHappy.transform.position.x;
+        arthurHappyNewPosition.z = 0.0f;
+        UpdatePositionHappy(arthurHappyNewPosition);
+
+        Vector3 arthurSadNewPosition = cam.ViewportToWorldPoint(new Vector2(0.3f, 0.1f));
+        arthurSadNewPosition.z = 0.0f;
+        UpdatePositionSad(arthurSadNewPosition);
     }
-    public void UpdatePosition(Vector3 position)
+    public void UpdatePositionHappy(Vector3 position)
     {
-        position.z = 0.0f;
         arthurHappy.transform.position = position;
+    }
+
+    public void UpdatePositionSad(Vector3 position)
+    {
         arthurSad.transform.position = position;
     }
     public void StartHappyAnimation()

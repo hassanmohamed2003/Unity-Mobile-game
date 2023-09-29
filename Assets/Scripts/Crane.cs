@@ -113,6 +113,13 @@ public class Crane : MonoBehaviour
         }
     }
 
+    public void OnUpdateRopeSwing(float value)
+    {
+        const float limit = 130f;
+        InitialSwingForce += value;
+        if(InitialSwingForce > limit) InitialSwingForce = limit;
+    }
+
     public void SetRopeBreak(bool enabled)
     {
         enableRopeBreak = enabled;

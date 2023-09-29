@@ -9,6 +9,7 @@ public class ParticleHandler : MonoBehaviour
     public GameObject ParticleScore;
     public GameObject ParticlePerfect;
     public GameObject ParticleHighscore;
+    public GameObject ParticleComboHit;
     
     public void PlayScoreParticles()
     {
@@ -28,6 +29,11 @@ public class ParticleHandler : MonoBehaviour
     public void PlayHighscoreParticlesDelayed()
     {
         StartCoroutine(PlayHighscoreParticles());
+    }
+
+    public void PlayComboParticles(ContactPoint2D contact)
+    {
+        Instantiate(ParticleComboHit, contact.point, Quaternion.identity);
     }
 
     public IEnumerator PlayHighscoreParticles()

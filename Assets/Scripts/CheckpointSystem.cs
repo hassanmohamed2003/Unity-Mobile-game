@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CheckpointSystem : MonoBehaviour
 {
     public BlockSystem blockSystem;
-    public int checkpoint = 4;
+    private int checkpoint = 4;
+    public UnityEvent<float> RopeSwingUpdatedEvent;
+    private const int maxCheckpoint = 5;
     public void FreezeCheckpointBlock()
     {
         List<GameObject> blocks = blockSystem.GetLandedBlocks();
@@ -16,15 +19,23 @@ public class CheckpointSystem : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
         }
         UpdateCheckpoint(blocks);
+        UpdateRopeSwing();
     }
 
     private void UpdateCheckpoint(List<GameObject> blocks)
     {
-        const int maxCheckpoint = 11;
         checkpoint = 4 + blocks.Count/20;
         if(checkpoint > maxCheckpoint)
         {
-            checkpoint = 11;
+            checkpoint = maxCheckpoint;
+        }
+    }
+
+    public void UpdateRopeSwing()
+    {
+        if(checkpoint == maxCheckpoint)
+        {
+            RopeSwingUpdatedEvent.Invoke(1.25f);
         }
     }
 }
