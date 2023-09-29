@@ -30,11 +30,6 @@ public class GameOverScreen : MonoBehaviour
         */
     }
 
-    private void launchConfetti()
-    {
-        Game.instance.launchConfetti();
-    }
-
     public void Restart()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(RestartScene);

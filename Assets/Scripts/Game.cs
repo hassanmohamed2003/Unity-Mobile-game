@@ -1,87 +1,27 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Events;
 
 public class Game : MonoBehaviour
 {
     public static Game instance;
-    private Queue<GameObject> nextBuildingPieces;
-
-    [Header("Particle System")]
-    public GameObject particleBlocks;
-    public GameObject particleBlocksCombo;
-    public GameObject particleScore;
-    public GameObject particlePerfect;
-    public GameObject particleHighscore;
-    public GameObject arthurHappy;
-    public GameObject arthurMad;
-
-    [Header("Audio")]
-    public AudioSource audioSource;
-    public AudioClip buildingHitSound;
-    public AudioClip explosionSound;
-    public AudioClip ropeBlinkSound;
-    public AudioClip ropeBreakSound;
-    public AudioClip perfectSound;
-    public List<AudioClip> comboSounds;
-    public AudioClip levelCompleteSound;
 
     [Header("Prefabs")]
-    public List<GameObject> AvailablePrefabs;
-    public List<GameObject> AvailableClouds;
-    public List<GameObject> AvailableArthurs;
     public List<TextAsset> AvailableLevelFiles;
     public List<GameObject> AvailableBackgrounds;
-    public List<PhysicsMaterial2D> AvailableBuildingPhysicsMaterials;
-    public Transform blocksParent;
 
-    [Header("Camera")]
-    public CameraFollow cameraScript;
-    public float CameraTargetHeight;
-
-    [Header("Crane")]
-    public Crane crane;
+    [Header("Events")]
+    public UnityEvent<LevelStructure> LevelStartEvent;
+    public UnityEvent LevelGameOverEvent;
+    public UnityEvent EndlessStartEvent;
+    public UnityEvent EndlessGameOverEvent;
 
     [Header("UI")]
-    public GameOverScreen EndlessGameOverScreen;
-    public GameOverScreen LevelGameOverScreen;
-    public GameObject TiltTutorial;
-    public GameObject TapTutorial;
-    public GameObject RopeTutorial;
-    public TMP_Text EndScore;
-    public TMP_Text EndStars;
-    public TMP_Text currentScore;
-    public TMP_Text highScore;
-    public Animator animator;
-    public Transform canvas;
-
-    [Header("Game Behaviour")]
-    public int CheckPoint;
+    public LevelUIHandler LevelUI;
     
-    private List<GameObject> blocks = new();
-    private GameObject firstBlock;
-    private Transform highestBlock;
-    private int counter = 0;
-    private int comboCounter = 0;
-    private float lastCloudSpawned;
-    bool MoveCamera = false;
-    private int spawnedBlockCounter = 0;
-    private readonly string highScoreKey = "HighScore";
-    private int highScoreAmount = 0;
-    private bool isGameOver = false;
-    private bool hasCompletedFirstPlay;
-    private bool hasHighscore = false;
-    private int firstStarRequirement;
-    private int secondStarRequirement;
-    private int thirdStarRequirement;
-    const int highScoreThreshold = 210;
-
+    [Header("Block System")]
+    public BlockSystem blockSystem;
+    public bool IsGameOver {get; private set;} = false;
 
     void Awake()
     {
@@ -92,16 +32,24 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Hide Score for tutorial texts
-        hasCompletedFirstPlay = PlayerPrefs.GetInt("HasCompletedFirstPlay", 0) == 1;
-        if(!hasCompletedFirstPlay)
-        {
-            currentScore.gameObject.SetActive(false);
-            crane.EnableRopeBreak = false;
-        }
-
         if(GameState.IsEndless) StartEndless();
         else StartLevel();
+    }
+
+    public void OnPieceSpawnedFirstPlay(int spawnedBlockCounter)
+    {
+        if(!LevelUI.HasCompletedFirstPlay)
+        {
+            if(spawnedBlockCounter == 1)
+            {
+                StartCoroutine(LevelUI.ShowTiltTutorial());
+            }
+            else if(spawnedBlockCounter == 3)
+            {
+                // crane.EnableRopeBreak = true;
+                StartCoroutine(LevelUI.ShowRopeTutorial());
+            }
+        }
     }
 
     private void StartEndless()
@@ -110,11 +58,8 @@ public class Game : MonoBehaviour
         AvailableBackgrounds.ForEach(x => x.SetActive(false));
         AvailableBackgrounds[1].SetActive(true);
 
-        CreatePieceQueue(Enumerable.Empty<GameObject>());
-        AddRandomPieceToQueue();
-        AddRandomPieceToQueue();
-        AddRandomPieceToQueue();
-        highScoreAmount = PlayerPrefs.GetInt(highScoreKey, 0);
+        // Let other systems know endless mode has been started
+        EndlessStartEvent.Invoke();
     }
 
     private void StartLevel()
@@ -122,366 +67,32 @@ public class Game : MonoBehaviour
         // Get the level structure from the level file
         LevelStructure structure = LevelStructure.GetLevelStructureFromAsset(AvailableLevelFiles[GameState.CurrentLevelID]);
             
-        // Set the star requirements
-        firstStarRequirement = structure.FirstStarScoreRequirement;
-        secondStarRequirement = structure.SecondStarScoreRequirement;
-        thirdStarRequirement = structure.ThirdStarScoreRequirement;
-
-        // Transform piece IDs into actual pieces
-        List<GameObject> pieces = structure.LevelPieceIDs.Select(id => AvailablePrefabs[id]).ToList();
-
-        // Set the physics material for each building piece
-        pieces.ForEach(piece => {
-            if(piece.TryGetComponent(out Rigidbody2D rb))
-            {
-                rb.sharedMaterial = AvailableBuildingPhysicsMaterials[structure.BuildingPhysicsMaterialID];
-            } 
-        });
-
-        // Build the queue with building pieces
-        CreatePieceQueue(structure.LevelPieceIDs.Select(id => AvailablePrefabs[id]));
-
         // Turn all backgrounds off, only enable correct one
         AvailableBackgrounds.ForEach(x => x.SetActive(false));
         AvailableBackgrounds[structure.BackgroundID].SetActive(true);
-    }
 
-    void CreatePieceQueue(IEnumerable<GameObject> pieces) {
-        nextBuildingPieces = new Queue<GameObject>(pieces);
-    }
+        // Let other systems know a level has been started
+        LevelStartEvent.Invoke(structure);
+    } 
 
-    void AddRandomPieceToQueue() 
+    public void LevelGameOver()
     {
-        if(nextBuildingPieces.Count == 0)
-        {
-            nextBuildingPieces.Enqueue(AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)]);
-            return;
-        }
-        GameObject newPrefab = nextBuildingPieces.Last();
-        while(newPrefab == nextBuildingPieces.Last())
-        {
-            newPrefab = AvailablePrefabs[UnityEngine.Random.Range(0, AvailablePrefabs.Count)];
-        }
-        nextBuildingPieces.Enqueue(newPrefab);
-    }
-
-    void SpawnNextPiece(Vector2 position, Quaternion rotation, bool endless) {
-        if (nextBuildingPieces.Count > 0) {
-            // Get the next building piece
-            GameObject prefab = nextBuildingPieces.Dequeue();
-
-            // Tutorial stuff
-            spawnedBlockCounter++;
-            if(!hasCompletedFirstPlay && spawnedBlockCounter == 1)
-            {
-                StartCoroutine(ShowTiltTutorial());
-            }
-            else if(!hasCompletedFirstPlay && spawnedBlockCounter == 3)
-            {
-                crane.EnableRopeBreak = true;
-                StartCoroutine(ShowRopeTutorial());
-            }
-
-            // Instantiate the object and connect to crane
-            GameObject gameObject = Instantiate(prefab, position, rotation, blocksParent);
-            crane.SetConnectedPiece(gameObject);
-
-            // Add a new random piece to the back of the queue if in endless mode
-            if(endless) AddRandomPieceToQueue();
-        }
-        else
-        {
-            LevelGameOver();
-        }
-
-    }
-
-    IEnumerator ShowTiltTutorial()
-    {
-        yield return new WaitForSeconds(2.0f);
-        TiltTutorial.gameObject.SetActive(true);
-        yield return new WaitForSeconds(4.0f);
-        TiltTutorial.gameObject.SetActive(false);
-
-        StartCoroutine(ShowTapTutorial());
-    }
-
-    IEnumerator ShowTapTutorial()
-    {
-        yield return new WaitForSeconds(3.0f);
-        TapTutorial.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.0f);
-        TapTutorial.gameObject.SetActive(false); 
-    }
-
-    IEnumerator ShowRopeTutorial()
-    {
-        yield return new WaitForSeconds(3.0f);
-        RopeTutorial.gameObject.SetActive(true);
-        yield return new WaitForSeconds(4.0f);
-        RopeTutorial.gameObject.SetActive(false);
-        currentScore.gameObject.SetActive(true);
-        PlayerPrefs.SetInt("HasCompletedFirstPlay", 1);
-        hasCompletedFirstPlay = true;
-        PlayerPrefs.Save();
-    }
-
-    private void LevelGameOver()
-    {
-        isGameOver = true;
-        crane.isGameOver = isGameOver;
-        currentScore.text = "";
-        EndScore.text = $"{counter}";
-        int stars;
-        if(counter >= thirdStarRequirement) stars = 3;
-        else if(counter >= secondStarRequirement) stars = 2;
-        else if(counter >= firstStarRequirement) stars = 1;
-        else stars = 0;
-        EndStars.text = $"{stars}";
-        audioSource.PlayOneShot(levelCompleteSound);
-        animator.SetTrigger("onGameOver");
-        LevelGameOverScreen.Setup();
+        IsGameOver = true;
+        LevelGameOverEvent.Invoke();
     }
 
     private void EndlessGameOver()
     {
-        isGameOver = true;
-        crane.isGameOver = isGameOver;
-        currentScore.text = "";
-        EndScore.text = $"{counter}";
-        audioSource.PlayOneShot(explosionSound);
-        OnGameOver(counter);
-        animator.SetTrigger("onGameOver");
-        EndlessGameOverScreen.Setup();
-    }
-    
-    private void FreezeCheckpointBlock()
-    {
-        int index = blocks.Count - CheckPoint - 1;
-        if(index >= 0 && blocks[index].TryGetComponent(out Rigidbody2D rb))
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            rb.bodyType = RigidbodyType2D.Static;
-        }
-        UpdateCheckpoint();
-        UpdateRopeSwing();
+        IsGameOver = true;        
+        EndlessGameOverEvent.Invoke();
     }
 
-    private void UpdateCheckpoint()
+    public void BlockHitFloor()
     {
-        const int highScoreThreshold = 210;
-        if(blocks.Count < highScoreThreshold)
+        if(!IsGameOver && blockSystem.HasFirstBlockLanded)
         {
-            CheckPoint = 4 + blocks.Count/15;
-        }
-        else if(blocks.Count > highScoreThreshold)
-        {
-            int lowerScore = 4 + highScoreThreshold/15;
-            CheckPoint = lowerScore + (blocks.Count - highScoreThreshold)/100;
-        }
-    }
-    private void UpdateRopeSwing()
-    {
-        const int limit = 130;
-        if (blocks.Count > highScoreThreshold && crane.InitialSwingForce < limit)
-        {
-            crane.InitialSwingForce += 1.25f;
-        }
-        Debug.Log(crane.InitialSwingForce);
-    }
-
-    private void comboCheck()
-    {
-        if (comboCounter < 2)
-        {
-            AvailableArthurs[0].SetActive(false);
-            comboCounter++;
-        }
-
-        else if(comboCounter == 2)
-        {
-
-            AvailableArthurs[0].SetActive(true);
-
-            comboCounter = 0;
-        }
-
-    }
-
-    private void checkPlacement(Collision2D collision, ContactPoint2D contact)
-    {
-        if (collision.rigidbody)
-        {
-            float landingBock = collision.otherRigidbody.transform.position.x;
-            float landedBock = collision.rigidbody.transform.position.x;
-
-            if (landedBock - landingBock > 0.11 || landedBock - landingBock < -0.11)
-            {
-                arthurHappy.SetActive(false);
-                comboCounter = 0;
-                Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
-                if (contact.normalImpulse > 100)
-                {
-                    audioSource.PlayOneShot(buildingHitSound);
-                    Instantiate(particleBlocks, contact.point, Quaternion.identity);
-                }
-            }
-            else
-            {
-                Instantiate(particlePerfect, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
-                if (contact.normalImpulse > 100)
-                {
-                    Debug.Log(comboCounter);
-                    audioSource.PlayOneShot(comboSounds[comboCounter]);
-                    Instantiate(particleBlocksCombo, contact.point, Quaternion.identity);
-                }
-                comboCheck();
-                counter++;
-            }
-        }
-        else
-        {
-            Instantiate(particleScore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 0)), Quaternion.identity);
-        }
-    }
-
-    public void HasDropped(Collision2D collision)
-    {
-        if (isGameOver)
-        {
-            return;
-        }
-
-        if (!blocks.Contains(collision.otherRigidbody.gameObject))
-        {
-            counter++;
-            ContactPoint2D contact = collision.contacts[0];
-            checkPlacement(collision, contact);
-            /*
-            if (contact.normalImpulse > 100)
-            {
-                audioSource.PlayOneShot(buildingHitSound);
-                Instantiate(particleBlocks, contact.point, Quaternion.identity);
-                Debug.Log("dust");
-                if(comboCounter)
-            }
-            */
-            collision.otherRigidbody.velocity = Vector3.zero;
-            collision.otherRigidbody.constraints = RigidbodyConstraints2D.None;
-            collision.otherRigidbody.freezeRotation = false;
-            crane.HasLastPieceLanded = true;
-            blocks.Add(collision.otherRigidbody.gameObject);
-
-            FreezeCheckpointBlock();
-            currentScore.text = $"{counter}";
-        }
-
-        if (collision.gameObject.CompareTag("Landed Block"))
-        {
-            if (highestBlock != null)
-            {
-                MoveCamera = true;
-            }
-
-
-
-            if (highestBlock == null || collision.gameObject.transform.position.y > highestBlock.position.y)
-            {
-
-                highestBlock = collision.gameObject.transform;
-            }
-        }
-
-        if (firstBlock == null)
-        {
-
-            firstBlock = collision.otherRigidbody.gameObject;
-        }
-        else if (collision.gameObject.TryGetComponent(out Floor floor) && collision.otherRigidbody.gameObject != firstBlock)
-        {
-            blocks.Remove(collision.otherRigidbody.gameObject);
-            crane.transform.position.Set(0.0f, crane.transform.position.y, crane.transform.position.z);
             if(GameState.IsEndless) EndlessGameOver();
             else LevelGameOver();
         }
-    }
-
-
-    void LateUpdate()
-    {
-        if (MoveCamera)
-        {
-            // Get the camera's world position at the specified target height
-            Vector3 cameraWorldPos = Camera.main.ViewportToWorldPoint(new Vector3(0, CameraTargetHeight, 0));
-
-            // Check if the highest block is above the target height
-            if( highestBlock.gameObject.TryGetComponent(out BuildingBlock block) && 
-                (block.transform.position.y + block.ropeStartOffset) > cameraWorldPos.y)
-            {
-                // Calculate offset from bottom to highest block
-                Vector3 bottomScreenWorldPos = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0));
-                float offset = block.transform.position.y + block.ropeStartOffset - bottomScreenWorldPos.y;
-
-                // Add multiple of offset to camera's targetpos to update it
-                cameraScript.targetPos.y = bottomScreenWorldPos.y + (0.5f/CameraTargetHeight * offset);
-            }
-            //Change Arthurs position
-            if (AvailableArthurs[0].activeSelf)
-            {
-                Vector3 arthurHappy = Camera.main.ViewportToWorldPoint(new Vector2(0.30f, 0.6f));
-                arthurHappy.x = AvailableArthurs[0].transform.position.x;
-                arthurHappy.z = 0;
-
-                AvailableArthurs[0].transform.position = arthurHappy;
-            }
-
-            if (AvailableArthurs[1].activeSelf)
-            {
-                AvailableArthurs[1].transform.position = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.1f));
-
-
-                Vector3 arthurMad = AvailableArthurs[1].transform.position;
-
-                AvailableArthurs[1].transform.position = new Vector3(arthurMad.x, arthurMad.y, 0);
-
-            }
-
-        }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (crane.IsReadyForNextPiece && !isGameOver){
-            Vector2 newBlockPos = crane.transform.position;
-            newBlockPos.y -= 2.0f;
-            SpawnNextPiece(newBlockPos, Quaternion.identity, GameState.IsEndless);
-        }
-    }
-
-    public void launchConfetti()
-    {
-        if (hasHighscore)
-        {
-            audioSource.PlayOneShot(levelCompleteSound);
-            Instantiate(particleHighscore, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0)), Quaternion.identity);
-        }
-    }
-
-    private void OnGameOver(int newScore){
-        crane.OnGameOver();
-        if (newScore > highScoreAmount)
-        {
-            PlayerPrefs.SetInt("HighScore", newScore);
-            PlayerPrefs.Save();
-            hasHighscore = true;
-        }
-        else
-        {
-            AvailableArthurs[1].SetActive(true);
-        }
-        currentScore.text = "";
-        highScore.text = $"{PlayerPrefs.GetInt("HighScore", highScoreAmount)}";
     }
 }

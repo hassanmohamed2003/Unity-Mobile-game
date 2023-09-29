@@ -70,6 +70,13 @@ public class Menu_Controller : MonoBehaviour {
 		_audioSource.PlayOneShot(_audioClip);
 		SceneManager.LoadScene("LevelSelection");
 	}
+
+	public void GoToMainMenu()
+	{
+		transition.SetActive(true);
+		_audioSource.PlayOneShot(_audioClip);
+		SceneManager.LoadScene("StartMenu");
+	}
 	
 	public void PlayEndless () {
 		GameState.IsEndless = true;
