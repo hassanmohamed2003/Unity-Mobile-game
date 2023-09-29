@@ -300,6 +300,7 @@ public class Game : MonoBehaviour
 
         else if(comboCounter == 2)
         {
+
             AvailableArthurs[0].SetActive(true);
 
             comboCounter = 0;
@@ -427,10 +428,11 @@ public class Game : MonoBehaviour
             //Change Arthurs position
             if (AvailableArthurs[0].activeSelf)
             {
-                AvailableArthurs[0].transform.position = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.1f));
-                Vector3 arthurHappy = AvailableArthurs[0].transform.position;
+                Vector3 arthurHappy = Camera.main.ViewportToWorldPoint(new Vector2(0.30f, 0.6f));
+                arthurHappy.x = AvailableArthurs[0].transform.position.x;
+                arthurHappy.z = 0;
 
-                AvailableArthurs[0].transform.position = new Vector3(arthurHappy.x, arthurHappy.y, 0);
+                AvailableArthurs[0].transform.position = arthurHappy;
             }
 
             if (AvailableArthurs[1].activeSelf)
