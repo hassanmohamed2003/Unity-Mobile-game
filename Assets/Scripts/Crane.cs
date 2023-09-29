@@ -127,7 +127,7 @@ public class Crane : MonoBehaviour
 
     public void Center()
     {
-        transform.position.Set(0.0f, transform.position.y, transform.position.z);
+        rb.MovePosition(new Vector2(0.0f, rb.position.y));
     }
 
     public void SetConnectedPiece(GameObject newBlock)

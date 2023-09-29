@@ -26,7 +26,6 @@ public class BlockSystem : MonoBehaviour
     private int spawnedBlockCounter = 0;
     private Transform highestBlock;
     public bool HasFirstBlockLanded {get; private set;} = false;
-    private bool waitingForCamera = false;
 
     public void CreatePieceQueueFromLevel(LevelStructure structure)
     {
@@ -59,7 +58,7 @@ public class BlockSystem : MonoBehaviour
     }
 
     public void SpawnNextPiece() {
-        if (nextBuildingPieces.Count > 0) 
+        if (nextBuildingPieces.Count > 0 && !Game.instance.IsGameOver) 
         {
             // Get the next building piece
             GameObject prefab = nextBuildingPieces.Dequeue();

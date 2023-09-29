@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckpointSystem : MonoBehaviour
 {
     public BlockSystem blockSystem;
-    private int checkpoint = 4;
+    public int checkpoint = 4;
     public void FreezeCheckpointBlock()
     {
         List<GameObject> blocks = blockSystem.GetLandedBlocks();
@@ -20,15 +20,11 @@ public class CheckpointSystem : MonoBehaviour
 
     private void UpdateCheckpoint(List<GameObject> blocks)
     {
-        const int highScoreThreshold = 210;
-        if(blocks.Count < highScoreThreshold)
+        const int maxCheckpoint = 11;
+        checkpoint = 4 + blocks.Count/20;
+        if(checkpoint > maxCheckpoint)
         {
-            checkpoint = 4 + blocks.Count/15;
-        }
-        else if(blocks.Count > highScoreThreshold)
-        {
-            int lowerScore = 4 + highScoreThreshold/15;
-            checkpoint = lowerScore + (blocks.Count - highScoreThreshold)/100;
+            checkpoint = 11;
         }
     }
 }
