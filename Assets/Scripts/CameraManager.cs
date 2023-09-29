@@ -39,7 +39,6 @@ public class CameraManager : MonoBehaviour
 
     public void UpdateCameraTargetPosition(Transform highestBlock)
     {
-        Debug.Log("Updating camera position");
         if(highestBlock != null)
         {
             // Get the camera's world position at the specified target height
@@ -52,9 +51,10 @@ public class CameraManager : MonoBehaviour
                 // Calculate offset from bottom to highest block
                 Vector3 bottomScreenWorldPos = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0));
                 float offset = block.transform.position.y + block.ropeStartOffset - bottomScreenWorldPos.y;
+                float newY = bottomScreenWorldPos.y + (0.5f/CameraTargetHeight * offset);
 
                 // Add multiple of offset to camera's targetpos to update it
-                cameraScript.targetPos.y = bottomScreenWorldPos.y + (0.5f/CameraTargetHeight * offset);
+                cameraScript.targetPos.y = newY;
             }
         }
     }

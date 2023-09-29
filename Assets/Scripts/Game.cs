@@ -10,18 +10,18 @@ public class Game : MonoBehaviour
     public List<TextAsset> AvailableLevelFiles;
     public List<GameObject> AvailableBackgrounds;
 
-    [Header("Events")]
-    public UnityEvent<LevelStructure> LevelStartEvent;
-    public UnityEvent LevelGameOverEvent;
-    public UnityEvent EndlessStartEvent;
-    public UnityEvent EndlessGameOverEvent;
-
     [Header("UI")]
     public LevelUIHandler LevelUI;
     
     [Header("Block System")]
     public BlockSystem blockSystem;
     public bool IsGameOver {get; private set;} = false;
+
+    [Header("Events")]
+    public UnityEvent<LevelStructure> LevelStartEvent;
+    public UnityEvent LevelGameOverEvent;
+    public UnityEvent EndlessStartEvent;
+    public UnityEvent EndlessGameOverEvent;
 
     void Awake()
     {

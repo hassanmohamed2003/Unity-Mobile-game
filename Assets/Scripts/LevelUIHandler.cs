@@ -17,9 +17,11 @@ public class LevelUIHandler : MonoBehaviour
     public TMP_Text RopeTutorial;
     public TMP_Text EndScoreLevel;
     public TMP_Text EndScoreEndless;
-    public TMP_Text EndStars;
     public TMP_Text EndHighScore;
     public TMP_Text CurrentScore;
+    public List<TMP_Text> StarRequirementTexts;
+    public List<GameObject> Stars;
+    public GameObject ObjectiveScreen;
 
     [Header("Animator")]
     public Animator Animator;
@@ -54,9 +56,39 @@ public class LevelUIHandler : MonoBehaviour
     {
         CurrentScore.text = "";
         EndScoreLevel.text = $"{score}";
-        EndStars.text = $"{stars}";
+        // EndStars.text = $"{stars}";
+        if(stars == 1)
+        {
+            Stars[0].transform.localScale = new Vector2(2f, 2f);
+            Stars[0].SetActive(true);
+        }
+        else if(stars == 2)
+        {
+            Stars[1].SetActive(true);
+            Stars[2].SetActive(true);
+        }
+        else if(stars == 3)
+        {
+            Stars[0].SetActive(true);
+            Stars[1].SetActive(true);
+            Stars[2].SetActive(true);
+        }
+
         Animator.SetTrigger("onGameOver");
         LevelGameOverScreen.Setup();
+    }
+
+    public void OnLevelStart(LevelStructure structure)
+    {
+        ObjectiveScreen.SetActive(true);
+        StarRequirementTexts[0].text = $"{structure.FirstStarScoreRequirement}";
+        StarRequirementTexts[1].text = $"{structure.SecondStarScoreRequirement}";
+        StarRequirementTexts[2].text = $"{structure.ThirdStarScoreRequirement}";
+    }
+
+    public void HideObjective()
+    {
+        ObjectiveScreen.SetActive(false);
     }
 
     public void OnEndlessGameOver()

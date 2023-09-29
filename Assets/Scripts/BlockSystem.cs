@@ -111,7 +111,7 @@ public class BlockSystem : MonoBehaviour
         {
             // If it hasn't add it to the list
             AddLandedBlock(collision.otherRigidbody.gameObject);
-            
+
             // Let other systems know a new block has landed
             NewBlockLandedEvent.Invoke(collision);
 

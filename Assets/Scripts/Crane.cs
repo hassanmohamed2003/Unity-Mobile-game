@@ -25,6 +25,7 @@ public class Crane : MonoBehaviour
     [Header("Events")]
     public UnityEvent RopeBreakEvent;
     public UnityEvent RopeBlinkEvent;
+    public UnityEvent FirstPressEvent;
     
     private GameObject currentBuildingPiece;
     private Rigidbody2D rb;
@@ -32,6 +33,7 @@ public class Crane : MonoBehaviour
     private LineRenderer lineRenderer;
     private bool enableRopeBreak = true;
     private IEnumerator RopeRoutine;
+    private bool firstPressComplete = false;
 
     void Awake()
     {
@@ -54,8 +56,8 @@ public class Crane : MonoBehaviour
         if (!Game.instance.IsGameOver)
         {
             HandleUserInput();
-            UpdateRope();
         }
+        UpdateRope();
     }
 
     private void HandleUserInput()
@@ -89,8 +91,24 @@ public class Crane : MonoBehaviour
         rb.MovePosition(newCranePosition);
 
         // Release building piece when touch input is detected
-        if (Input.touchCount > 0) ReleaseConnectedPiece();
-        if (Input.GetKeyDown(KeyCode.R)) ReleaseConnectedPiece();
+        if (Input.touchCount > 0)
+        {   
+            ReleaseConnectedPiece();
+            if(!firstPressComplete)
+            {
+                FirstPressEvent.Invoke();
+                firstPressComplete = true;
+            }            
+        } 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReleaseConnectedPiece();
+            if(!firstPressComplete)
+            {
+                FirstPressEvent.Invoke();
+                firstPressComplete = true;
+            }
+        }
     }
 
     private void UpdateRope()
@@ -127,7 +145,7 @@ public class Crane : MonoBehaviour
 
     public void Center()
     {
-        rb.MovePosition(new Vector2(0.0f, rb.position.y));
+        rb.MovePosition(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0f)));
     }
 
     public void SetConnectedPiece(GameObject newBlock)

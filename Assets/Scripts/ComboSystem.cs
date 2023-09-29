@@ -17,8 +17,10 @@ public class ComboSystem : MonoBehaviour
     {
         if (collision.rigidbody)
         {
-            float landingBock = collision.otherRigidbody.transform.position.x;
-            float landedBock = collision.rigidbody.transform.position.x;
+            BoxCollider2D landingCollider = collision.otherRigidbody.gameObject.GetComponent<BoxCollider2D>();
+            BoxCollider2D landedCollider = collision.rigidbody.gameObject.GetComponent<BoxCollider2D>();
+            float landingBock = landingCollider.bounds.center.x;
+            float landedBock = landedCollider.bounds.center.x;
             if (landedBock - landingBock > PerfectPrecision || landedBock - landingBock < -PerfectPrecision)
             {
                 NormalLandingEvent.Invoke();
