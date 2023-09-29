@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 687ef34b454f7604d84187986c89cd64
+guid: 441850bcf0a1610479496885cab4dedc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -123,925 +123,925 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprite_arthur_happy_0
+      name: SPRITESHEET TEST 04_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2600
-        width: 560
-        height: 325
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33a7b8085e53df04e98599201ec40c63
-      internalID: 2114708261
+      spriteID: acbc78ef330f4d44094d4a81a594b4ee
+      internalID: -401978861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_1
+      name: SPRITESHEET TEST 04_1
       rect:
         serializedVersion: 2
-        x: 560
-        y: 2600
-        width: 560
-        height: 325
+        x: 928
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45b4fe94237a6234c867bf9e27d98ef3
-      internalID: -1705502792
+      spriteID: d885cc08a38b4a6478afe2859531565c
+      internalID: -1478134807
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_2
+      name: SPRITESHEET TEST 04_2
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 2600
-        width: 560
-        height: 325
+        x: 1856
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15d1e469bdb5ad44e9d51c010c7e5008
-      internalID: 491161360
+      spriteID: 14ca7bd84d3266546908ab620f16b07d
+      internalID: 1617332295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_3
+      name: SPRITESHEET TEST 04_3
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 2600
-        width: 560
-        height: 325
+        x: 2784
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a99474aae34e9b5459952957c8cc5fd4
-      internalID: 382989145
+      spriteID: 025ab5d142e5680489f0a54f5ca98be3
+      internalID: -1756846599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_4
+      name: SPRITESHEET TEST 04_4
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 2600
-        width: 560
-        height: 325
+        x: 3712
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7f9d1450bab15479473722adc910dc
-      internalID: -433756236
+      spriteID: 2fb59c3e436cdf748b3692aee6c83822
+      internalID: 1101186088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_5
+      name: SPRITESHEET TEST 04_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2275
-        width: 560
-        height: 325
+        x: 4640
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3315db7f744c00f4fabe1ea3ddbab921
-      internalID: 1591599342
+      spriteID: cf608d0dd3f2284479d6d8a476d81396
+      internalID: -1997649083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_6
+      name: SPRITESHEET TEST 04_6
       rect:
         serializedVersion: 2
-        x: 560
-        y: 2275
-        width: 560
-        height: 325
+        x: 5568
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82d74316dffd30b48b4d4b88ee91adf9
-      internalID: 1777264091
+      spriteID: 3ccc7414a4547784ba66867ade14f108
+      internalID: 1799138327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_7
+      name: SPRITESHEET TEST 04_7
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 2275
-        width: 560
-        height: 325
+        x: 6496
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94dd1bb2df5990d41ade44105e35df0e
-      internalID: 29809552
+      spriteID: d75a728667805c9468b3b726a5125f3f
+      internalID: -874691461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_8
+      name: SPRITESHEET TEST 04_8
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 2275
-        width: 560
-        height: 325
+        x: 7424
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04cf5ad887bbef9409328a650a46621d
-      internalID: 1662513160
+      spriteID: 57ac0129738867641ade8285cafab4c8
+      internalID: -147849905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_9
+      name: SPRITESHEET TEST 04_9
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 2275
-        width: 560
-        height: 325
+        x: 8352
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87f72f645232f7549a217e9d4c3b4c81
-      internalID: -1703171148
+      spriteID: 2119d1f43e5cee849a3aff59595e35a4
+      internalID: -684348871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_10
+      name: SPRITESHEET TEST 04_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1950
-        width: 560
-        height: 325
+        x: 9280
+        y: 1620
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8961305b03a5a7f4c86a21b6b108b5c0
-      internalID: 764149263
+      spriteID: f1fa8d05599013d4c8b06d6898cc93c0
+      internalID: 318686419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_11
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 1950
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2baaa472b4910cd4a93c902811afdb2e
-      internalID: 1577271546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_12
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 1950
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f4a4181bf8a820649b70585182e71fb6
-      internalID: 192240201
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_13
-      rect:
-        serializedVersion: 2
-        x: 1680
-        y: 1950
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9cdbbab5262ac514984b76d11e0c9e65
-      internalID: -2024774245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_14
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 1950
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1440c2f70333bfd4e9df78aee6998d95
-      internalID: -110923787
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_15
+      name: SPRITESHEET TEST 04_11
       rect:
         serializedVersion: 2
         x: 0
-        y: 1625
-        width: 560
-        height: 325
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eff0f5e4c7381f44a9515fa82187a982
-      internalID: 1869216698
+      spriteID: 135df7785ee91c548a2b113cefef4537
+      internalID: 762672814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_16
+      name: SPRITESHEET TEST 04_12
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1625
-        width: 560
-        height: 325
+        x: 928
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9acd2252062b56459d5c5e50c19a2dd
-      internalID: 25726951
+      spriteID: 1616e023dd6178f47b743cf81cb2dd3a
+      internalID: 324548570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_17
+      name: SPRITESHEET TEST 04_13
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 1625
-        width: 560
-        height: 325
+        x: 1856
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fd8e9088495e794eafe262e94f34f84
-      internalID: -529165562
+      spriteID: 8237da5bec922e84a9828a95b08100b7
+      internalID: 1236797583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_18
+      name: SPRITESHEET TEST 04_14
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 1625
-        width: 560
-        height: 325
+        x: 2784
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cc592a1c17dd5c42a4d8932ff4b8725
-      internalID: 1273479756
+      spriteID: 112de8081c1438a4ca70cecdd7599fb5
+      internalID: 1545077053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_19
+      name: SPRITESHEET TEST 04_15
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 1625
-        width: 560
-        height: 325
+        x: 3712
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 606d2e8c7a960f34897f702d47eafc70
-      internalID: 408431517
+      spriteID: f2218cb74769e51468003fb8195450da
+      internalID: -1533118504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_20
+      name: SPRITESHEET TEST 04_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1300
-        width: 560
-        height: 325
+        x: 4640
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0e709a170110364e94489513950894e
-      internalID: 498795963
+      spriteID: 17913c483bce0764a8f1bb2aa9952250
+      internalID: -359666922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_21
+      name: SPRITESHEET TEST 04_17
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1300
-        width: 560
-        height: 325
+        x: 5568
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59a0225f8f3b30741a2f095a63c860c1
-      internalID: -1769249966
+      spriteID: 843329e1fae9ae0479954b2a9486348f
+      internalID: 993082517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_22
+      name: SPRITESHEET TEST 04_18
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 1300
-        width: 560
-        height: 325
+        x: 6496
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd6ef24bfafba5d4a9f4639ed8d501a0
-      internalID: 639516473
+      spriteID: 7570eefaa1cab7041a9fa46bd9f99acd
+      internalID: -2083800591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_23
+      name: SPRITESHEET TEST 04_19
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 1300
-        width: 560
-        height: 325
+        x: 7424
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a13232effa97a54bb617673b40834c0
-      internalID: -2114266488
+      spriteID: c4caad30547e7234c9cc80f650fd2c4b
+      internalID: -2113342336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_24
+      name: SPRITESHEET TEST 04_20
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 1300
-        width: 560
-        height: 325
+        x: 8352
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe3e5ed19dce43e448d357a5c202c0f4
-      internalID: -360328942
+      spriteID: d1c743e1a6f56fb4998e3c9ef830e860
+      internalID: 295758617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_25
+      name: SPRITESHEET TEST 04_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 975
-        width: 560
-        height: 325
+        x: 9280
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 024cc8ce7981d6d49b251f78b2419e21
-      internalID: 1572738913
+      spriteID: c2bc6c33a031f4a4e93819ce44f1bee0
+      internalID: -2080448796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_26
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 975
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8e12dc2ef79ee04c89f0f99a7bc2887
-      internalID: 873540801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_27
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 975
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5875a323ec0cec440811d70d8698d230
-      internalID: -2084841585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_28
-      rect:
-        serializedVersion: 2
-        x: 1680
-        y: 975
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 512c42cfb335e7b4a87c36deceec7d6e
-      internalID: -455207964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_29
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 975
-        width: 560
-        height: 325
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59aa14671fb55cd428c7f2b139f47d4d
-      internalID: -1841148695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_happy_30
+      name: SPRITESHEET TEST 04_22
       rect:
         serializedVersion: 2
         x: 0
-        y: 650
-        width: 560
-        height: 325
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6e6ed8354ca9c54abb845d51d71576d
-      internalID: 708779497
+      spriteID: 4b7c0b9f6ec9fc14fb77197ff5cf17e9
+      internalID: -1224052226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_31
+      name: SPRITESHEET TEST 04_23
       rect:
         serializedVersion: 2
-        x: 560
-        y: 650
-        width: 560
-        height: 325
+        x: 928
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a3a420883143104f87accbd287ef166
-      internalID: 2023004831
+      spriteID: a6aea0d9ef5c80347b7f989d334b30a6
+      internalID: 642434092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_32
+      name: SPRITESHEET TEST 04_24
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 650
-        width: 560
-        height: 325
+        x: 1856
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91b4ed6046cc5d44f8f40482a4eab94a
-      internalID: -496975888
+      spriteID: eb1acfcd492404f48afeb54e9d31dc59
+      internalID: 106473059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_33
+      name: SPRITESHEET TEST 04_25
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 650
-        width: 560
-        height: 325
+        x: 2784
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b32642e3bb277554892d9ce1161e42cb
-      internalID: 906976797
+      spriteID: beb474394ac0e2242b8928fe375540d3
+      internalID: -205164630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_34
+      name: SPRITESHEET TEST 04_26
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 650
-        width: 560
-        height: 325
+        x: 3712
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 459a16968e6bbf24f96e294a3f10c2fd
-      internalID: 1498829492
+      spriteID: fac7f4da035e821479631170ba37e14a
+      internalID: -1908575733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_35
+      name: SPRITESHEET TEST 04_27
       rect:
         serializedVersion: 2
-        x: 0
-        y: 325
-        width: 560
-        height: 325
+        x: 4640
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c0abaf6d3f6021458b10d88f2e3a99b
-      internalID: -899377057
+      spriteID: 1b121fb7549f62847adbcc7f69cc4741
+      internalID: -1659927195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_36
+      name: SPRITESHEET TEST 04_28
       rect:
         serializedVersion: 2
-        x: 560
-        y: 325
-        width: 560
-        height: 325
+        x: 5568
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89dada901bf785845879a7d1a29bde2a
-      internalID: 1554433434
+      spriteID: 6ae24b4670a105d4a9bcd6ebde94f058
+      internalID: 510686062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_37
+      name: SPRITESHEET TEST 04_29
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 325
-        width: 560
-        height: 325
+        x: 6496
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7e832a32e1e094479ae88a89146b54f
-      internalID: 375684290
+      spriteID: 68b5612df592b1244b33d412cc518684
+      internalID: 1053843225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_38
+      name: SPRITESHEET TEST 04_30
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 325
-        width: 560
-        height: 325
+        x: 7424
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4251a39d6f7a60d4db99619ab96ea1e4
-      internalID: -323525056
+      spriteID: aa0ccbfafb81d064cbf4987dcec7403f
+      internalID: -1289082899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_39
+      name: SPRITESHEET TEST 04_31
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 325
-        width: 560
-        height: 325
+        x: 8352
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11d3f4aa54caff94d93e32718a838399
-      internalID: 694003273
+      spriteID: 2ba6ec36f03c6674c88faeb232cac028
+      internalID: 2102270794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_40
+      name: SPRITESHEET TEST 04_32
+      rect:
+        serializedVersion: 2
+        x: 9280
+        y: 540
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fefe52b53d27a504a91201597e48d2f3
+      internalID: 1340469957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_33
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 560
-        height: 325
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 903052b77eb2f784b96077609863c56f
-      internalID: -2082209356
+      spriteID: e851142149f28fb4ba5632d82dac2223
+      internalID: -1516529137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_41
+      name: SPRITESHEET TEST 04_34
       rect:
         serializedVersion: 2
-        x: 560
+        x: 928
         y: 0
-        width: 560
-        height: 325
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2646f9bad6e25c944bcbf38d520921bf
-      internalID: 1365946806
+      spriteID: 23fc8f81de874514cbcda19813130ca6
+      internalID: -1562904342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_42
+      name: SPRITESHEET TEST 04_35
       rect:
         serializedVersion: 2
-        x: 1120
+        x: 1856
         y: 0
-        width: 560
-        height: 325
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 145f1846e2b285e4bae0cb4de406ec64
-      internalID: 1925075698
+      spriteID: ebf0fc7193bbde441984947e9f25eadd
+      internalID: 348035555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_happy_43
+      name: SPRITESHEET TEST 04_36
       rect:
         serializedVersion: 2
-        x: 1680
+        x: 2784
         y: 0
-        width: 560
-        height: 325
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3ca0f248b356074b98bd28fe94f0f9b
-      internalID: 741141530
+      spriteID: 1b152ae7b1b0d7a439b9e7905b0dd3ee
+      internalID: 604842668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_37
+      rect:
+        serializedVersion: 2
+        x: 3712
+        y: 0
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b5d72ffcf734104483e84fcb9fee266
+      internalID: -856652904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_38
+      rect:
+        serializedVersion: 2
+        x: 4640
+        y: 0
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f4a060f31c1c644488c12dabfc3b794
+      internalID: 741024209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_39
+      rect:
+        serializedVersion: 2
+        x: 5568
+        y: 0
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a78d4926b0da4e24bb2eb4d56716b8c1
+      internalID: 448414512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_40
+      rect:
+        serializedVersion: 2
+        x: 6496
+        y: 0
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c7a4e8f59fcaea46bedcddabc66da48
+      internalID: 1163053761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_41
+      rect:
+        serializedVersion: 2
+        x: 7424
+        y: 0
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78b7ca70ab42bd4fb9e7892522f16d2
+      internalID: 1232488024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_42
+      rect:
+        serializedVersion: 2
+        x: 8352
+        y: 0
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ea6d8e48a487b4aae0aafbfbca7bdc
+      internalID: -863174429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET TEST 04_43
+      rect:
+        serializedVersion: 2
+        x: 9280
+        y: 0
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426af2dfefdc3e3448862dda09e15733
+      internalID: -750325506
       vertices: []
       indices: 
       edges: []
@@ -1057,51 +1057,50 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprite_arthur_happy_0: 2114708261
-      sprite_arthur_happy_1: -1705502792
-      sprite_arthur_happy_10: 764149263
-      sprite_arthur_happy_11: 1577271546
-      sprite_arthur_happy_12: 192240201
-      sprite_arthur_happy_13: -2024774245
-      sprite_arthur_happy_14: -110923787
-      sprite_arthur_happy_15: 1869216698
-      sprite_arthur_happy_16: 25726951
-      sprite_arthur_happy_17: -529165562
-      sprite_arthur_happy_18: 1273479756
-      sprite_arthur_happy_19: 408431517
-      sprite_arthur_happy_2: 491161360
-      sprite_arthur_happy_20: 498795963
-      sprite_arthur_happy_21: -1769249966
-      sprite_arthur_happy_22: 639516473
-      sprite_arthur_happy_23: -2114266488
-      sprite_arthur_happy_24: -360328942
-      sprite_arthur_happy_25: 1572738913
-      sprite_arthur_happy_26: 873540801
-      sprite_arthur_happy_27: -2084841585
-      sprite_arthur_happy_28: -455207964
-      sprite_arthur_happy_29: -1841148695
-      sprite_arthur_happy_3: 382989145
-      sprite_arthur_happy_30: 708779497
-      sprite_arthur_happy_31: 2023004831
-      sprite_arthur_happy_32: -496975888
-      sprite_arthur_happy_33: 906976797
-      sprite_arthur_happy_34: 1498829492
-      sprite_arthur_happy_35: -899377057
-      sprite_arthur_happy_36: 1554433434
-      sprite_arthur_happy_37: 375684290
-      sprite_arthur_happy_38: -323525056
-      sprite_arthur_happy_39: 694003273
-      sprite_arthur_happy_4: -433756236
-      sprite_arthur_happy_40: -2082209356
-      sprite_arthur_happy_41: 1365946806
-      sprite_arthur_happy_42: 1925075698
-      sprite_arthur_happy_43: 741141530
-      sprite_arthur_happy_44: -976173438
-      sprite_arthur_happy_5: 1591599342
-      sprite_arthur_happy_6: 1777264091
-      sprite_arthur_happy_7: 29809552
-      sprite_arthur_happy_8: 1662513160
-      sprite_arthur_happy_9: -1703171148
+      SPRITESHEET TEST 04_0: -401978861
+      SPRITESHEET TEST 04_1: -1478134807
+      SPRITESHEET TEST 04_10: 318686419
+      SPRITESHEET TEST 04_11: 762672814
+      SPRITESHEET TEST 04_12: 324548570
+      SPRITESHEET TEST 04_13: 1236797583
+      SPRITESHEET TEST 04_14: 1545077053
+      SPRITESHEET TEST 04_15: -1533118504
+      SPRITESHEET TEST 04_16: -359666922
+      SPRITESHEET TEST 04_17: 993082517
+      SPRITESHEET TEST 04_18: -2083800591
+      SPRITESHEET TEST 04_19: -2113342336
+      SPRITESHEET TEST 04_2: 1617332295
+      SPRITESHEET TEST 04_20: 295758617
+      SPRITESHEET TEST 04_21: -2080448796
+      SPRITESHEET TEST 04_22: -1224052226
+      SPRITESHEET TEST 04_23: 642434092
+      SPRITESHEET TEST 04_24: 106473059
+      SPRITESHEET TEST 04_25: -205164630
+      SPRITESHEET TEST 04_26: -1908575733
+      SPRITESHEET TEST 04_27: -1659927195
+      SPRITESHEET TEST 04_28: 510686062
+      SPRITESHEET TEST 04_29: 1053843225
+      SPRITESHEET TEST 04_3: -1756846599
+      SPRITESHEET TEST 04_30: -1289082899
+      SPRITESHEET TEST 04_31: 2102270794
+      SPRITESHEET TEST 04_32: 1340469957
+      SPRITESHEET TEST 04_33: -1516529137
+      SPRITESHEET TEST 04_34: -1562904342
+      SPRITESHEET TEST 04_35: 348035555
+      SPRITESHEET TEST 04_36: 604842668
+      SPRITESHEET TEST 04_37: -856652904
+      SPRITESHEET TEST 04_38: 741024209
+      SPRITESHEET TEST 04_39: 448414512
+      SPRITESHEET TEST 04_4: 1101186088
+      SPRITESHEET TEST 04_40: 1163053761
+      SPRITESHEET TEST 04_41: 1232488024
+      SPRITESHEET TEST 04_42: -863174429
+      SPRITESHEET TEST 04_43: -750325506
+      SPRITESHEET TEST 04_5: -1997649083
+      SPRITESHEET TEST 04_6: 1799138327
+      SPRITESHEET TEST 04_7: -874691461
+      SPRITESHEET TEST 04_8: -147849905
+      SPRITESHEET TEST 04_9: -684348871
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

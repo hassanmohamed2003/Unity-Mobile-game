@@ -11,6 +11,7 @@ public class ComboSystem : MonoBehaviour
     public UnityEvent NormalLandingEvent;
     public UnityEvent<int> NormalComboEvent;
     public UnityEvent MaxComboEvent;
+    public UnityEvent<ContactPoint2D> ComboEvent;
     
     private int comboCounter = 0;
     public void CheckPlacement(Collision2D collision)
@@ -29,21 +30,23 @@ public class ComboSystem : MonoBehaviour
             else
             {
                 PerfectLandingEvent.Invoke();
-                ComboCheck();
+                ComboCheck(collision);
             }
         }
     }
 
-    private void ComboCheck()
+    private void ComboCheck(Collision2D collision)
     {
         if (comboCounter < 2)
         {
             NormalComboEvent.Invoke(comboCounter);
+            ComboEvent.Invoke(collision.contacts[0]);
             comboCounter++;
         }
         else if(comboCounter == 2)
         {
             MaxComboEvent.Invoke();
+            ComboEvent.Invoke(collision.contacts[0]);
             comboCounter = 0;
         }
     }
