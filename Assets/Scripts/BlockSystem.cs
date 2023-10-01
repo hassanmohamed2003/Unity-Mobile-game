@@ -82,7 +82,7 @@ public class BlockSystem : MonoBehaviour
             // Add a new random piece to the back of the queue if in endless mode
             if(GameState.IsEndless) AddRandomPieceToQueue();
         }
-        else
+        else if(!GameState.IsEndless) // Can only happen in levels
         {
             // Let other systems know that the block system is out of blocks (Level completed)
             OutOfBlocksEvent.Invoke();
