@@ -31,11 +31,7 @@ public class Menu_Controller : MonoBehaviour {
 	public float transitionTime;
 
     void Awake () {
-		Debug.Log(PlayerPrefs.GetInt("HasWatchedCutscene", 0));
-		if (PlayerPrefs.GetInt("HasWatchedCutscene", 0) == 0)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("CutScene");
-        }
+
 
 
 		if(!PlayerPrefs.HasKey("_Mute")){
@@ -62,6 +58,13 @@ public class Menu_Controller : MonoBehaviour {
 		IEnumerator coroutine = Transition();
 		StartCoroutine(coroutine);
         _audioSource.PlayOneShot(_audioClip);
+		if(levelID == 0)
+		{
+            if (PlayerPrefs.GetInt("HasWatchedCutscene", 0) == 0)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("CutScene");
+            }
+        }
 	}
 
 	public void GoToLevelSelector()

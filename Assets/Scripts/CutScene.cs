@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CutScene : MonoBehaviour
 {
-    public string _sceneToLoadOnPlay = "StartMenu";
+    public string _sceneToLoadOnPlay = "Game";
 
     public Animator animator;
 
@@ -16,6 +16,8 @@ public class CutScene : MonoBehaviour
 
     public void Transition()
     {
+        GameState.IsEndless = false;
+        GameState.CurrentLevelID = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneToLoadOnPlay);
         PlayerPrefs.SetInt("HasWatchedCutscene", 1);
         PlayerPrefs.Save();
