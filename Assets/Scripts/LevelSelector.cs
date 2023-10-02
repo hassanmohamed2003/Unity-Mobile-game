@@ -15,12 +15,14 @@ public class LevelSelector : MonoBehaviour
 
     public GameObject LockLevel2;
     public GameObject Level1Selector;
+    public GameObject Level2Selector;
 
     public Button buttonLevelOne;
     public Button buttonLevelTwo;
 
     private int level1Stars;
     private int level2Stars;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,8 @@ public class LevelSelector : MonoBehaviour
 
         switch (level1Stars)
         {
+            case 0:
+                break;
             case 1:
                 starOne1.color = new Color(255, 255, 255);
                 break;
@@ -62,7 +66,8 @@ public class LevelSelector : MonoBehaviour
 
         switch (level2Stars)
         {
-            
+            case 0:
+                break;
             case 1:
                 starOne2.color = new Color(255, 255, 255);
                 break;
@@ -88,7 +93,7 @@ public class LevelSelector : MonoBehaviour
             level2StarOne.SetActive(false);
             level2StarTwo.SetActive(false);
             level2StarThree.SetActive(false);
-            Level1Selector.GetComponent<Image>().color = new Color(255, 255, 255);
+            Level2Selector.GetComponent<Image>().color = new Color(255, 255, 255);
         }
     }
 
