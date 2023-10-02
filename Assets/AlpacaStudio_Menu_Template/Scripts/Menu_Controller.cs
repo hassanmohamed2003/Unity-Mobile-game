@@ -78,7 +78,7 @@ public class Menu_Controller : MonoBehaviour {
 	{
 		transition.SetActive(true);
 		_audioSource.PlayOneShot(_audioClip);
-		SceneManager.LoadScene("StartMenu");
+		SceneManager.LoadScene("StartMenu2");
 	}
 	
 	public void PlayEndless () {
