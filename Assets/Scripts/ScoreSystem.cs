@@ -53,7 +53,7 @@ public class ScoreSystem : MonoBehaviour
     {
         int stars = GetStars();
         int previousStars = PlayerPrefs.GetInt($"Level{GameState.CurrentLevelID}Stars", stars);
-        if(stars > previousStars)
+        if(stars >= previousStars)
         {
             PlayerPrefs.SetInt($"Level{GameState.CurrentLevelID}Stars", stars);
         }
