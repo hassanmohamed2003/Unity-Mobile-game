@@ -34,9 +34,10 @@ public class BlockSystem : MonoBehaviour
         List<GameObject> prefabs = pieceIDs.Select(id => availablePrefabs[id]).ToList();
         
         prefabs.ForEach(piece => {
-            if(piece.TryGetComponent(out Rigidbody2D rb))
+            if(piece.TryGetComponent(out Rigidbody2D rb) && piece.TryGetComponent(out BoxCollider2D bc))
             {
                 rb.sharedMaterial = availableBuildingPhysicsMaterials[buildingPhysicsMaterialID];
+                bc.sharedMaterial = availableBuildingPhysicsMaterials[buildingPhysicsMaterialID];
             } 
         });
         nextBuildingPieces = new Queue<GameObject>(prefabs);

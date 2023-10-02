@@ -1,7 +1,7 @@
 {
     "LevelID": 3,
-    "BuildingPhysicsMaterialID": 0,
-    "LevelPieceIDs": [6, 7, 7, 6, 7, 6, 7, 7, 7, 6, 7, 6, 7, 6, 7, 6, 7, 6, 7, 6, 7, 6, 7, 6, 7, 6],
+    "BuildingPhysicsMaterialID": 1,
+    "LevelPieceIDs": [17, 16, 15, 14, 13, 12, 14, 17, 15, 16, 13, 12, 14, 17, 16, 15, 13, 14, 12, 13, 14, 15, 16, 17],
     "BackgroundID": 3,
     "FirstStarScoreRequirement": 30,
     "SecondStarScoreRequirement": 40,
