@@ -49,13 +49,13 @@ public class ScoreSystem : MonoBehaviour
         }
     }
 
-    public void SaveLevelResults(int levelID)
+    public void SaveLevelResults()
     {
         int stars = GetStars();
-        int previousStars = PlayerPrefs.GetInt($"Level{levelID}Stars", stars);
+        int previousStars = PlayerPrefs.GetInt($"Level{GameState.CurrentLevelID}Stars", stars);
         if(stars > previousStars)
         {
-            PlayerPrefs.SetInt($"Level{levelID}Stars", stars);
+            PlayerPrefs.SetInt($"Level{GameState.CurrentLevelID}Stars", stars);
         }
         PlayerPrefs.Save();
     }
