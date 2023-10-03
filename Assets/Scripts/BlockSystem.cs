@@ -53,8 +53,8 @@ public class BlockSystem : MonoBehaviour
         GameObject newPrefab = nextBuildingPieces.Last();
         while(newPrefab == nextBuildingPieces.Last())
         {
-            // newPrefab = availablePrefabs[Random.Range(0, availablePrefabs.Count)];
-            newPrefab = availablePrefabs[6];
+            newPrefab = availablePrefabs[Random.Range(0, availablePrefabs.Count)];
+
         }
         nextBuildingPieces.Enqueue(newPrefab);
     }
