@@ -21,6 +21,7 @@ public class BlockSystem : MonoBehaviour
     [Header("Crane Transform")]
     public Transform CraneTransform;
 
+    private int buildingPhysicsMaterialID;
     private Queue<GameObject> nextBuildingPieces = new();
     private List<GameObject> landedBlocks = new();
     private int spawnedBlockCounter = 0;
@@ -30,16 +31,10 @@ public class BlockSystem : MonoBehaviour
     public void CreatePieceQueueFromLevel(LevelStructure structure)
     {
         IEnumerable<int> pieceIDs = structure.LevelPieceIDs;
-        int buildingPhysicsMaterialID = structure.BuildingPhysicsMaterialID;
+        buildingPhysicsMaterialID = structure.BuildingPhysicsMaterialID;
+        
         List<GameObject> prefabs = pieceIDs.Select(id => availablePrefabs[id]).ToList();
         
-        prefabs.ForEach(piece => {
-            if(piece.TryGetComponent(out Rigidbody2D rb) && piece.TryGetComponent(out BoxCollider2D bc))
-            {
-                rb.sharedMaterial = availableBuildingPhysicsMaterials[buildingPhysicsMaterialID];
-                bc.sharedMaterial = availableBuildingPhysicsMaterials[buildingPhysicsMaterialID];
-            } 
-        });
         nextBuildingPieces = new Queue<GameObject>(prefabs);
     }
 
@@ -82,6 +77,12 @@ public class BlockSystem : MonoBehaviour
             Vector2 newBlockPos = CraneTransform.position;
             newBlockPos.y -= 2.0f;
             GameObject gameObject = Instantiate(prefab, newBlockPos, Quaternion.identity, blocksParent);
+
+            if(gameObject.TryGetComponent(out Rigidbody2D rb) && gameObject.TryGetComponent(out BoxCollider2D bc))
+            {
+                rb.sharedMaterial = availableBuildingPhysicsMaterials[buildingPhysicsMaterialID];
+                bc.sharedMaterial = availableBuildingPhysicsMaterials[buildingPhysicsMaterialID];
+            }
 
             // Let other systems know a new block has been spawned
             NewBlockSpawnedEvent.Invoke(gameObject);
