@@ -167,9 +167,12 @@ public class Crane : MonoBehaviour
         joint.distance = pieceStartHeight;
 
         // Setup LineRenderer
-        lineRenderer.startColor = Color.black;
-        lineRenderer.endColor = Color.black;
-        lineRenderer.forceRenderingOff = false;
+        if(lineRenderer)
+        {
+            lineRenderer.startColor = Color.black;
+            lineRenderer.endColor = Color.black;
+            lineRenderer.forceRenderingOff = false;
+        }        
 
         // Update new block's RigidBody
         Rigidbody2D rigidbodyPiece = currentBuildingPiece.GetComponent<Rigidbody2D>();
@@ -204,7 +207,7 @@ public class Crane : MonoBehaviour
             if(RopeRoutine != null) StopCoroutine(RopeRoutine);
 
             // Hide line
-            lineRenderer.forceRenderingOff = true;
+            if(lineRenderer) lineRenderer.forceRenderingOff = true;
         }
     }
 
