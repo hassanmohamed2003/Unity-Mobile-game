@@ -60,6 +60,11 @@ public class BlockSystem : MonoBehaviour
     }
 
     public void SpawnNextPiece() {
+        if (nextBuildingPieces.Count == 0 && !HasFirstBlockLanded && GameState.IsEndless)
+        {
+            AddRandomPieceToQueue();
+            AddRandomPieceToQueue();
+        }
         if (nextBuildingPieces.Count > 0 && !Game.instance.IsGameOver) 
         {
             // Get the next building piece
