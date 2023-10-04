@@ -6,11 +6,23 @@ public class LevelMusicPlayer : MonoBehaviour
 {
     [Header("Clips")]
     public List<AudioClip> LevelMusics;
-    private AudioSource musicSource;
+    private AudioSource sfxSource;
+    public AudioSource musicSource;
+
+    public void Awake()
+    {
+        sfxSource = GetComponent<AudioSource>();
+        int musicPref = PlayerPrefs.GetInt("MusicOn", 1);
+        int SFXPref = PlayerPrefs.GetInt("SFXOn", 1);
+
+        sfxSource.volume = SFXPref;
+
+        musicSource.volume = musicPref;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
-        musicSource = GetComponent<AudioSource>();
         if(!GameState.IsEndless)
         {
             musicSource.clip = LevelMusics[GameState.CurrentLevelID];
