@@ -28,6 +28,15 @@ public class BlockSystem : MonoBehaviour
     private Transform highestBlock;
     public bool HasFirstBlockLanded {get; private set;} = false;
 
+    void Awake()
+    {
+        if (nextBuildingPieces.Count == 0 && !HasFirstBlockLanded && GameState.IsEndless)
+        {
+            AddRandomPieceToQueue();
+            AddRandomPieceToQueue();
+        }        
+    }
+
     public void CreatePieceQueueFromLevel(LevelStructure structure)
     {
         IEnumerable<int> pieceIDs = structure.LevelPieceIDs;
@@ -54,12 +63,8 @@ public class BlockSystem : MonoBehaviour
         nextBuildingPieces.Enqueue(newPrefab);
     }
 
-    public void SpawnNextPiece() {
-        if (nextBuildingPieces.Count == 0 && !HasFirstBlockLanded && GameState.IsEndless)
-        {
-            AddRandomPieceToQueue();
-            AddRandomPieceToQueue();
-        }
+    public void SpawnNextPiece() 
+    {
         if (nextBuildingPieces.Count > 0 && !Game.instance.IsGameOver) 
         {
             // Get the next building piece

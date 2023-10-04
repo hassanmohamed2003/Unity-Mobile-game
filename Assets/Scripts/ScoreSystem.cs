@@ -78,7 +78,7 @@ public class ScoreSystem : MonoBehaviour
     {
         score++;
         stars = GetStars();
-        if(stars == 3)
+        if(stars == 3 && !GameState.IsEndless)
         {
             EndScoreEvent.Invoke();
         }
