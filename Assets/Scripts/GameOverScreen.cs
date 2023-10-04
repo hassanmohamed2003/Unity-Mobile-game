@@ -1,26 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
     public string RestartScene = "Game";
     public string MenuScene = "StartMenu";
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int stars;
 
     public void Setup()
     {
         gameObject.SetActive(true);
+    }
+
+    public void OnUpdateScore(int score, int stars)
+    {
+        this.stars = stars;
     }
     
     private void SetTimescaleZero()
@@ -39,5 +35,14 @@ public class GameOverScreen : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(MenuScene);
         Time.timeScale = 1;
+    }
+
+    public void GoToEndCutscene()
+    {
+        bool HasWatchedEndCutscene = PlayerPrefs.GetInt("HasWatchedEndCutscene", 0) == 1;
+        if(GameState.CurrentLevelID == 2 && !HasWatchedEndCutscene && stars > 0)
+        {
+            SceneManager.LoadScene("EndCutscene");
+        }        
     }
 }

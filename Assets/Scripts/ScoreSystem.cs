@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ScoreSystem : MonoBehaviour
 {
     public UnityEvent<int, int> ScoreUpdatedEvent;
     public UnityEvent NewHighScoreEvent;
     public UnityEvent NoHighscoreEvent;
+    public UnityEvent EndScoreEvent;
 
     private int score;
     private int stars;
     private int highscoreAmount;
+    private int levelId;
     private int firstStarRequirement;
     private int secondStarRequirement;
     private int thirdStarRequirement;
@@ -20,6 +23,7 @@ public class ScoreSystem : MonoBehaviour
 
     public void SetStarScores(LevelStructure structure)
     {
+        levelId = structure.LevelID;
         firstStarRequirement = structure.FirstStarScoreRequirement;
         secondStarRequirement = structure.SecondStarScoreRequirement;
         thirdStarRequirement = structure.ThirdStarScoreRequirement;
@@ -74,6 +78,10 @@ public class ScoreSystem : MonoBehaviour
     {
         score++;
         stars = GetStars();
+        if(stars == 3)
+        {
+            EndScoreEvent.Invoke();
+        }
         ScoreUpdatedEvent.Invoke(score, stars);
     }
 }
