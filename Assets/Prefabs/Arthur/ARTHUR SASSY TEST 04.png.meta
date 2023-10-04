@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d0c405e24af6c8e46bf6eff659c62829
+guid: 13c5469b82d174547b825c2be3e643f5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -123,1093 +123,1072 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprite_arthur_mad_0
+      name: ARTHUR SASSY TEST 04_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3564
-        width: 560
-        height: 324
+        y: 3780
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7485d87a0cd0d85418ba67995d49531f
-      internalID: -1991010477
+      spriteID: 9a942f8dd2650e3458c95585e7ab6f41
+      internalID: -321368761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_1
+      name: ARTHUR SASSY TEST 04_1
       rect:
         serializedVersion: 2
-        x: 560
-        y: 3564
-        width: 560
-        height: 324
+        x: 928
+        y: 3780
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9dd1bfe7aa99824f99d30b6d8e26fcf
-      internalID: -1702429198
+      spriteID: 053fc42b3d4c1754fba8474279e0c3c1
+      internalID: -1205105809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_2
+      name: ARTHUR SASSY TEST 04_2
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 3564
-        width: 560
-        height: 324
+        x: 1856
+        y: 3780
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1b1da308f5b9874fa3ebc7f4aa4571c
-      internalID: -15366895
+      spriteID: 07c751b77c95402498b8c8348031edfd
+      internalID: 459254034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_3
+      name: ARTHUR SASSY TEST 04_3
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 3564
-        width: 560
-        height: 324
+        x: 2784
+        y: 3780
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f87ec5a9ba952bd44926ccf3ea002f1b
-      internalID: 1672212866
+      spriteID: 1fbbd4e413c8cee4586c2bfe1595e51a
+      internalID: 1812848916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_4
+      name: ARTHUR SASSY TEST 04_4
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 3564
-        width: 560
-        height: 324
+        x: 3712
+        y: 3780
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b42efec82fc33594cb1ab5fc1a6d64d7
-      internalID: -132365504
+      spriteID: cba1d76c0f5b2da4d94fcb9193fa5cee
+      internalID: 1220970276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_5
+      name: ARTHUR SASSY TEST 04_5
+      rect:
+        serializedVersion: 2
+        x: 4640
+        y: 3780
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d97a259e2690f4b4a916c170e353bb57
+      internalID: 233773375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_6
+      rect:
+        serializedVersion: 2
+        x: 5568
+        y: 3780
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f88dcc6fa32b8464db1dc1314f4513fd
+      internalID: 1705227084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_7
       rect:
         serializedVersion: 2
         x: 0
         y: 3240
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92b8504975f00ae41a8386e517b64af3
-      internalID: 474341582
+      spriteID: 48016fcf4ca9d1e49ad8c22db99b2299
+      internalID: 1561369950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_6
+      name: ARTHUR SASSY TEST 04_8
       rect:
         serializedVersion: 2
-        x: 560
+        x: 928
         y: 3240
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a29a53225278c4f4d8a548593a2da011
-      internalID: -2078831363
+      spriteID: 51d45ed80e5855e48a897fd032a25730
+      internalID: -417188814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_7
+      name: ARTHUR SASSY TEST 04_9
       rect:
         serializedVersion: 2
-        x: 1120
+        x: 1856
         y: 3240
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4bf920a278f95140a1f1ddd514674af
-      internalID: -573153168
+      spriteID: bce052bbdac86d548a1f571911a482a1
+      internalID: 1702634299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_8
+      name: ARTHUR SASSY TEST 04_10
       rect:
         serializedVersion: 2
-        x: 1680
+        x: 2784
         y: 3240
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9d40cce60948904b9088a4f2a162456
-      internalID: 1945173757
+      spriteID: 89899626fc02226458e76361440c710e
+      internalID: 1469711090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_9
+      name: ARTHUR SASSY TEST 04_11
       rect:
         serializedVersion: 2
-        x: 2240
+        x: 3712
         y: 3240
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f1429e0603745a498da11cf15da0625
-      internalID: -98654182
+      spriteID: ca8e0b874e37958428ea8ccff7db80ec
+      internalID: -1250140211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_10
+      name: ARTHUR SASSY TEST 04_12
+      rect:
+        serializedVersion: 2
+        x: 4640
+        y: 3240
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2d67d5a6e908644981cc93dea636baf
+      internalID: 2006711793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_13
+      rect:
+        serializedVersion: 2
+        x: 5568
+        y: 3240
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4d06e85f36ba84ab3003fd5f683d10
+      internalID: 650891836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_14
       rect:
         serializedVersion: 2
         x: 0
-        y: 2916
-        width: 560
-        height: 324
+        y: 2700
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 566f1466c94a6934085664c3d78c9bde
-      internalID: 96295864
+      spriteID: a52d222a01a5c7b409a142d44a7f62ef
+      internalID: -561022426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_11
+      name: ARTHUR SASSY TEST 04_15
       rect:
         serializedVersion: 2
-        x: 560
-        y: 2916
-        width: 560
-        height: 324
+        x: 928
+        y: 2700
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c19ce812173709840ae8a06d698e7f18
-      internalID: 111164307
+      spriteID: 80199deada0a1ac4d9610f0dad470957
+      internalID: -1713655882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_12
+      name: ARTHUR SASSY TEST 04_16
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 2916
-        width: 560
-        height: 324
+        x: 1856
+        y: 2700
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85aa6e1d89df1df4da702107e618c4cb
-      internalID: 1632045959
+      spriteID: 9c311e4c42d670a41990e4b23e1d0775
+      internalID: 80394815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_13
+      name: ARTHUR SASSY TEST 04_17
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 2916
-        width: 560
-        height: 324
+        x: 2784
+        y: 2700
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9c6e96de3c4ab14e97c378b069f1c04
-      internalID: 700042423
+      spriteID: d893c04daa6575d47a62317aa39d49a9
+      internalID: 18524730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_14
+      name: ARTHUR SASSY TEST 04_18
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 2916
-        width: 560
-        height: 324
+        x: 3712
+        y: 2700
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea2fc7258d126c7468cd1075381d7c63
-      internalID: 1024892147
+      spriteID: a89a7daf37acbfb438a54d51c51aaebb
+      internalID: 1985435130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_15
+      name: ARTHUR SASSY TEST 04_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2592
-        width: 560
-        height: 324
+        x: 4640
+        y: 2700
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f1289d1966a7a3439dca66c82794643
-      internalID: 316992382
+      spriteID: 720df2e4d5450d8488030a909b6c8195
+      internalID: 325172887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_16
+      name: ARTHUR SASSY TEST 04_20
       rect:
         serializedVersion: 2
-        x: 560
-        y: 2592
-        width: 560
-        height: 324
+        x: 5568
+        y: 2700
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc1a808a12a156c439bd7443f044f437
-      internalID: -1919935027
+      spriteID: 38961813ebef41c4482faaa47d1f8b23
+      internalID: -369555046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_17
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 2592
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92d8d9ed6ec67d94ea4854badfe817f0
-      internalID: -81628456
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_18
-      rect:
-        serializedVersion: 2
-        x: 1680
-        y: 2592
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76e6026bb97284347a36fc75fa149c11
-      internalID: -23108748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_19
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 2592
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d61bd9784c863043b5896d69c3ceb54
-      internalID: -1945714637
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_20
+      name: ARTHUR SASSY TEST 04_21
       rect:
         serializedVersion: 2
         x: 0
-        y: 2268
-        width: 560
-        height: 324
+        y: 2160
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa3875d9f939ee941a645ca657cccee0
-      internalID: 436445101
+      spriteID: dd82c8d10d2d0c248bc765e4b471eee8
+      internalID: 1613599810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_21
+      name: ARTHUR SASSY TEST 04_22
       rect:
         serializedVersion: 2
-        x: 560
-        y: 2268
-        width: 560
-        height: 324
+        x: 928
+        y: 2160
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64e42984398c0b84eb8f6dfbca3adeac
-      internalID: -9334857
+      spriteID: f97cfa2d61a31944d92451883b63c53e
+      internalID: 1522843295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_22
+      name: ARTHUR SASSY TEST 04_23
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 2268
-        width: 560
-        height: 324
+        x: 1856
+        y: 2160
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8db6f1a77bfefeb4f97354903237a483
-      internalID: -837955249
+      spriteID: f49b8ded9fed1b4478331c5bac75b146
+      internalID: 563440251
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_23
+      name: ARTHUR SASSY TEST 04_24
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 2268
-        width: 560
-        height: 324
+        x: 2784
+        y: 2160
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53593cda200a062449ed8966deb3adbf
-      internalID: 601106634
+      spriteID: a0ddf055aca7f4e458d17ffcc21d6889
+      internalID: 1759152357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_24
+      name: ARTHUR SASSY TEST 04_25
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 2268
-        width: 560
-        height: 324
+        x: 3712
+        y: 2160
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fba200859b363545b90a1967e9c9269
-      internalID: -975141914
+      spriteID: 72c7bbe7e91893d4a9bb810bf57db1e8
+      internalID: 486145952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_25
+      name: ARTHUR SASSY TEST 04_26
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1944
-        width: 560
-        height: 324
+        x: 4640
+        y: 2160
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4867ffedd8630fd49a6bf0b393c3612d
-      internalID: 1888983653
+      spriteID: c68389f31bc91ed45ad3f5d365bc4cb7
+      internalID: 268489098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_26
+      name: ARTHUR SASSY TEST 04_27
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1944
-        width: 560
-        height: 324
+        x: 5568
+        y: 2160
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e473e2aa9eee9f41ad46481fe612404
-      internalID: 1712763032
+      spriteID: d67c83632c60336489c2b9f64692dcda
+      internalID: -1678313585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_27
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 1944
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d82a62596938d74ea221be7a5cff384
-      internalID: 1315647841
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_28
-      rect:
-        serializedVersion: 2
-        x: 1680
-        y: 1944
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b3a79e60f9856540bdea677f77fa13a
-      internalID: -393656177
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_29
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 1944
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 090078b4911a4f344b150a76aa8c3e48
-      internalID: -2072158553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_30
+      name: ARTHUR SASSY TEST 04_28
       rect:
         serializedVersion: 2
         x: 0
         y: 1620
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e9c45ca205161f4c94453ac3b1322cf
-      internalID: -1017650120
+      spriteID: 52979535b240522419ebb1494cb01eb3
+      internalID: 256080243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_31
+      name: ARTHUR SASSY TEST 04_29
       rect:
         serializedVersion: 2
-        x: 560
+        x: 928
         y: 1620
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67d39661d262a134b9942e83eab8962c
-      internalID: 1758810130
+      spriteID: 84dea26f46352194e9d92ff16b644513
+      internalID: -994972564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_32
+      name: ARTHUR SASSY TEST 04_30
       rect:
         serializedVersion: 2
-        x: 1120
+        x: 1856
         y: 1620
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4240464b0ea27448bb259217d88e46e
-      internalID: -491012469
+      spriteID: cdd1642ef1bd90e448da4db7f053b41d
+      internalID: 1481767416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_33
+      name: ARTHUR SASSY TEST 04_31
       rect:
         serializedVersion: 2
-        x: 1680
+        x: 2784
         y: 1620
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 842dbce5a232ad744ba89807990b4c28
-      internalID: 1372910799
+      spriteID: fe6dbee26568e1d40bab30ee993cc87d
+      internalID: 764979284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_34
+      name: ARTHUR SASSY TEST 04_32
       rect:
         serializedVersion: 2
-        x: 2240
+        x: 3712
         y: 1620
-        width: 560
-        height: 324
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acb8f7a224ea9dd4aa35c50f924b81f2
-      internalID: 278811787
+      spriteID: 4dfe2cecec0ea3c42882c4907cfbb450
+      internalID: -1297612345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_35
+      name: ARTHUR SASSY TEST 04_33
+      rect:
+        serializedVersion: 2
+        x: 4640
+        y: 1620
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0c2e9b466076bd478347aae17cb9068
+      internalID: -237032613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_34
+      rect:
+        serializedVersion: 2
+        x: 5568
+        y: 1620
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b26079b393575346bd1dfa944db982e
+      internalID: 783764115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_35
       rect:
         serializedVersion: 2
         x: 0
-        y: 1296
-        width: 560
-        height: 324
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d8b6985980e8084ebae9a7d2f0ac551
-      internalID: 594761728
+      spriteID: ebf16f7c1584f6b4da73c0511e186623
+      internalID: 390205839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_36
+      name: ARTHUR SASSY TEST 04_36
       rect:
         serializedVersion: 2
-        x: 560
-        y: 1296
-        width: 560
-        height: 324
+        x: 928
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af7149b7b3b9c1240b85ef90f218e1f7
-      internalID: -1192924242
+      spriteID: 7aa1f1d716c7627488eaa1368a6c5db4
+      internalID: -463551174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_37
+      name: ARTHUR SASSY TEST 04_37
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 1296
-        width: 560
-        height: 324
+        x: 1856
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d012319113b80647b7aa6467dc3a6d3
-      internalID: 1048761261
+      spriteID: 61dd7a65da8338e48881cd2e50f844ea
+      internalID: 339077910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_38
+      name: ARTHUR SASSY TEST 04_38
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 1296
-        width: 560
-        height: 324
+        x: 2784
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50709036896bbf14e90bb22b7529ef02
-      internalID: 902022152
+      spriteID: 2742d5362ca5b0044802056e433212f1
+      internalID: -890956600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_39
+      name: ARTHUR SASSY TEST 04_39
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 1296
-        width: 560
-        height: 324
+        x: 3712
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1763283cc85ae94395b6faea04b47c8
-      internalID: -384468578
+      spriteID: b95760c2e217d5744bba972dea6bba59
+      internalID: -1213255973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_40
+      name: ARTHUR SASSY TEST 04_40
       rect:
         serializedVersion: 2
-        x: 0
-        y: 972
-        width: 560
-        height: 324
+        x: 4640
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b55312afed8ac2346b7bcff94597fa98
-      internalID: -254406037
+      spriteID: 7c4b030f67ce6874f97c581635494e91
+      internalID: 1110831693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_41
+      name: ARTHUR SASSY TEST 04_41
       rect:
         serializedVersion: 2
-        x: 560
-        y: 972
-        width: 560
-        height: 324
+        x: 5568
+        y: 1080
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3134df8ff1952b14aa5534a259b2f363
-      internalID: 101452527
+      spriteID: a029f3c54a27a6b469b0af4db034f633
+      internalID: 144856851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_42
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 972
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14b5e315bbbf46044bb817d2a4dd5120
-      internalID: 1186639496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_43
-      rect:
-        serializedVersion: 2
-        x: 1680
-        y: 972
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 017ce56a19229514d96fe17e37720f6a
-      internalID: 1118462051
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_44
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 972
-        width: 560
-        height: 324
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef53187c8fb7dd047bc23043182932cf
-      internalID: -1887329156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprite_arthur_mad_45
+      name: ARTHUR SASSY TEST 04_42
       rect:
         serializedVersion: 2
         x: 0
-        y: 648
-        width: 560
-        height: 324
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29c121fdde943704ba8dc5ed83ca3499
-      internalID: 950465544
+      spriteID: 9ae5d98104bc48843a2069160560b36a
+      internalID: 2134661786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_46
+      name: ARTHUR SASSY TEST 04_43
       rect:
         serializedVersion: 2
-        x: 560
-        y: 648
-        width: 560
-        height: 324
+        x: 928
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d1201806db628144b83b2f650eb63c5
-      internalID: -227645245
+      spriteID: 4d960a585d884ac46b3ea6b86d95e036
+      internalID: -712061511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_47
+      name: ARTHUR SASSY TEST 04_44
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 648
-        width: 560
-        height: 324
+        x: 1856
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 847818319fcc8914992f797621e5fc0c
-      internalID: 1905734950
+      spriteID: 46441e6763de38d49b363182fa99d80b
+      internalID: 1035432968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_48
+      name: ARTHUR SASSY TEST 04_45
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 648
-        width: 560
-        height: 324
+        x: 2784
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c75da493e038ae743bc898676919d5fb
-      internalID: 2051638467
+      spriteID: 977b37d89e691ef42bfdbd7d1ca21b88
+      internalID: 936793687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_49
+      name: ARTHUR SASSY TEST 04_46
       rect:
         serializedVersion: 2
-        x: 2240
-        y: 648
-        width: 560
-        height: 324
+        x: 3712
+        y: 540
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73596678a375f7d4282a82cf9f897e8e
-      internalID: 771966666
+      spriteID: b31f0e1cb8345604b847984306b45a7f
+      internalID: -1467371325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_50
+      name: ARTHUR SASSY TEST 04_47
+      rect:
+        serializedVersion: 2
+        x: 4640
+        y: 540
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d7a7d4a24a5b04b9c4dad1555409b8
+      internalID: 179334468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_48
+      rect:
+        serializedVersion: 2
+        x: 5568
+        y: 540
+        width: 928
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe3756b715ea2c44aeea8ffef47b544
+      internalID: 1660224470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARTHUR SASSY TEST 04_49
       rect:
         serializedVersion: 2
         x: 0
-        y: 324
-        width: 560
-        height: 324
+        y: 0
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6019fe2c64f34e44e8c379375db21ef1
-      internalID: 202933883
+      spriteID: ba0a6fa5977cc4449b146e717c6152f1
+      internalID: -246124804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_arthur_mad_51
+      name: ARTHUR SASSY TEST 04_50
       rect:
         serializedVersion: 2
-        x: 560
-        y: 324
-        width: 560
-        height: 324
+        x: 928
+        y: 0
+        width: 928
+        height: 540
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29851c8d765a9bb46949e6380dc678d5
-      internalID: 2052715491
+      spriteID: 924edea4abc8b3b4490af09379e4b919
+      internalID: 689207580
       vertices: []
       indices: 
       edges: []
@@ -1225,66 +1204,62 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprite_arthur_mad_0: -1991010477
-      sprite_arthur_mad_1: -1702429198
-      sprite_arthur_mad_10: 96295864
-      sprite_arthur_mad_11: 111164307
-      sprite_arthur_mad_12: 1632045959
-      sprite_arthur_mad_13: 700042423
-      sprite_arthur_mad_14: 1024892147
-      sprite_arthur_mad_15: 316992382
-      sprite_arthur_mad_16: -1919935027
-      sprite_arthur_mad_17: -81628456
-      sprite_arthur_mad_18: -23108748
-      sprite_arthur_mad_19: -1945714637
-      sprite_arthur_mad_2: -15366895
-      sprite_arthur_mad_20: 436445101
-      sprite_arthur_mad_21: -9334857
-      sprite_arthur_mad_22: -837955249
-      sprite_arthur_mad_23: 601106634
-      sprite_arthur_mad_24: -975141914
-      sprite_arthur_mad_25: 1888983653
-      sprite_arthur_mad_26: 1712763032
-      sprite_arthur_mad_27: 1315647841
-      sprite_arthur_mad_28: -393656177
-      sprite_arthur_mad_29: -2072158553
-      sprite_arthur_mad_3: 1672212866
-      sprite_arthur_mad_30: -1017650120
-      sprite_arthur_mad_31: 1758810130
-      sprite_arthur_mad_32: -491012469
-      sprite_arthur_mad_33: 1372910799
-      sprite_arthur_mad_34: 278811787
-      sprite_arthur_mad_35: 594761728
-      sprite_arthur_mad_36: -1192924242
-      sprite_arthur_mad_37: 1048761261
-      sprite_arthur_mad_38: 902022152
-      sprite_arthur_mad_39: -384468578
-      sprite_arthur_mad_4: -132365504
-      sprite_arthur_mad_40: -254406037
-      sprite_arthur_mad_41: 101452527
-      sprite_arthur_mad_42: 1186639496
-      sprite_arthur_mad_43: 1118462051
-      sprite_arthur_mad_44: -1887329156
-      sprite_arthur_mad_45: 950465544
-      sprite_arthur_mad_46: -227645245
-      sprite_arthur_mad_47: 1905734950
-      sprite_arthur_mad_48: 2051638467
-      sprite_arthur_mad_49: 771966666
-      sprite_arthur_mad_5: 474341582
-      sprite_arthur_mad_50: 202933883
-      sprite_arthur_mad_51: 2052715491
-      sprite_arthur_mad_52: -1990186023
-      sprite_arthur_mad_53: -236723320
-      sprite_arthur_mad_54: 1799854501
-      sprite_arthur_mad_55: -1377173233
-      sprite_arthur_mad_56: -983742005
-      sprite_arthur_mad_57: -817853407
-      sprite_arthur_mad_58: 318391486
-      sprite_arthur_mad_59: 482940878
-      sprite_arthur_mad_6: -2078831363
-      sprite_arthur_mad_7: -573153168
-      sprite_arthur_mad_8: 1945173757
-      sprite_arthur_mad_9: -98654182
+      ARTHUR SASSY TEST 04_0: -321368761
+      ARTHUR SASSY TEST 04_1: -1205105809
+      ARTHUR SASSY TEST 04_10: 1469711090
+      ARTHUR SASSY TEST 04_11: -1250140211
+      ARTHUR SASSY TEST 04_12: 2006711793
+      ARTHUR SASSY TEST 04_13: 650891836
+      ARTHUR SASSY TEST 04_14: -561022426
+      ARTHUR SASSY TEST 04_15: -1713655882
+      ARTHUR SASSY TEST 04_16: 80394815
+      ARTHUR SASSY TEST 04_17: 18524730
+      ARTHUR SASSY TEST 04_18: 1985435130
+      ARTHUR SASSY TEST 04_19: 325172887
+      ARTHUR SASSY TEST 04_2: 459254034
+      ARTHUR SASSY TEST 04_20: -369555046
+      ARTHUR SASSY TEST 04_21: 1613599810
+      ARTHUR SASSY TEST 04_22: 1522843295
+      ARTHUR SASSY TEST 04_23: 563440251
+      ARTHUR SASSY TEST 04_24: 1759152357
+      ARTHUR SASSY TEST 04_25: 486145952
+      ARTHUR SASSY TEST 04_26: 268489098
+      ARTHUR SASSY TEST 04_27: -1678313585
+      ARTHUR SASSY TEST 04_28: 256080243
+      ARTHUR SASSY TEST 04_29: -994972564
+      ARTHUR SASSY TEST 04_3: 1812848916
+      ARTHUR SASSY TEST 04_30: 1481767416
+      ARTHUR SASSY TEST 04_31: 764979284
+      ARTHUR SASSY TEST 04_32: -1297612345
+      ARTHUR SASSY TEST 04_33: -237032613
+      ARTHUR SASSY TEST 04_34: 783764115
+      ARTHUR SASSY TEST 04_35: 390205839
+      ARTHUR SASSY TEST 04_36: -463551174
+      ARTHUR SASSY TEST 04_37: 339077910
+      ARTHUR SASSY TEST 04_38: -890956600
+      ARTHUR SASSY TEST 04_39: -1213255973
+      ARTHUR SASSY TEST 04_4: 1220970276
+      ARTHUR SASSY TEST 04_40: 1110831693
+      ARTHUR SASSY TEST 04_41: 144856851
+      ARTHUR SASSY TEST 04_42: 2134661786
+      ARTHUR SASSY TEST 04_43: -712061511
+      ARTHUR SASSY TEST 04_44: 1035432968
+      ARTHUR SASSY TEST 04_45: 936793687
+      ARTHUR SASSY TEST 04_46: -1467371325
+      ARTHUR SASSY TEST 04_47: 179334468
+      ARTHUR SASSY TEST 04_48: 1660224470
+      ARTHUR SASSY TEST 04_49: -246124804
+      ARTHUR SASSY TEST 04_5: 233773375
+      ARTHUR SASSY TEST 04_50: 689207580
+      ARTHUR SASSY TEST 04_51: -443597831
+      ARTHUR SASSY TEST 04_52: -396634260
+      ARTHUR SASSY TEST 04_53: -835744768
+      ARTHUR SASSY TEST 04_54: -1554395682
+      ARTHUR SASSY TEST 04_55: -1290645548
+      ARTHUR SASSY TEST 04_6: 1705227084
+      ARTHUR SASSY TEST 04_7: 1561369950
+      ARTHUR SASSY TEST 04_8: -417188814
+      ARTHUR SASSY TEST 04_9: 1702634299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
