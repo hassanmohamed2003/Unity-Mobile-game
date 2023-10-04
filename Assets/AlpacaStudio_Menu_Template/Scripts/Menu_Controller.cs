@@ -16,11 +16,13 @@ public class Menu_Controller : MonoBehaviour {
 	[Tooltip("_audioClip defines the audio to be played on button click.")]
 	public AudioClip _audioClip;
 	[Tooltip("_audioSource defines the Audio Source component in this scene.")]
-	public AudioSource _audioSource;
-	
-	//The private variable 'scene' defined below is used for example/development purposes.
-	//It is used in correlation with the Escape_Menu script to return to last scene on key press.
-	UnityEngine.SceneManagement.Scene scene;
+	public AudioSource _audioSourceMusic;
+    public AudioSource _audioSourceAmbientMusic;
+    private AudioSource _audioSourceSFX;
+
+    //The private variable 'scene' defined below is used for example/development purposes.
+    //It is used in correlation with the Escape_Menu script to return to last scene on key press.
+    UnityEngine.SceneManagement.Scene scene;
 
     public Animation anim;
 
@@ -37,8 +39,15 @@ public class Menu_Controller : MonoBehaviour {
 		if(!PlayerPrefs.HasKey("_Mute")){
 			PlayerPrefs.SetInt("_Mute", 0);
 		}
-		_audioSource.clip = _backgroundMusic;
-		_audioSource.Play();
+
+        _audioSourceMusic.clip = _backgroundMusic;
+
+        _audioSourceSFX = GetComponent<AudioSource>();
+        _audioSourceMusic.volume = PlayerPrefs.GetInt("MusicOn", 1);
+        _audioSourceAmbientMusic.volume = PlayerPrefs.GetInt("MusicOn", 1);
+        _audioSourceSFX.volume = PlayerPrefs.GetInt("SFXOn", 1);
+
+        _audioSourceMusic.Play();
 		scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 		PlayerPrefs.SetString("_LastScene", scene.name.ToString());
         anim = GetComponent<Animation>();
@@ -46,7 +55,7 @@ public class Menu_Controller : MonoBehaviour {
     }
 	
 	public void OpenWebpage () {
-		_audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
 		Application.OpenURL(_webpageURL);
 	}
 
@@ -57,7 +66,7 @@ public class Menu_Controller : MonoBehaviour {
 		transition.SetActive(true);
 		IEnumerator coroutine = Transition();
 		StartCoroutine(coroutine);
-        _audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
 		if(levelID == 0)
 		{
             if (PlayerPrefs.GetInt("HasWatchedCutscene", 0) == 0)
@@ -70,23 +79,28 @@ public class Menu_Controller : MonoBehaviour {
 	public void GoToLevelSelector()
 	{
 		transition.SetActive(true);
-		_audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
 		SceneManager.LoadScene("LevelSelection");
 	}
 
 	public void GoToMainMenu()
 	{
-		transition.SetActive(true);
-		_audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
 		SceneManager.LoadScene("StartMenu2");
 	}
+
+	public void GoToSettings()
+	{
+        _audioSourceSFX.PlayOneShot(_audioClip);
+        SceneManager.LoadScene("Settings");
+    }
 	
 	public void PlayEndless () {
 		GameState.IsEndless = true;
         transition.SetActive(true);
 		IEnumerator coroutine = Transition();
 		StartCoroutine(coroutine);
-        _audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
     }
 	IEnumerator Transition()
 	{
@@ -98,21 +112,21 @@ public class Menu_Controller : MonoBehaviour {
     }
 	
 	public void Mute () {
-		_audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
 		_soundButtons[0].interactable = true;
 		_soundButtons[1].interactable = false;
 		PlayerPrefs.SetInt("_Mute", 1);
 	}
 	
 	public void Unmute () {
-		_audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
 		_soundButtons[0].interactable = false;
 		_soundButtons[1].interactable = true;
 		PlayerPrefs.SetInt("_Mute", 0);
 	}
 	
 	public void QuitGame () {
-		_audioSource.PlayOneShot(_audioClip);
+        _audioSourceSFX.PlayOneShot(_audioClip);
 		#if !UNITY_EDITOR
 			Application.Quit();
 		#endif
