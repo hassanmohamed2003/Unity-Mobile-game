@@ -10,14 +10,14 @@ using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.UI;
 
-public class LeaderBoard : MonoBehaviour
+public class Leaderoard : MonoBehaviour
 {
     // Create a leaderboard with this ID in the Unity Dashboard
     const string LeaderboardId = "under_construction";
 
     string VersionId { get; set; }
     int Offset { get; set; }
-    int Limit { get; set; }
+    int Limit { get; set; } = 10;
     int RangeLimit { get; set; }
     List<string> FriendIds { get; set; }
 
@@ -39,7 +39,6 @@ public class LeaderBoard : MonoBehaviour
         await SignInAnonymously();
 
         getScore.Invoke();
-        AddScore();
     }
 
     public void ChangeName(InputField input)
@@ -65,14 +64,17 @@ public class LeaderBoard : MonoBehaviour
             // Take some action here...
             Debug.Log(s);
         };
-
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        if(AuthenticationService.Instance.AccessToken == null)
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        }
     }
 
     public async void AddScore()
     {
         var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderboardId, PlayerPrefs.GetInt("HighScore",0));
         var nameResponse = await AuthenticationService.Instance.UpdatePlayerNameAsync(playerName);
+        GetPaginatedScores(0);
         Debug.Log(JsonConvert.SerializeObject(scoreResponse));
         Debug.Log(JsonConvert.SerializeObject(nameResponse));
     }
@@ -84,21 +86,35 @@ public class LeaderBoard : MonoBehaviour
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
-    public async void GetPaginatedScores()
+    public async void GetPaginatedScores(int number)
     {
-        Offset = 0;
-        Limit = 10;
+        Offset += number;
+
+        if(Offset < 0)
+        {
+            Offset = 0;
+        }
+
         var scoresResponse =
             await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId, new GetScoresOptions { Offset = Offset, Limit = Limit });
         Debug.Log(JsonConvert.SerializeObject(scoresResponse.Results));
         Debug.Log(scoresResponse.Results.Count);
 
-        for (int i = 0; i < scoresResponse.Results.Count; i++)
+        for (int i = 0; i < Limit; i++)
         {
-            Scores[i].text = "Score: " + scoresResponse.Results[i].Score.ToString();
-            Names[i].text = $"{scoresResponse.Results[i].Rank+ 1}. " + scoresResponse.Results[i].PlayerName.ToString();
+            if(scoresResponse.Results.Count > i && scoresResponse.Results[i] != null)
+            {
+                Scores[i].text = "Score: " + scoresResponse.Results[i].Score.ToString();
+                Names[i].text = $"{scoresResponse.Results[i].Rank + 1}. " + scoresResponse.Results[i].PlayerName.ToString();
+            }
+            else
+            {
+                Scores[i].text = "Score: ";
+                Names[i].text = $"{i + 1 + Offset}. ";
+            }
 
         }
+
     }
 
     public async void GetPlayerScore()
