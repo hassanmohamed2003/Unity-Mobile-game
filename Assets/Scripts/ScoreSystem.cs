@@ -39,7 +39,7 @@ public class ScoreSystem : MonoBehaviour
 
     public void UpdateHighscore()
     {
-        if (score > highscoreAmount)
+        if (score > highscoreAmount && !GameState.AnyCheatsActive())
         {
             // Save highscore
             PlayerPrefs.SetInt("HighScore", score);

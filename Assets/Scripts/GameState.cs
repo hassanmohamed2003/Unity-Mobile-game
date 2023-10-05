@@ -10,4 +10,9 @@ public static class GameState
     public static bool LockedCheckpoint = false;
     public static bool DisableRope = false;
     public static bool UnlockAllLevels = false;
+
+    public static bool AnyCheatsActive()
+    {
+        return NoFail || LockedCheckpoint || DisableRope || UnlockAllLevels;
+    }
 }
