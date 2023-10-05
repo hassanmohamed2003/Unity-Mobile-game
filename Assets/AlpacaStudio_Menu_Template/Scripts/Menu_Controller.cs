@@ -89,7 +89,13 @@ public class Menu_Controller : MonoBehaviour {
 		SceneManager.LoadScene("StartMenu2");
 	}
 
-	public void GoToSettings()
+    public void GoToLeaderboard()
+    {
+        _audioSourceSFX.PlayOneShot(_audioClip);
+        SceneManager.LoadScene("Leaderboard");
+    }
+
+    public void GoToSettings()
 	{
         _audioSourceSFX.PlayOneShot(_audioClip);
         SceneManager.LoadScene("Settings");
