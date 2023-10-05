@@ -101,8 +101,13 @@ public class Menu_Controller : MonoBehaviour {
 			counter = 0;
 		}
 	}
+    public void GoToLeaderboard()
+    {
+        _audioSourceSFX.PlayOneShot(_audioClip);
+        SceneManager.LoadScene("Leaderboard");
+    }
 
-	public void GoToSettings()
+    public void GoToSettings()
 	{
         _audioSourceSFX.PlayOneShot(_audioClip);
         SceneManager.LoadScene("Settings");
