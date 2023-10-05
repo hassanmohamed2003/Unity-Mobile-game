@@ -183,10 +183,13 @@ public class Crane : MonoBehaviour
         }
 
         // Initiate block swing
-        rigidbodyPiece.AddForce(InitialSwingForce * rigidbodyPiece.mass * force, ForceMode2D.Force);
+        if(!GameState.DisableRope)
+        {
+            rigidbodyPiece.AddForce(InitialSwingForce * rigidbodyPiece.mass * force, ForceMode2D.Force);
+        }        
 
         // Start the rope breaking if enabled
-        if(enableRopeBreak)
+        if(enableRopeBreak && !GameState.DisableRope)
         {
             RopeRoutine = RopeBreakingRoutine();
             StartCoroutine(RopeRoutine);        

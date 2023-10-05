@@ -18,7 +18,10 @@ public class CheckpointSystem : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             rb.bodyType = RigidbodyType2D.Static;
         }
-        UpdateCheckpoint(blocks);
+        if(!GameState.LockedCheckpoint)
+        {
+            UpdateCheckpoint(blocks);
+        }
         UpdateRopeSwing();
     }
 

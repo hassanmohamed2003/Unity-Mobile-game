@@ -19,12 +19,13 @@ public class BuildingBlock : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D target)
     {
         if ((target.gameObject.TryGetComponent(out BuildingBlock _) && !ignoreCollision)
-         || (target.gameObject.TryGetComponent(out Floor _) && !blockSystem.HasFirstBlockLanded))
+         || (target.gameObject.TryGetComponent(out Floor _) && !blockSystem.HasFirstBlockLanded)
+         || (target.gameObject.TryGetComponent(out Floor _) && GameState.NoFail))
         {
             ignoreCollision = true;
             blockSystem.OnBlockCollision(target);
         }
-        else if (target.gameObject.TryGetComponent(out Floor _) && !Game.instance.IsGameOver)
+        else if (target.gameObject.TryGetComponent(out Floor _) && !Game.instance.IsGameOver && !GameState.NoFail)
         {
             Game.instance.BlockHitFloor();
         }       

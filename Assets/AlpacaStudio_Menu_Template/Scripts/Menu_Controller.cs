@@ -32,6 +32,8 @@ public class Menu_Controller : MonoBehaviour {
     public GameObject transition;
 	public float transitionTime;
 
+	private int counter = 0;
+
     void Awake () {
 
 
@@ -87,6 +89,17 @@ public class Menu_Controller : MonoBehaviour {
 	{
         _audioSourceSFX.PlayOneShot(_audioClip);
 		SceneManager.LoadScene("StartMenu2");
+	}
+
+	public void GoToCheats()
+	{
+		counter++;
+		if(counter == 3)
+		{
+			_audioSourceSFX.PlayOneShot(_audioClip);
+			SceneManager.LoadScene("Cheats");
+			counter = 0;
+		}
 	}
 
 	public void GoToSettings()

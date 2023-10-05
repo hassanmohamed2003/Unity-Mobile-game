@@ -51,7 +51,6 @@ public class LevelSelector : MonoBehaviour
         Image starTwo1 = level1StarTwo.GetComponent<Image>();
         Image starThree1 = level1StarThree.GetComponent<Image>();
 
-
         switch (level1Stars)
         {
             case 0:
@@ -117,7 +116,7 @@ public class LevelSelector : MonoBehaviour
 
     public void checkLevels()
     {
-        if(level1Stars < 2)
+        if(level1Stars < 2 && !GameState.UnlockAllLevels)
         {
             LockLevel2.SetActive(true);
             StarRequirement2.SetActive(true);
@@ -128,7 +127,7 @@ public class LevelSelector : MonoBehaviour
             Level2Selector.GetComponent<Image>().color = Color.white;
         }
 
-        if(level1Stars + level2Stars < 5)
+        if(level1Stars + level2Stars < 5 && !GameState.UnlockAllLevels)
         {
             LockLevel3.SetActive(true);
             StarRequirement3.SetActive(true);
@@ -138,11 +137,5 @@ public class LevelSelector : MonoBehaviour
             level3StarThree.SetActive(false);
             Level3Selector.GetComponent<Image>().color = Color.white;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
