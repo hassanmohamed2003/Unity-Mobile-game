@@ -14,9 +14,9 @@ public class LevelUIHandler : MonoBehaviour
     public GameOverScreen LevelGameOverScreen;
 
     [Header("Texts")]
-    public TMP_Text TiltTutorial;
-    public TMP_Text TapTutorial;
-    public TMP_Text RopeTutorial;
+    public GameObject TiltTutorial;
+    public GameObject TapTutorial;
+    public GameObject RopeTutorial;
     public TMP_Text EndScoreLevel;
     public TMP_Text EndScoreEndless;
     public TMP_Text EndHighScore;
